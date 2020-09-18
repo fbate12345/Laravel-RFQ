@@ -83,10 +83,10 @@
                         <td style="vertical-align: middle;"><a class="btn btn-danger delete" href="{{ url('/request/destroy', $request->id) }}" style="color: #fff;">Cancel</a></td>
                         
                       @elseif($request['status'] == 2)
-                        <td style="vertical-align: middle;"><a class="btn btn-default" readonly style="cursor: not-allowed;" id="{{ $request['id'] }}">Cancel</a></td>
+                        <td style="vertical-align: middle;"><a class="btn btn-danger" readonly style="cursor: not-allowed; color: #fff;" id="{{ $request['id'] }}">Cancel</a></td>
 
                       @elseif($request['status'] == 3)
-                        <td style="vertical-align: middle;"><a class="btn btn-default" readonly style="cursor: not-allowed;" id="{{ $request['id'] }}">Cancel</a></td>
+                        <td style="vertical-align: middle;"><a class="btn btn-danger" readonly style="cursor: not-allowed; color: #fff;" id="{{ $request['id'] }}">Cancel</a></td>
 
                       @endif
                     @endif
