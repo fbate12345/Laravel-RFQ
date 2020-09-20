@@ -145,35 +145,35 @@ Route::put('/admin/localization/update/{localizationsetting}', 'Admin\Localizati
 
 Route::resource('admin/managemanagers', 'Admin\ManagemanagersController');
 Route::resource('admin/managesellers', 'Admin\ManagesellersController');
-Route::get('/admin/managesellers', 'Admin\ManagesellersController@index')->name('admin.managesellers');
+Route::get('/admin/managesellers', 'Admin\ManagesellersController@index')->name('managesellers.index');
 
 Route::resource('admin/managebuyers', 'Admin\ManagebuyersController');
-Route::get('/admin/managebuyers', 'Admin\ManagebuyersController@index')->name('admin.managebuyers');
+Route::get('/admin/managebuyers', 'Admin\ManagebuyersController@index')->name('managebuyers.index');
 
 
 Route::resource('admin/category', 'Admin\CategoryController');
-Route::get('/admin/category', 'Admin\CategoryController@index')->name('admin.category');
+Route::get('/admin/category', 'Admin\CategoryController@index')->name('category.index');
 
 Route::resource('admin/unit', 'Admin\UnitController');
-Route::get('/admin/unit', 'Admin\UnitController@index')->name('admin.unit');
+Route::get('/admin/unit', 'Admin\UnitController@index')->name('unit.index');
 
 Route::resource('admin/products', 'Admin\ProductsController');
-Route::get('/admin/products', 'Admin\ProductsController@index')->name('admin.products');
+Route::get('/admin/products', 'Admin\ProductsController@index')->name('products.index');
 
 Route::resource('admin/requests', 'Admin\RequestsController');
-Route::get('/admin/requests', 'Admin\RequestsController@index')->name('admin.requests');
+Route::get('/admin/requests', 'Admin\RequestsController@index')->name('requests.index');
 Route::get('/admin/requests/assign/{id}', 'Admin\RequestsController@assign')->name('requests.assign');
 Route::get('/admin/requests/view/{id}', 'Admin\RequestsController@view')->name('requests.view');
 
 
 Route::resource('admin/quotes', 'Admin\QuotesController');
-Route::get('/admin/quotes', 'Admin\QuotesController@index')->name('admin.quotes');
+Route::get('/admin/quotes', 'Admin\QuotesController@index')->name('quotes.index');
 
 Route::resource('admin/emails', 'Admin\EmailsController');
-Route::get('/admin/emails', 'Admin\EmailsController@index')->name('admin.emails');
+Route::get('/admin/emails', 'Admin\EmailsController@index')->name('emails.index');
 
 Route::resource('admin/logs', 'Admin\AdminlogsController');
-Route::get('/admin/logs', 'Admin\AdminlogsController@index')->name('admin.logs');
+Route::get('/admin/logs', 'Admin\AdminlogsController@index')->name('logs.index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

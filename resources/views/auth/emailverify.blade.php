@@ -16,7 +16,7 @@
                             <a style="color: #000; font-size: 30px; font-weight: 600;" href="{{ route('emailverify') }}">Buyer</a>
                         </li>
                         <li class="" style="display: inline-block; padding: 0 15px;">
-                            <a style="font-size: 30px; color: #666; font-weight: 600;" href="{{ route('emailverifyseller') }}">Seller</a>
+                            <a style="font-size: 20px; color: #666; font-weight: 600;" href="{{ route('emailverifyseller') }}">Seller</a>
                         </li>
 
                     <?php }else{
@@ -24,7 +24,7 @@
                         ?>
 
                         <li class="" style="display: inline-block; padding: 0 15px;">
-                            <a style="font-size: 30px; color: #666; font-weight: 600;" href="{{ route('emailverify') }}">Buyer</a>
+                            <a style="font-size: 20px; color: #666; font-weight: 600;" href="{{ route('emailverify') }}">Buyer</a>
                         </li>
                         <li class="active" style="display: inline-block; padding: 0 15px;">
                             <a style="font-size: 30px; color: #000; font-weight: 600;" href="{{ route('emailverifyseller') }}">Seller</a>
@@ -69,7 +69,14 @@
                             </div>
 
                             <div class="form-group submtit">
-                                <button class="ps-btn ps-btn--fullwidth">Join now</button>
+                                <?php 
+                                    if($role == "buyer") {
+                                        $style = "";
+                                    }else{
+                                        $style = "background-color: rgb(228, 133, 130);";
+                                } ?>
+
+                                <button class="ps-btn ps-btn--fullwidth" style="<?= $style ?>">Join now</button>
                             </div>
                         </div>
                         <div class="ps-form__footer">

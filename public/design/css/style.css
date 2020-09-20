@@ -14987,11 +14987,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
-  color: #000;
+  color: #fff;
 }
 
 .menu > li > a:hover {
-  color: #000;
+  color: #fff;
 }
 
 .menu > li:first-child {
@@ -15327,7 +15327,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 
 .navigation__extra > li a {
-  color: #000000;
+  color: #fff;
 }
 
 .navigation__extra > li:last-child {

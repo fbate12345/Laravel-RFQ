@@ -94,7 +94,7 @@
                 <h4>Easy to start selling online on Mambo just 4 simple steps</h4>
             </div>
             <div class="ps-section__content" style="text-align: center;">
-                <a style="font-size: medium; color: #476b91;" href="{{ route('howtoworks.index') }}">Learn More</a>
+                <a style="padding: 15px 45px; background-color: rgb(228, 133, 130);" href="{{ route('howtoworks.index') }}" class="ps-btn ps-btn--lg">Learn More</a>
             </div>
         </div>
     </div>

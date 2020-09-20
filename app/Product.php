@@ -11,7 +11,7 @@ class Product extends Model
 {
     use SoftDeletes;
 
-	public $fillable = ['name', 'MOQ', 'description', 'user_id', 'price_from', 'price_to', 'category_id', 'image_url', 'slug', 'sign_date', 'username'];
+	public $fillable = ['name', 'MOQ', 'description', 'user_id', 'price_from', 'price_to', 'category_id', 'image_url', 'slug', 'sign_date', 'username', 'status'];
 
 	/**
 	 * Get the route key for the model.

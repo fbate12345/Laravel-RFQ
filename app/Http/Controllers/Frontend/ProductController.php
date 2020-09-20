@@ -53,6 +53,7 @@ class ProductController extends Controller
                             ->Join('images', 'products.id', '=', 'images.product_id')
                             ->Join('users', 'users.id', '=', 'products.user_id')
                             ->where('products.status', 2)
+                            ->whereNull('products.deleted_at')
                             ->where('products.name', 'like', '%'.$word.'%')
                             ->where('products.username', 'like', '%'.$by.'%')
                             ->where('products.price_from', '>=', $min_price)
@@ -68,6 +69,7 @@ class ProductController extends Controller
                             ->Join('categories', 'categories.id', '=', 'products.category_id')
                             ->where('categories.slug', $category)
                             ->where('products.status', 2)
+                            ->whereNull('products.deleted_at')
                             ->where('products.name', 'like', '%'.$word.'%')
                             ->where('products.username', 'like', '%'.$by.'%')
                             ->where('products.price_from', '>=', $min_price)
@@ -181,6 +183,7 @@ class ProductController extends Controller
             'price_to'       => request('price_to'),
             'category_id' => request('category_id'),
             'slug'        => createSlug(request('name')),
+            'status' => "2",    //testing
             'sign_date'     => date('y-m-d h:i:s'),
         ]);
 
@@ -248,6 +251,7 @@ class ProductController extends Controller
         $product->MOQ = request('MOQ');
         $product->description = request('description');
         $product->user_id = auth()->id();
+        $product->status = 2;   //testing
         $product->price_from = request('price_from');
         $product->price_to = request('price_to');
         $product->category_id = request('category_id');

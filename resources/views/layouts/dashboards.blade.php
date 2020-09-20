@@ -368,47 +368,47 @@
                                                             {{ __('Managers') }}
                                                         </a>
                                                     </li> -->
-                                                    <li class="{{ isActiveRoute('admin.managesellers') }}">
+                                                    <li class="{{ isActiveRoute('managesellers.index') }}">
                                                         <a href="{{ url('admin/managesellers') }}">
                                                             {{ __('Sellers') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.managebuyers') }}">
+                                                    <li class="{{ isActiveRoute('managebuyers.index') }}">
                                                         <a href="{{ url('admin/managebuyers') }}">
                                                             {{ __('Buyers') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.unit') }}">
+                                                    <li class="{{ isActiveRoute('unit.index') }}">
                                                         <a href="{{ url('admin/unit') }}">
                                                             {{ __('Unit') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.category') }}">
+                                                    <li class="{{ isActiveRoute('category.index') }}">
                                                         <a href="{{ url('admin/category') }}">
                                                             {{ __('Category') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.products') }}">
+                                                    <li class="{{ isActiveRoute('products.index') }}">
                                                         <a href="{{ url('admin/products') }}">
                                                             {{ __('Product') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.requests') }}">
+                                                    <li class="{{ isActiveRoute('requests.index') }}">
                                                         <a href="{{ url('admin/requests') }}">
                                                             {{ __('Request') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.quotes') }}">
+                                                    <li class="{{ isActiveRoute('quotes.index') }}">
                                                         <a href="{{ url('admin/quotes') }}">
                                                             {{ __('Quote') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.emails') }}">
+                                                    <li class="{{ isActiveRoute('emails.index') }}">
                                                         <a href="{{ url('admin/emails') }}">
                                                             {{ __('Email') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.logs') }}">
+                                                    <li class="{{ isActiveRoute('logs.index') }}">
                                                         <a href="{{ url('admin/logs') }}">
                                                             {{ __('Admin Log') }}
                                                         </a>
@@ -416,37 +416,37 @@
                                                 @endif
 
                                                 @if(auth()->user()->hasRole('manager'))
-                                                    <li class="{{ isActiveRoute('admin.managesellers') }}">
+                                                <li class="{{ isActiveRoute('managesellers.index') }}">
                                                         <a href="{{ url('admin/managesellers') }}">
                                                             {{ __('Sellers') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.managebuyers') }}">
+                                                    <li class="{{ isActiveRoute('managebuyers.index') }}">
                                                         <a href="{{ url('admin/managebuyers') }}">
                                                             {{ __('Buyers') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.unit') }}">
+                                                    <li class="{{ isActiveRoute('unit.index') }}">
                                                         <a href="{{ url('admin/unit') }}">
                                                             {{ __('Unit') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.category') }}">
+                                                    <li class="{{ isActiveRoute('category.index') }}">
                                                         <a href="{{ url('admin/category') }}">
                                                             {{ __('Category') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.products') }}">
+                                                    <li class="{{ isActiveRoute('products.index') }}">
                                                         <a href="{{ url('admin/products') }}">
                                                             {{ __('Product') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.requests') }}">
+                                                    <li class="{{ isActiveRoute('requests.index') }}">
                                                         <a href="{{ url('admin/requests') }}">
                                                             {{ __('Request') }}
                                                         </a>
                                                     </li>
-                                                    <li class="{{ isActiveRoute('admin.quotes') }}">
+                                                    <li class="{{ isActiveRoute('quotes.index') }}">
                                                         <a href="{{ url('admin/quotes') }}">
                                                             {{ __('Quote') }}
                                                         </a>

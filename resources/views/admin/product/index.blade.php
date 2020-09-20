@@ -33,7 +33,13 @@
 									<td>{{ $product->getCategoryname($product->category_id) }}</td>
 									<td>{{ $product->getUsername($product->user_id) }}</td>
 									<td>
-										<img class="img-fluid" width="100" src="{{ asset('uploads/') }}/{{ $product->images->first()->url }}" alt="">
+										<?php 
+											if(@$product->images->first()->url) { ?>
+												<img class="img-fluid" width="100" src="{{ asset('uploads/') }}/{{ $product->images->first()->url }}" alt="">
+											<?php }else{
+
+											}
+										?>
 									</td>
 
 									@if($product->status == 1 || $product->status == NULL)
