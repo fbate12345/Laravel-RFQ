@@ -498,8 +498,8 @@
         <div id="back2top" style="display: block;"><i class="fa fa-angle-up"></i></div>
         <div class="ps-site-overlay"></div>
         <div id="loader-wrapper">
-            <div class="loader-section section-left"></div>
-            <div class="loader-section section-right"></div>
+            <!-- <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div> -->
         </div>
 
         @include('component.footer')

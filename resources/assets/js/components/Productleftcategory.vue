@@ -3,8 +3,14 @@
         <aside class="widget widget_shop">
             <h4 class="widget-title">Categories</h4>
             <ul class="ps-list--categories">
-                <li class="current-menu-item" v-for="cate in categories" :key="cate.name">
-                    <a @click="showListproduct(cate.slug)" class="showpointer">{{ cate.name }}</a>
+                <li class="current-menu-item menu-item-has-children" v-for="cate in categories" :key="cate.id">
+                    <a @click="showListproduct(cate.slug)" style="cursor: pointer;">{{ cate.name }}</a>
+                    <!-- <span class="sub-toggle" v-if="cate.childs.length"><i class="fa fa-angle-down"></i></span>
+                    <ul class="sub-menu" v-for="ct in cate.childs" :key="ct.id">
+                        <li class="current-menu-item">
+                            <a @click="showListproduct(ct.slug)" style="cursor: pointer;">{{ ct.name }}</a>
+                        </li>
+                    </ul> -->
                 </li>
             </ul>
         </aside>
@@ -38,6 +44,9 @@
 <style scoped>
     .showpointer {
         cursor: pointer;
+    }
+    .fa {
+        font-size: 15px;
     }
 </style>
 

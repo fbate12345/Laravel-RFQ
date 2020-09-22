@@ -51179,7 +51179,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.showpointer[data-v-e87a65e6] {\n    cursor: pointer;\n}\n", ""]);
+exports.push([module.i, "\n.showpointer[data-v-e87a65e6] {\n    cursor: pointer;\n}\n.fa[data-v-e87a65e6] {\n    font-size: 15px;\n}\n", ""]);
 
 // exports
 
@@ -51196,6 +51196,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52144,12 +52153,15 @@ var render = function() {
         _vm._l(_vm.categories, function(cate) {
           return _c(
             "li",
-            { key: cate.name, staticClass: "current-menu-item" },
+            {
+              key: cate.id,
+              staticClass: "current-menu-item menu-item-has-children"
+            },
             [
               _c(
                 "a",
                 {
-                  staticClass: "showpointer",
+                  staticStyle: { cursor: "pointer" },
                   on: {
                     click: function($event) {
                       return _vm.showListproduct(cate.slug)
@@ -52442,7 +52454,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     computed: {
         products: function products() {
-            console.log(this.$store.getters.PRODUCTS_BY_CATEGORY);
             return this.$store.getters.PRODUCTS_BY_CATEGORY;
         }
     },

@@ -35,6 +35,7 @@ class RequestController extends Controller
             $query = "JSON_CONTAINS(receiver, ".$userid.", '$')=1";
 
             $requests = Requests::whereRaw($query)->where('status', 2)->get();
+            // $requests = Requests::whereJsonContains('receiver', $userid)->where('status', 2)->get();
         }
         
         $products = Product::all();

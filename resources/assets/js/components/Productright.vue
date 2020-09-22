@@ -53,7 +53,7 @@
         },
 
         computed: {
-            products(){console.log(this.$store.getters.PRODUCTS_BY_CATEGORY)
+            products(){
                 return this.$store.getters.PRODUCTS_BY_CATEGORY;
             }
         },
