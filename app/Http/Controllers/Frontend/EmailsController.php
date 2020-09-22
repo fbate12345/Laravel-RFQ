@@ -93,10 +93,10 @@ class EmailsController extends Controller
         DB::beginTransaction();
 
         $str = rand(100000, 999999);
-        $url = "http://rfq.projexonlineservices.com/emails/directconfirmpage/".$request['email']."/".$request['role']."/".$str;
+        $url = "https://rfq.mambodubai.com/emails/directconfirmpage/".$request['email']."/".$request['role']."/".$str;
         $data = [];
         $data['name'] = 'User';
-        $data['body'] = 'Thank you for registering with us. <br> To complete your registration, please verify your email by clicking on this <a href="'.$url.'">link</a> and entering the following code '.$str.'.';
+        $data['body'] = 'Thank you for registering with us. <br> To complete your registration, please verify your email by clicking on this <a href="'.$url.'">link</a> and entering the following code '.$str.'.<br><br><br><a href="'.$url.'" style="padding: 10px 30px; text-decoration: none; font-size: 24px; border-radius: 0; background-color: #476B91; color: #ffffff;">Verify</a>';
 
         $useremail = $request['email'];
         $role = $request['role'];
