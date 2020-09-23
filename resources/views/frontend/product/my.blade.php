@@ -25,7 +25,7 @@
       <div class="col-12">
         <input type="hidden" class="url" value="{{ Route('products.deleteproductsbychoosing') }}" />
 				<input type="hidden" class="checkVals" />
-        
+
         <div class="table-responsive" style="text-align: left;">
           <table id="order-listing" class="table">
             <thead>
@@ -122,7 +122,7 @@
 
 					$('.checkVals').val(ids);
 
-					$('#order-listing_filter label').after('<button class="ps-btn submit_checkbox" style="padding: 15px 30px; margin-left: 2%;">Submit</button>');
+					$('#order-listing_filter label').after('<button class="ps-btn submit_checkbox" style="padding: 15px 30px; margin-left: 2%;">Delete</button>');
 				}
 				$(this).toggleClass('allChecked');
 

@@ -114,7 +114,7 @@
 
 					$('.checkVals').val(ids);
 
-					$('#order-listing_filter label').after('<button class="ps-btn submit_checkbox" style="padding: 15px 30px; margin-left: 2%;">Submit</button>');
+					$('#order-listing_filter label').after('<button class="ps-btn submit_checkbox" style="padding: 15px 30px; margin-left: 2%;">Delete</button>');
 				}
 				$(this).toggleClass('allChecked');
 
