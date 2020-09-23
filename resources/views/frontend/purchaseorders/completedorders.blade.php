@@ -42,58 +42,12 @@
                   @if(auth()->user()->hasRole('seller'))
                     <?php $date = date_create($quote->sign_date);
                       $dt = date_format($date, 'Y-m-d');
-
-                      if ($quote->available == 0) {
-                        $str = "Available";
-                        $total_price = $quote->product_price*$quote->volume + $quote->shipping_price + $quote->other_price;
-                      }else{
-                        $str = "Not Available";
-                        $total_price = $quote->alternative_product_price*$quote->volume + $quote->shipping_price + $quote->other_price;
-                      }
-
-                      switch ($quote->payment_status) {
-                        case '1':
-                          $status = "Payment Pending";
-                          break;
-                        case '2':
-                          $status = "Payment Received";
-                          break;
-                        case '3':
-                          $status = "Delivery Fine";
-                          break;
-
-                        default:
-                          break;
-                      }
                     ?>  
                   @endif
 
                   @if(auth()->user()->hasRole('buyer'))
                     <?php $date = date_create($quote->sign_date);
                       $dt = date_format($date, 'Y-m-d');
-
-                      if ($quote->available == 0) {
-                        $str = "Available";
-                        $total_price = $quote->product_price*$quote->volume + $quote->shipping_price + $quote->other_price;
-                      }else{
-                        $str = "Not Available";
-                        $total_price = $quote->alternative_product_price*$quote->volume + $quote->shipping_price + $quote->other_price;
-                      }
-
-                      switch ($quote->payment_status) {
-                        case '1':
-                          $status = "Payment Pending";
-                          break;
-                        case '2':
-                          $status = "Delivery Pending";
-                          break;
-                        case '3':
-                          $status = "Delivery Fine";
-                          break;
-
-                        default:
-                          break;
-                      }
                     ?> 
                   @endif
                 @endauth
@@ -106,7 +60,7 @@
                     <td style="vertical-align: middle;"><a href="{{ url('/purchaseorders/userreview', $quote->sender) }}" id="{{ $quote->sender }}">{{ $quote->username }}</a></td>
                   @endif
 
-                  <td style="vertical-align: middle;"><?= number_format(round($total_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
+                  <td style="vertical-align: middle;"><?= number_format(round($quote->total_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
 
                   @if($user_status == 0)
                     <td style="vertical-align: middle;">

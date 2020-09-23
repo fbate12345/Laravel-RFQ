@@ -77,8 +77,6 @@ class QuotesController extends Controller
         $t_quotes = Quotes::all();
         $user = User::all();
 
-        // print_r($total); exit();
-
         return view('frontend.quotes.index', compact('products', 'total', 'user', 't_quotes'));
     }
 

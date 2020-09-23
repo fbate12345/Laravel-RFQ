@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-12">    
                 @if($reviews)
-                    <div class="col-md-5" style="display: inline-block;">
+                    <div class="col-md-12" style="display: inline-block;">
                         <h4 style="display: inline-block;">{{ $name }} ( {{ $company }} )</h4>
                         @if($company_logo)
                             <div class="pull-right" style="display: inline-block;">
@@ -20,7 +20,7 @@
                     <?php if(count($reviews) > 0) { ?>
                         @foreach($reviews as $review)
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-md-12">
                                     <hr>
                                     <div class="form-group">
                                         <?php 

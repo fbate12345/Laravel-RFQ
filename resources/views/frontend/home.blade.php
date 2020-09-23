@@ -91,7 +91,7 @@
         <div class="container">
             <div class="ps-section__header" style="padding-bottom: 0px;">
                 <p>How it works</p>
-                <h4>Easy to start selling online on Mambo just 4 simple steps</h4>
+                <h4>Easy to start selling on Mambodubai.com</h4>
             </div>
             <div class="ps-section__content" style="text-align: center;">
                 <a style="padding: 15px 45px; background-color: rgb(228, 133, 130);" href="{{ route('howtoworks.index') }}" class="ps-btn ps-btn--lg">Learn More</a>

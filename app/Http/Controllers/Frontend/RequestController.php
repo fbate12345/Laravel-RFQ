@@ -50,13 +50,25 @@ class RequestController extends Controller
      */
     public function create($product_id = null)
     {
-        if (@$product_id) { //when buyer click the product directly
-            $product = Product::where('id', $product_id)->get();
-        }else{  //when buyer didn't click any product.
-            $product = [];
-        }
+        if (auth()->user()->hasRole('buyer')) {
+            if (@$product_id) { //when buyer click the product directly
+                $product = Product::where('id', $product_id)->get();
+            }else{  //when buyer didn't click any product.
+                $product = [];
+            }
 
-        return view('frontend.request.create', compact('product'));
+            return view('frontend.request.create', compact('product'));
+        } 
+
+        if (auth()->user()->hasRole('seller')) {
+            return redirect()->route('sellerdashboard.index');
+        }
+        if (auth()->user()->hasRole('admin')) {
+            return redirect()->route('dashboard.index');
+        }
+        if (auth()->user()->hasRole('manager')) {
+            return redirect()->route('managesellers.index');
+        }
     }
 
     /**

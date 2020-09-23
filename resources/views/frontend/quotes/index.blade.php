@@ -31,7 +31,7 @@
                   ?>
                   <tr role='row' data-toggle="collapse" data-target="#demo<?= $quote[0]->id ?>" class="odd accordion-toggle">
                     <td style="color: red;">
-                      <i class="fa fa-plus"></i> {{ $t_quotes[0]->getRequestNumber($quote[0]->id) }}
+                      <i class="fa fa-plus"></i> {{ App\Quotes::getRequestNumber($quote[0]->request_id) }}
                     </td>
                     <td style="color: red;">
                       {{ $dt }}
@@ -47,13 +47,6 @@
                   @foreach($quote as $qu)
                     <?php $date = date_create($qu->sign_date);
                       $dt = date_format($date, 'Y-m-d');
-                      if ($qu->available == 0) {
-                        $str = "Available";
-                        $total_price = $qu->product_price*$qu->volume + $qu->shipping_price + $qu->other_price;
-                      }else{
-                        $str = "Not Available";
-                        $total_price = $qu->alternative_product_price*$qu->volume + $qu->shipping_price + $qu->other_price;
-                      }
                     ?>
                     <tr>
                       <td colspan="8" class="hiddenRow" style="border-top: none; padding: 0;">
@@ -65,14 +58,8 @@
                                 <th>Seller Name</th>
                                 <th>Product Name</th>
                                 <th>Alternative Product Name</th>
-                                <!-- <th>Volume</th>
-                                <th>Available</th> -->
                                 <th>Product Price</th>
                                 <th>Alternative Product Price</th>
-                                <!-- <th>Shipping Price</th>
-                                <th>Shipping Description</th>
-                                <th>Other Charge Price</th>
-                                <th>Other Charge Description</th> -->
                                 <th>Total Price</th>
                                 @if($user_status == 0)
                                   <th>Actions</th>
@@ -85,14 +72,6 @@
                             <tbody>
                               <?php $date = date_create($qu->sign_date);
                                   $dt = date_format($date, 'Y-m-d');
-
-                                  if ($qu->available == 0) {
-                                    $str = "Available";
-                                    $total_price = $qu->product_price*$qu->volume + $qu->shipping_price + $qu->other_price;
-                                  }else{
-                                    $str = "Not Available";
-                                    $total_price = $qu->alternative_product_price*$qu->volume + $qu->shipping_price + $qu->other_price;
-                                  }
                                 ?>
                               <tr>
                                 <td style="vertical-align: middle;">{{ $dt }}</td>
@@ -101,15 +80,9 @@
                                 </td>
                                 <td style="vertical-align: middle;">{{ $qu->product_name }}</td>
                                 <td style="vertical-align: middle;">{{ $qu->alternative_product }}</td>
-                                <!-- <td style="vertical-align: middle;">{{ $qu->volume }}</td>
-                                <td style="vertical-align: middle;">{{ $str }}</td> -->
                                 <td style="vertical-align: middle;"><?= number_format(round($qu->product_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
-                                <td style="vertical-align: middle;"><?= number_format(round($qu->alternative_product_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
-                                <!-- <td style="vertical-align: middle;"><?= number_format(round($qu->shipping_price*$qu->shipping_weight, 3, PHP_ROUND_HALF_UP), 2); ?></td>         
-                                <td style="vertical-align: middle;">{{ $qu->shipping_desc }}</td>         
-                                <td style="vertical-align: middle;"><?= number_format(round($qu->other_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>         
-                                <td style="vertical-align: middle;">{{ $qu->other_price_desc }}</td>  -->        
-                                <td style="vertical-align: middle;"><?= number_format(round($total_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
+                                <td style="vertical-align: middle;"><?= number_format(round($qu->alternative_product_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>   
+                                <td style="vertical-align: middle;"><?= number_format(round($qu->total_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
 
                                 @if($user_status == 0)
                                   <td style="vertical-align: middle;">
@@ -142,7 +115,6 @@
                 <tr>
                   <th>Request ID</th>
                   <th>Date</th>
-                  <!-- <th>Seller Name</th> -->
                   <th>Product Name</th>
                 </tr>
               </thead>
@@ -154,7 +126,7 @@
                   ?>
                   <tr role='row' data-toggle="collapse" data-target="#demo<?= $quote[0]->id ?>" class="odd accordion-toggle">
                     <td style="color: red;">
-                      <i class="fa fa-plus"></i> {{ $t_quotes[0]->getRequestNumber($quote[0]->id) }}
+                      <i class="fa fa-plus"></i> {{ App\Quotes::getRequestNumber($quote[0]->request_id) }}
                     </td>
                     <td style="color: red;">
                       {{ $dt }}
@@ -168,16 +140,9 @@
                   @foreach($quote as $qu)
                     <?php $date = date_create($qu->sign_date);
                       $dt = date_format($date, 'Y-m-d');
-                      if ($qu->available == 0) {
-                        $str = "Available";
-                        $total_price = $qu->product_price*$qu->volume + $qu->shipping_price + $qu->other_price;
-                      }else{
-                        $str = "Not Available";
-                        $total_price = $qu->alternative_product_price*$qu->volume + $qu->shipping_price + $qu->other_price;
-                      }
                     ?>
                     <tr>
-                      <td colspan="14" class="hiddenRow" style="border-top: none; padding: 0;">
+                      <td colspan="7" class="hiddenRow" style="border-top: none; padding: 0;">
                         <div class="accordian-body collapse" id="demo<?= $quote[0]->id ?>"> 
                           <table class="table table-striped">
                             <thead>
@@ -185,15 +150,8 @@
                                 <th>Sent Date</th>
                                 <th>Product Name</th>
                                 <th>Alternative Product Name</th>
-                                <th>Volume</th>
-                                <th>Available</th>
                                 <th>Product Price</th>
                                 <th>Alternative Product Price</th>
-                                <th>Shipping Price</th>
-                                <th>Shipping Description</th>
-                                <th>Other Charge Price</th>
-                                <th>Other Charge Description</th>
-                                <th>Status</th>
                                 <th>Total Price</th>
                                 @if($user_status == 0)
                                   <th>Actions</th>
@@ -207,26 +165,9 @@
                               <td style="vertical-align: middle; border-top: none;">{{ $dt }}</td>
                               <td style="vertical-align: middle; border-top: none;">{{ $qu->product_name }}</td>
                               <td style="vertical-align: middle; border-top: none;">{{ $qu->alternative_product }}</td>
-                              <td style="vertical-align: middle; border-top: none;">{{ $qu->volume }}</td>
-                              <td style="vertical-align: middle; border-top: none;">{{ $str }}</td>
                               <td style="vertical-align: middle; border-top: none;"><?= number_format(round($qu->product_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
                               <td style="vertical-align: middle; border-top: none;"><?= number_format(round($qu->alternative_product_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
-                              <td style="vertical-align: middle; border-top: none;"><?= number_format(round($qu->shipping_price*$qu->shipping_weight, 3, PHP_ROUND_HALF_UP), 2); ?></td>         
-                              <td style="vertical-align: middle; border-top: none;">{{ $qu->shipping_desc }}</td>         
-                              <td style="vertical-align: middle; border-top: none;"><?= number_format(round($qu->other_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>         
-                              <td style="vertical-align: middle; border-top: none;">{{ $qu->other_price_desc }}</td>         
-                              
-                              @if($qu->status == 1)
-                                <td style="vertical-align: middle; border-top: none;">Pending</td>
-                              @endif
-                              @if($qu->status == 2)
-                                <td style="vertical-align: middle; border-top: none;">Approved</td>
-                              @endif
-                              @if($qu->status == 3)
-                                <td style="vertical-align: middle; border-top: none;">Canceled</td>
-                              @endif
-                              
-                              <td style="vertical-align: middle; border-top: none;"><?= number_format(round($total_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
+                              <td style="vertical-align: middle; border-top: none;"><?= number_format(round($qu->total_price, 3, PHP_ROUND_HALF_UP), 2); ?></td>
                               
                               @if($user_status == 0)
                                 <td style="vertical-align: middle; border-top: none;">

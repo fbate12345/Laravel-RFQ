@@ -11,7 +11,7 @@
           <p style="color: red;">Your account was blocked by admin!</p>
         @endif
 
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="form-group">
             @csrf
             <h3>Your sent review</h3>To <a href="{{ url('/purchaseorders/userreview', $receiver->id) }}" id="{{ $receiver->id }}">{{ $receiver->name }}</a><br>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <br>
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="form-group">
             @csrf
             <h3>Your received review</h3>From <a href="{{ url('/purchaseorders/userreview', $receiver->id) }}" id="{{ $receiver->id }}">{{ $receiver->name }}</a><br>
@@ -118,7 +118,7 @@
         </div>
       </div>
       <div class="col-8 h-100">
-        <a class="ps-btn" href="{{ route('purchaseorders.create') }}" style="color: #fff;">Back</a>
+        <a class="ps-btn" href="{{ route('purchaseorders.create') }}" style="color: #fff; margin-left: 3%;">Back</a>
       </div>
     </div>
   </div>

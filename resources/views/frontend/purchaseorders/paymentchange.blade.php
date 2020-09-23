@@ -27,14 +27,14 @@
               </select>
             </div>
 
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-10">
               <label>Information</label>
               @csrf
               <input type="hidden" name="id" value="{{ $record->id }}">
               <textarea rows="8" name="payment_information" id="payment_information" placeholder="How was the delivery?" class="form-control payment_information" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" style="margin-left: 2%;">Submit</button>
 
           </form>
         </div>

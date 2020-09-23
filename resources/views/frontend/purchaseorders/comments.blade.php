@@ -6,9 +6,8 @@
 <div class="card">
   <div class="card-body" style="padding: 5%;">
     <div class="row">
-      <div class="col-4">    
+      <div class="col-6">    
         <div class="table-responsive" style="text-align: left;">
-          <h4>Purchase Orders (<span style="color: red;">{{ $record->getstatus($record->payment_status) }}</span>) </h4><br/>
           @if($user_status == 1)
             <p style="color: red;">Your account was blocked by admin!</p>
           @endif
@@ -30,9 +29,9 @@
           </form>
         </div>
       </div>
-      <div class="col-8 h-100">
+      <div class="col-6 h-100">
         <div class="bg-secondary p-4">
-          <h6 class="card-title">Comments </h6>
+          <h4 class="card-title">Comments </h4>
           <div id="profile-list-left" class="py-2 live_comments_table">
             @if($comments)
               @foreach($comments as $comment)

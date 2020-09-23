@@ -6,7 +6,7 @@
 <div class="card">
   <div class="card-body" style="padding: 5%;">
     <div class="row">
-      <div class="col-4">    
+      <div class="col-12">    
         <div class="table-responsive" style="text-align: left;">
           <h4>Purchase Orders (<span style="color: red;">{{ $record->getstatus($record->payment_status) }}</span>) </h4><br/>
           @if($user_status == 1)
@@ -27,7 +27,7 @@
 
               
               <label>Rating</label>
-              <select id="example-fontawesome" name="mark" autocomplete="off">
+              <select class="ps-rating" name="mark" autocomplete="off">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>

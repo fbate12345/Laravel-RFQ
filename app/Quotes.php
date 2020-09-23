@@ -79,12 +79,9 @@ class Quotes extends Model
         return $name;
     }
 
-    public function getRequestNumber($id) {
+    public static function getRequestNumber($id) {
         if (@$id) {
-            $quotes = Quotes::where('id', $id)->first();
-            $request_id = $quotes->request_id;
-
-            $request = Requests::where('id', $request_id)->first();
+            $request = Requests::where('id', $id)->first();
             $request_number = '000'.$request->id;
         }
 
