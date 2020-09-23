@@ -10,11 +10,15 @@
 	<div class="card">
       	<div class="card-body" style="padding: 5%;">
             <div class="row">
+				<input type="hidden" class="url" value="{{ Route('products.deleteproductsbychoosing') }}" />
+				<input type="hidden" class="checkVals" />
+
               	<div class="col-12">
           			<div class="table-responsive">
 						<table id="order-listing" class="table table-bordered table-striped">
 							<thead>
 								<tr>
+									<th><input type='checkbox' id="selectAll" /></th>
 									<th width="50px">No</th>
 									<th>Name</th>
 									<th>Category</th>
@@ -28,8 +32,9 @@
 							<tbody>
 								@foreach($categories as $product)
 								<tr>
+									<td><input type='checkbox' class='checks' name='checks' value='{{ $product->id }}' /></td>
 									<td>{{ $product->id }}</td>
-									<td>{{ $product->name }}</td>
+									<td>{{ str_limit($product->name, 30, '...') }}</td>
 									<td>{{ $product->getCategoryname($product->category_id) }}</td>
 									<td>{{ $product->getUsername($product->user_id) }}</td>
 									<td>
@@ -83,3 +88,63 @@
         </div>
     </div>
 @stop
+
+@section('script')
+	<script>
+		$(document).ready(function () {
+			var alls = $('#order-listing tbody').children();
+
+			$('body').on('click', '#selectAll', function () {
+				if ($(this).hasClass('allChecked')) {
+					$('input[type="checkbox"]', alls).prop('checked', false);
+					
+					$('.checkVals').val('');
+
+					$('.submit_checkbox').remove();
+				} else {
+					$('input[type="checkbox"]', alls).prop('checked', true);
+					var ids = [];
+
+					$('#order-listing input:checked').each(function() {
+						if($(this).attr('id') == 'selectAll'){
+
+						}else 
+							ids.push($(this).val());
+					});
+
+					$('.checkVals').val(ids);
+
+					$('#order-listing_filter label').after('<button class="ps-btn submit_checkbox" style="padding: 15px 30px; margin-left: 2%;">Submit</button>');
+				}
+				$(this).toggleClass('allChecked');
+
+				$('.submit_checkbox').click(function() {
+					submitcheck();
+				});
+			})
+		});
+
+		function submitcheck() {
+			var ids = $('.checkVals').val();
+			if(!ids) {
+				alert('There are not any chosen items now.');
+				return;
+			}
+
+			var href = $('.url').val();
+			
+			$.ajax({
+				url: href,
+				type: 'GET',
+				data: { ids: ids },
+				success: function(result, status) {
+					if(result.status == 200) {
+						window.location.href = window.location.href;
+					}else{
+						alert(result.msg);
+					}
+				}
+			})
+		};
+	</script>
+@endsection

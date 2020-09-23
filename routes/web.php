@@ -128,6 +128,8 @@ Route::resource('product', 'Frontend\ProductController');
 Route::get('/myproduct', 'Frontend\ProductController@myproduct')->name('product.my');
 Route::get('/create', 'Frontend\ProductController@create')->name('product.create');
 
+Route::get('products/deleteproductsbychoosing', 'Frontend\ProductController@deleteproductsbychoosing')->name('products.deleteproductsbychoosing');
+
 Route::resource('shop', 'Frontend\ShopController');
 Route::resource('address', 'Frontend\AddressController');
 Route::put('address/setmain/{address}', 'Frontend\AddressController@set_main_address')->name('address.set_main_address');

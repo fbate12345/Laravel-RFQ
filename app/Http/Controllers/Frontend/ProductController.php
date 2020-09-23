@@ -23,7 +23,7 @@ class ProductController extends Controller
 {
     public function __construct(){
 
-        $this->middleware('auth')->except(['index', 'show', 'getcategory', 'getlocalizationsettings', 'getproductsbyfilter', 'getrole']);
+        $this->middleware('auth')->except(['index', 'show', 'getcategory', 'getlocalizationsettings', 'getproductsbyfilter', 'getrole', 'deleteproductsbychoosing']);
 
     }
 
@@ -41,6 +41,11 @@ class ProductController extends Controller
         return view('frontend.product.index', compact('categories', 'categorys', 'count'));
     }
 
+    /**
+     * All products by every filter conditions.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function getproductsbyfilter($word, $by, $min_price, $max_price, $category)
     {
         ($word == 'null') ? $word = '' : $word = $word;
@@ -103,6 +108,25 @@ class ProductController extends Controller
         }
 
         return response()->json($products);
+    }
+
+    /**
+     * Remove selected products by ajax calling.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteproductsbychoosing(Request $request) {
+        $ids = $request->input('ids');
+        if(@$ids) {
+            $diff = explode(',', $ids);
+            foreach($diff as $key => $id) {
+                $product = Product::where('id', $id)->delete();
+            }
+
+            return response()->json(['msg' => 'Successfully deleted!', 'status' => '200']);
+        }else{
+            return response()->json(['msg' => 'Please choose any items! There are not any chosen items now.', 'status' => '400']);
+        }
     }
 
     /**
