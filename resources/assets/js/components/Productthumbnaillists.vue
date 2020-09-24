@@ -10,7 +10,7 @@
                 <div class="ps-product__content">
                     <a class="ps-product__title" :href="`product/${prod.slug}`">{{ prod.name.substr(0, 20) }}</a>
                     <p class="text-muted" v-html="prod.description"></p>
-                    <p class="ps-product__vendor">Seller Name:<a :href="`purchaseorders/userreview/${prod.user_id}`">{{ prod.username }}</a></p>
+                    <p class="ps-product__vendor">Company: <a :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">{{ prod.company_name }}</a></p>
                 </div>
                 <div class="ps-product__shopping">
                     <p class="ps-product__price">{{ prod.price_from.toFixed(2) }} ~ {{ prod.price_to.toFixed(2) }} {{ localization_setting.currency }}</p>

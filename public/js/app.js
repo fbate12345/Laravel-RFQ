@@ -52985,7 +52985,6 @@ var render = function() {
     {
       staticClass: "ps",
       staticStyle: {
-        border: "1px solid",
         padding: "5%",
         "margin-bottom": "4%",
         "border-radius": "3px"
@@ -53018,6 +53017,7 @@ var render = function() {
         _c("hr"),
         _vm._v(" "),
         _c("div", { staticClass: "ps-product__content" }, [
+          _vm._v("\n            Company: "),
           _c(
             "a",
             {
@@ -53025,7 +53025,7 @@ var render = function() {
               staticStyle: { color: "blue" },
               attrs: { href: "purchaseorders/userreview/" + _vm.prod.user_id }
             },
-            [_vm._v(_vm._s(_vm.prod.username))]
+            [_vm._v(_vm._s(_vm.prod.company_name))]
           ),
           _vm._v(" "),
           _c("p", { staticClass: "ps-product__price" }, [
@@ -53308,13 +53308,14 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("p", { staticClass: "ps-product__vendor" }, [
-                _vm._v("Seller Name:"),
+                _vm._v("Company: "),
                 _c(
                   "a",
                   {
+                    staticStyle: { color: "blue" },
                     attrs: { href: "purchaseorders/userreview/" + prod.user_id }
                   },
-                  [_vm._v(_vm._s(prod.username))]
+                  [_vm._v(_vm._s(prod.company_name))]
                 )
               ])
             ]),

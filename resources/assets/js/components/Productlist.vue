@@ -1,5 +1,5 @@
 <template>
-    <div class="ps" style="border: 1px solid; padding: 5%; margin-bottom: 4%; border-radius: 3px;">
+    <div class="ps" style="padding: 5%; margin-bottom: 4%; border-radius: 3px;">
         <div class="ps-product__thumbnail">
             <a :href="`product/${prod.slug}`">
                 <img :src="`uploads/${prod.url}`" alt="" style="width: 100%; height: 145px; object-fit: cover;">
@@ -9,7 +9,7 @@
             <a class="ps-product__title" :href="`product/${prod.slug}`">{{ prod.name.substr(0, 20) }}</a>
             <hr>
             <div class="ps-product__content">
-                <a class="ps-product__vendor" :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">{{ prod.username }}</a>
+                Company: <a class="ps-product__vendor" :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">{{ prod.company_name }}</a>
                 <p class="ps-product__price">{{ prod.price_from.toFixed(2) }} ~ {{ prod.price_to.toFixed(2) }} {{ localization_setting.currency }}</p>
                 <p class="ps-product__price">{{ prod.MOQ }} piece (Min order)</p>
             </div>

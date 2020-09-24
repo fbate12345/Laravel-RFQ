@@ -108,7 +108,7 @@
                 @if($products)
                   @foreach($products as $product)
                     <div class="col-md-3">
-                        <div style="border: 1px solid; padding: 3%; margin-bottom: 4%; border-radius: 3px;">
+                        <div style="padding: 3%; margin-bottom: 4%; border-radius: 3px;">
                             <div class="ps-product__thumbnail">
                                 <a href="{{ route('product.show', $product->slug) }}">
                                 <img src="{{ asset('uploads/') }}/{{ $product->thumbnailUrl() }}" alt="" style="object-fit: cover; width: 100%; height: 165px;">
@@ -117,7 +117,7 @@
                             <div class="ps-product__container">
                                 <div class="ps-product__content">
                                     <a class="ps-product__title" href="{{ route('product.show', $product->slug) }}">{{ str_limit($product->name, 20, '...') }}</a><br>
-                                    <a class="ps-product__vendor" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getUsername($product->user_id) }}</a><br>
+                                    <!-- <a class="ps-product__vendor" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getUsername($product->user_id) }}</a><br> -->
                                     Company: <a class="ps-product__vendor" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getcompanyName($product->user_id) }}</a>
                                     <p class="ps-product__price">{{ number_format(round($product->price_from, 3, PHP_ROUND_HALF_UP), 2) }} ~ {{ number_format(round($product->price_to, 3, PHP_ROUND_HALF_UP), 2) }} {{ $localization_setting->currency }}/piece</p>
                                 </div>

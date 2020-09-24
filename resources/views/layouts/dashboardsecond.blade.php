@@ -75,7 +75,7 @@
                         <a class="ps-logo" href="{{ url('/') }}">
                             <img src="{{ asset('images/logo2_1.png') }}" alt="" style="width: 130px;">
                         </a>
-                        <div class="menu--product-categories">
+                        <!-- <div class="menu--product-categories">
                             <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Category</span></div>
                             <div class="menu__content">
                                 <ul class="menu--dropdown">
@@ -86,7 +86,7 @@
                                     @endforeach
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="header__center">
                         <form class="ps-form--quick-search" action="{{ route('product.index') }}" method="GET">
