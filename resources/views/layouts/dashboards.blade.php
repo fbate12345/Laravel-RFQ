@@ -46,18 +46,6 @@
                         <a class="ps-logo" href="{{ url('/') }}">
                             <img src="{{ asset('images/logo2_1.png') }}" alt="" style="width: 130px;">
                         </a>
-                        <!-- <div class="menu--product-categories">
-                            <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Category</span></div>
-                            <div class="menu__content">
-                                <ul class="menu--dropdown">
-                                    @foreach($categorys as $category)
-                                        <li>
-                                            <a href="{{ route('product.index', 'category='.$category->slug) }}"> {{ $category->name }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div> -->
                     </div>
                     <div class="header__center">
                         <form class="ps-form--quick-search" action="{{ route('product.index') }}" method="GET">
@@ -363,11 +351,11 @@
                                                             {{ __('Currency') }}
                                                         </a>
                                                     </li>
-                                                    <!-- <li class="{{ isActiveRoute('managemanagers') }}">
+                                                    <li class="{{ isActiveRoute('managemanagers') }}">
                                                         <a href="{{ url('admin/managemanagers') }}">
                                                             {{ __('Managers') }}
                                                         </a>
-                                                    </li> -->
+                                                    </li>
                                                     <li class="{{ isActiveRoute('managesellers.index') }}">
                                                         <a href="{{ url('admin/managesellers') }}">
                                                             {{ __('Sellers') }}
@@ -477,33 +465,7 @@
 
         <flash-message message="{{ session('flash') }}" />
     </div>
-    
-    <!-- <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <script src="{{ asset('assets/vendors/jquery-bar-rating/jquery.barrating.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('assets/vendors/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/misc.js') }}"></script>
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/js/todolist.js') }}"></script>
-    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
-    <script src="{{ asset('assets/js/form-addons.js') }}"></script>
-    <script src="{{ asset('assets/js/typeahead.js') }}"></script>
-    <script src="{{ asset('assets/js/select2.js') }}"></script>
-    <script src="{{ asset('assets/js/data-table.js') }}"></script>
-    <script src="{{ asset('js/rfq.js') }}"></script> -->
-
-
-
+   
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('design/plugins/jquery.min.js') }}"></script>
     <script src="{{ asset('design/plugins/nouislider/nouislider.min.js') }}"></script>

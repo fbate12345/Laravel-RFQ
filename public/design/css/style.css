@@ -42,6 +42,18 @@
         6. CUSTOM
 */
 
+/* @font-face {
+  font-family: "globalFont";
+  src: url("../fonts/Century-Gothic-Std-Regular.woff") format('woff');
+}
+@font-face {
+  font-family: "globalFont";
+  src: url("../fonts/Century_Gothic_Std_Regular.otf") format('otf');
+}
+* {
+  font-family: globalFont !important;
+} */
+
 table.dataTable {
   font-size: medium;
 }
