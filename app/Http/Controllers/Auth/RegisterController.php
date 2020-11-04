@@ -121,7 +121,7 @@ class RegisterController extends Controller
                     $url = "https://rfq.mambodubai.com/create";
                     $body = 'Thank you for signing up on MamboDubai Trading Portal. Please add your product in <a href="'.$url.'">here</a>.';
                 }if($role == 3) {   //buyer
-                    $url = "https://rfq.mambodubai.com/products";
+                    $url = "https://rfq.mambodubai.com/product";
                     $body = 'Thank you for signing up on MamboDubai Trading Portal. Please find products in <a href="'.$url.'">here</a>.';
                 }
 
