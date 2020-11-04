@@ -21,6 +21,7 @@
         @endif
         @csrf
         <div class='row'>
+          <div class='col-md-2'></div>
           <div class='col-md-2'>
             <label>Product Name*</label>
           </div>
@@ -40,7 +41,7 @@
           if(@$product[0]->thumbnailUrl()) {
          ?>
           <div class='row'>
-            <div class="col-md-2">
+            <div class="col-md-4">
             </div>
             <div class="col-md-5">
               <img class="u-expanded-width u-image u-image-default u-image-1" data-src="holder.js/100px225?theme=thumb&amp;bg=#eee&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="width: 100%; display: block;" src="{{ asset('uploads/') }}/{{ $product[0]->thumbnailUrl() }}" data-holder-rendered="true">
@@ -51,6 +52,7 @@
         <?php } ?>
 
         <div class="row">
+          <div class="col-md-2"></div>
           <div class='col-md-2'>
             <label>Volume*</label>
           </div>
@@ -68,6 +70,7 @@
         </div>
         <br>
         <div class='row'>
+          <div class="col-md-2"></div>
           <div class='col-md-2'>
             <label>Destination*</label>
           </div>
@@ -77,6 +80,7 @@
         </div>
         <br>
         <div class="row">
+          <div class="col-md-2"></div>
           <div class='col-md-2'>
             <label>Additional Information*</label>
           </div>
@@ -86,6 +90,7 @@
         </div>
         <br>
         <div class="row">
+          <div class="col-md-2"></div>
           <div class='col-md-2'>
             <label>Choose file</label>
           </div>
@@ -95,6 +100,7 @@
         </div>
         <br>
         <div class="row">
+          <div class="col-md-2"></div>
           <div class='col-md-2'>
             <label>Human Check</label>
           </div>
@@ -110,7 +116,9 @@
         @endif        
       </form>
       @if($user_status == 0)
-        <button class="ps-btn ps-btn--lg rfq_btn" id="js-contact-btn">Send</button>
+        <div style='text-align: center;'>
+          <button class="ps-btn ps-btn--lg rfq_btn" id="js-contact-btn">Send</button>
+        </div>        
       @endif
     </div>
   </div>

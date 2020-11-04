@@ -117,7 +117,15 @@ class RegisterController extends Controller
                 
                 $array['username'] = $data['name'];
                 $array['receiver_address'] = $data['email'];
-                $array['data'] = array('name' => $array['username'], "body" => "Welcome for sign up our site!");
+                if($role == 2) {    //seller
+                    $url = "https://rfq.mambodubai.com/create";
+                    $body = 'Thank you for signing up on MamboDubai Trading Portal. Please add your product in <a href="'.$url.'">here</a>.';
+                }if($role == 3) {   //buyer
+                    $url = "https://rfq.mambodubai.com/products";
+                    $body = 'Thank you for signing up on MamboDubai Trading Portal. Please find products in <a href="'.$url.'">here</a>.';
+                }
+
+                $array['data'] = array('name' => $array['username'], "body" => $body);
                 $array['subject'] = "Successfully sign up your account.";
                 $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
 
