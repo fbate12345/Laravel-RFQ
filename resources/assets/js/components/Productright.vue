@@ -20,6 +20,10 @@
             </div>
         </div>
         <div class="ps-tabs">
+            <loading :active.sync="isLoading" 
+            :can-cancel="true" 
+            :on-cancel="onCancel"
+            :is-full-page="fullPage"></loading>
             <div class="ps-tab active" id="tab-1">
                 <product-lists v-if="products.length != 0" :products="products.data.data"></product-lists>
                 
@@ -46,16 +50,30 @@
 </style>
 
 <script>
+    import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';
+    
     export default{
         data(){
             return {
+                isLoading: false,
+                fullPage: true
             }
         },
 
         computed: {
             products(){
+                this.isLoading = true;
+                setTimeout(() => {
+                    this.isLoading = false;
+                }, 1000);
+
                 return this.$store.getters.PRODUCTS_BY_CATEGORY;
             }
+        },
+
+        components: {
+            Loading
         },
         
         methods: {
@@ -74,10 +92,14 @@
                 }
 
                 this.$store.dispatch('GET_PRODUCTS', body);
-            }
+            },
+
+            onCancel() {
+              console.log('User cancelled the loader.')
+            } 
         },
 
-        created: async function() {
+        created: async function() {            
             var queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const category = urlParams.get('category');

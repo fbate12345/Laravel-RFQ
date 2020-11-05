@@ -4,7 +4,7 @@
             <h4 class="widget-title">Categories</h4>
             <ul class="ps-list--categories">
                 <li class="current-menu-item menu-item-has-children" v-for="cate in categories" :key="cate.id">
-                    <a @click="showListproduct(cate.slug)" style="cursor: pointer;">{{ cate.name }}</a>
+                    <a @click="showListproduct(cate.slug)" style="cursor: pointer;" :class="{'active': cate.slug == category}">{{ cate.name }}</a>
                     <!-- <span class="sub-toggle" v-if="cate.childs.length"><i class="fa fa-angle-down"></i></span>
                     <ul class="sub-menu" v-for="ct in cate.childs" :key="ct.id">
                         <li class="current-menu-item">
@@ -47,6 +47,10 @@
     }
     .fa {
         font-size: 15px;
+    }
+    .active {
+        color: red;
+        font-weight: bold;
     }
 </style>
 
@@ -105,6 +109,11 @@
         },
 
         created: async function() {
+            var queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const cate = urlParams.get('category');
+            this.category = cate;
+
             const res = await this.$store.dispatch('GET_CATEGORIS');
             const res1 = await this.$store.dispatch('GET_LOCALIZATION_SETTINGS');
         }
