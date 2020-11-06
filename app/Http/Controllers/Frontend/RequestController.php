@@ -179,7 +179,7 @@ class RequestController extends Controller
 
         $controller->save($array);
 
-        return redirect()->route('request.index');
+        return redirect()->route('request.index')->with('flash', 'Request has been successfully added.');
     }
 
     /**
@@ -230,7 +230,7 @@ class RequestController extends Controller
         $records[0]->port_of_destination = request('port_of_destination');
         $records[0]->update();
 
-        return back();
+        return redirect()->route('request.index')->with('flash', 'Request has been successfully changed.');
     }
 
     /**
