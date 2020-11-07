@@ -180,7 +180,7 @@ Route::get('/admin/logs', 'Admin\AdminlogsController@index')->name('logs.index')
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Axios AJAX call
-Route::get('/getproducts-byfilter/{word}/{by}/{min}/{max}/{category}', 'Frontend\ProductController@getproductsbyfilter');
+Route::get('/getproducts-byfilter/{word}/{by}/{min}/{max}/{category}/{sort}', 'Frontend\ProductController@getproductsbyfilter');
 
 Route::get('/api-getcategory', 'Frontend\ProductController@getcategory');
 Route::get('/api-getcurrency', 'Frontend\ProductController@getlocalizationsettings');

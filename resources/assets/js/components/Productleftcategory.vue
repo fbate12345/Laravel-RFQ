@@ -60,6 +60,7 @@
             return {
                 min_price: 0,
                 category: '',
+                sort: '',
                 max_price: 1000000,
                 by: '',
                 word: ''
@@ -83,6 +84,7 @@
                     min_price: this.min_price,
                     max_price: this.max_price,
                     category: slug,
+                    sort: this.sort,
                     page: 1
                 }
 
@@ -101,6 +103,7 @@
                     min_price: min,
                     max_price: max,
                     category: cate_val,
+                    sort: this.sort,
                     page: 1
                 }
 
@@ -112,7 +115,9 @@
             var queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const cate = urlParams.get('category');
+            const sort = urlParams.get('sort');
             this.category = cate;
+            this.sort = sort;
 
             const res = await this.$store.dispatch('GET_CATEGORIS');
             const res1 = await this.$store.dispatch('GET_LOCALIZATION_SETTINGS');

@@ -14,6 +14,7 @@ export default new Vuex.Store({
     min_price: 0,
     max_price: 1000000,
     category: '',
+    sort: '',
     page: 1,
   },
 
@@ -27,6 +28,7 @@ export default new Vuex.Store({
     MIN_PRICE: state => state.min_price,
     MAX_PRICE: state => state.max_price,
     CATEGORY: state => state.category,
+    SORT: state => state.sort,
     PAGE: state => state.page,
   },
   
@@ -62,6 +64,9 @@ export default new Vuex.Store({
     SET_CATEGORY: (state, payload) => {
       state.category = payload;
     },
+    SET_SORT: (state, payload) => {
+      state.sort = payload;
+    },
     SET_PAGE: (state, payload) => {
       state.page = payload;
     },
@@ -80,12 +85,14 @@ export default new Vuex.Store({
         const min_price = (payload.min_price == 0) ? null : payload.min_price;
         const max_price = (payload.max_price == '') ? null : payload.max_price;
         const category = (payload.category == -1) ? null : payload.category;
+        const sort = (payload.sort == -1) ? null : payload.sort;
 
-        const url = `/getproducts-byfilter/${word}/${by}/${min_price}/${max_price}/${category}?page=${payload.page}`;
+        const url = `/getproducts-byfilter/${word}/${by}/${min_price}/${max_price}/${category}/${sort}?page=${payload.page}`;
         const response = await window.axios.get(url);
 
         context.commit('SET_PAGE', payload.page);
         context.commit('SET_CATEGORY', category);
+        context.commit('SET_SORT', sort);
         context.commit('SET_MAX_PRICE', max_price);
         context.commit('SET_MIN_PRICE', min_price);
         context.commit('SET_BY', by);

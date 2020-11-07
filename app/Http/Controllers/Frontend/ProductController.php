@@ -46,12 +46,26 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getproductsbyfilter($word, $by, $min_price, $max_price, $category)
+    public function getproductsbyfilter($word, $by, $min_price, $max_price, $category, $sort)
     {
         ($word == 'null') ? $word = '' : $word = $word;
         ($by == 'null') ? $by = '' : $by = $by;
         ($min_price == 'null') ? $min_price = 0 : $min_price = $min_price;
-        
+        ($sort == 'null') ? $sortV = -1 : $sortV = $sort;
+        if($sortV == -1 || $sortV == 1) {
+            $column = "products.sign_date";
+            $type = "DESC";
+        }elseif($sortV == 2) {  //old to latest
+            $column = "products.sign_date";
+            $type = "ASC";
+        }elseif($sortV == 3) {  //low to high
+            $column = "products.price_from";
+            $type = "ASC";
+        }elseif($sortV == 4) {  //high to low
+            $column = "products.price_from";
+            $type = "DESC";
+        }    
+
         if($category == 'null') {
             $products = DB::table('products')
                             ->select('products.*', 'images.url', 'users.name as username', 'users.id as user_id', 'users.company_name')
@@ -63,7 +77,7 @@ class ProductController extends Controller
                             ->where('products.username', 'like', '%'.$by.'%')
                             ->where('products.price_from', '>=', $min_price)
                             ->where('products.price_to', '<=', $max_price)
-                            ->orderBy('products.sign_date', 'desc')
+                            ->orderBy($column, $type)
                             ->groupBy('products.id')
                             ->paginate(15);
         }else{
@@ -102,7 +116,7 @@ class ProductController extends Controller
                             ->where('products.username', 'like', '%'.$by.'%')
                             ->where('products.price_from', '>=', $min_price)
                             ->where('products.price_to', '<=', $max_price)
-                            ->orderBy('products.sign_date', 'desc')
+                            ->orderBy($column, $type)
                             ->groupBy('products.id')
                             ->paginate(15);
         }

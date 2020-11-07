@@ -3,13 +3,13 @@
         <div class="ps-shopping__header">
             <p><strong v-if="products.length != 0"> {{products.data.data.length}} </strong> Products found</p>
             <div class="ps-shopping__actions">
-                <!-- <select class="ps-select" data-placeholder="Sort Items">
-                    <option>Sort by latest</option>
-                    <option>Sort by popularity</option>
-                    <option>Sort by average rating</option>
-                    <option>Sort by price: low to high</option>
-                    <option>Sort by price: high to low</option>
-                </select> -->
+                <select name="sort" class="form-control" style="width: 200px !important; height: 40px;" @change="onchange()" v-model="key">
+                    <option value="">Choose sort</option>
+                    <option value="1">Latest to Old</option>
+                    <option value="2">Old to Latest</option>
+                    <option value="3">Low to High</option>
+                    <option value="4">High to Low</option>
+                </select>
                 <div class="ps-shopping__view">
                     <p>View</p>
                     <ul class="ps-tab-list">
@@ -57,7 +57,8 @@
         data(){
             return {
                 isLoading: false,
-                fullPage: true
+                fullPage: true,
+                key: ''
             }
         },
 
@@ -88,7 +89,24 @@
                     min_price: this.$store.getters.MIN_PRICE,
                     max_price: this.$store.getters.MAX_PRICE,
                     category: this.$store.getters.CATEGORY,
+                    sort: this.$store.getters.SORT,
                     page: page
+                }
+
+                this.$store.dispatch('GET_PRODUCTS', body);
+            },
+
+            onchange: function() {
+                console.log(this.key)
+     
+                const body ={
+                    word: this.$store.getters.WORD,
+                    by: this.$store.getters.BY,
+                    min_price: this.$store.getters.MIN_PRICE,
+                    max_price: this.$store.getters.MAX_PRICE,
+                    category: this.$store.getters.CATEGORY,
+                    sort: this.key,
+                    page: this.$store.getters.PAGE
                 }
 
                 this.$store.dispatch('GET_PRODUCTS', body);
@@ -103,6 +121,7 @@
             var queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const category = urlParams.get('category');
+            const sort = urlParams.get('sort');
             const word = urlParams.get('word');
 
             if(category == '') {
@@ -117,12 +136,19 @@
                 var w_val = word;
             }
 
+            if(sort == '') {
+                var sort_val = -1;
+            }else{
+                var sort_val = sort;
+            }
+
             const body ={
                 word: w_val,
                 by: '',
                 min_price: 0,
                 max_price: 1000000,
                 category: value,
+                sort: sort_val,
                 page: 1
             }
 
