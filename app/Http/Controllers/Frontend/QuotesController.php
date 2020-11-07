@@ -150,7 +150,7 @@ class QuotesController extends Controller
                     'sign_date' => date('y-m-d h:i:s'),
                 ]);
 
-                return redirect()->route('achievedquotes.index');
+                return redirect()->route('achieved.index');
             }
         }
     }

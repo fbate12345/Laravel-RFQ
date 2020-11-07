@@ -18,15 +18,15 @@
               <tr>
                 <th>Purchase Date</th>
                 <th>Product Name</th>
-                <th>Alternative Product Name</th>
+                <!-- <th>Alternative Product Name</th> -->
                 <th>Volume</th>
-                <th>Available</th>
+                <!-- <th>Available</th> -->
                 <th>Product Price</th>
                 <th>Alternative Product Price</th>
                 <th>Shipping Price</th>
-                <th>Shipping Description</th>
+                <!-- <th>Shipping Description</th> -->
                 <th>Other Charge Price</th>
-                <th>Other Charge Description</th>
+                <!-- <th>Other Charge Description</th> -->
                 <th>Total Price</th>
                 @if($user_status == 0)
                   <!-- <th>Actions</th> -->
@@ -53,15 +53,15 @@
                 <tr>
                   <td style="vertical-align: middle;">{{ $dt }}</td>
                   <td style="vertical-align: middle;">{{ $quote->product_name }}</td>
-                  <td style="vertical-align: middle;">{{ $quote->alternative_product }}</td>
+                  <!-- <td style="vertical-align: middle;">{{ $quote->alternative_product }}</td> -->
                   <td style="vertical-align: middle;">{{ $quote->volume }}</td>
-                  <td style="vertical-align: middle;">{{ $str }}</td>
+                  <!-- <td style="vertical-align: middle;">{{ $str }}</td> -->
                   <td style="vertical-align: middle;">{{ $quote->product_price }}</td>
                   <td style="vertical-align: middle;">{{ $quote->alternative_product_price }}</td>
                   <td style="vertical-align: middle;">{{ $quote->shipping_price }}</td>         
-                  <td style="vertical-align: middle;">{{ $quote->shipping_desc }}</td>         
+                  <!-- <td style="vertical-align: middle;">{{ $quote->shipping_desc }}</td>          -->
                   <td style="vertical-align: middle;">{{ $quote->other_price }}</td>         
-                  <td style="vertical-align: middle;">{{ $quote->other_price_desc }}</td>         
+                  <!-- <td style="vertical-align: middle;">{{ $quote->other_price_desc }}</td>          -->
                   <td style="vertical-align: middle;"><?= $total_price ?></td>
 
                   @if($user_status == 0)
