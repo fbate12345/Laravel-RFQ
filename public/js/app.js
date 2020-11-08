@@ -53967,9 +53967,9 @@ var render = function() {
             _c("div", { staticClass: "ps-product__shopping" }, [
               _c("p", { staticClass: "ps-product__price" }, [
                 _vm._v(
-                  _vm._s(prod.price_from.toFixed(2)) +
+                  _vm._s(prod.price_from) +
                     " ~ " +
-                    _vm._s(prod.price_to.toFixed(2)) +
+                    _vm._s(prod.price_to) +
                     " " +
                     _vm._s(_vm.localization_setting.currency)
                 )
