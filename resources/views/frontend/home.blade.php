@@ -15,7 +15,6 @@
                     <div class="ps-block__left"><i class="icon-rocket"></i></div>
                     <div class="ps-block__right">
                         <h4>Fast Delivery</h4>
-                        <h2 style="color: red; font-weight: bold;">jovanovic.nemanja.1029@gmail.com</h2>
                         <p>For all orders within UAE</p>
                     </div>
                 </div>
