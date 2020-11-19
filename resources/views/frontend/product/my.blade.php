@@ -33,7 +33,7 @@
                 <th><input type='checkbox' id="selectAll" /></th>
                 <th width="10%">ID</th>
                 <th width="10%">Product Name</th>
-                <th width="10%">Date</th>
+                <!-- <th width="10%">Date</th> -->
                 <th width="10%">Image</th>
                 <th width="10%">Status</th>
                 @if($user_status == 0)
@@ -53,7 +53,7 @@
                   <td><input type='checkbox' class='checks' name='checks' value='{{ $product->id }}' /></td>
                   <td style="vertical-align: middle;">{{ $product->id }}</td>
                   <td style="vertical-align: middle;">{{ $product->name }}</td>
-                  <td style="vertical-align: middle;">{{ $product->sign_date }}</td>
+                  <!-- <td style="vertical-align: middle;">{{ $product->sign_date }}</td> -->
                   <td style="vertical-align: middle;">
                     <img class="img-fluid" width="100" src="{{ asset('uploads/') }}/{{ $product->images->first()->url }}" alt="">
                   </td>
