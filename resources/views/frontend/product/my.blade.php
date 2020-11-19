@@ -4,10 +4,10 @@
 <div class="card rounded-0">
   <div class="card-body" style="padding: 5%;">
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-6">
         <h3>{{ __('My Product') }}</h3>  
       </div>
-      <div class="col-md-3" style="text-align: right;">
+      <div class="col-md-6" style="text-align: right;">
         @if($user_status == 0)
           <a class="ps-btn ps-btn--lg" href="{{ route('product.create') }}">
             Add Product
