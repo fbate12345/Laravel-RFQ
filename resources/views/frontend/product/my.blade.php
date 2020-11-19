@@ -31,15 +31,15 @@
             <thead>
               <tr>
                 <th><input type='checkbox' id="selectAll" /></th>
-                <th width="10%">ID</th>
-                <th width="10%">Product Name</th>
+                <th>ID</th>
+                <th>Product Name</th>
                 <!-- <th width="10%">Date</th> -->
-                <th width="10%">Image</th>
-                <th width="10%">Status</th>
+                <th>Image</th>
+                <th>Status</th>
                 @if($user_status == 0)
-                  <th width="5%">View</th>
-                  <th width="5%">Edit</th>
-                  <th width="5%">Delete</th>
+                  <th>View</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 @endif
 
                 @if($user_status == 1)
