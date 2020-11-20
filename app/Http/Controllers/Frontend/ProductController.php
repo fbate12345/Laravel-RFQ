@@ -320,23 +320,19 @@ class ProductController extends Controller
         $userid = auth()->id();
         $user_record = User::where('id', $userid)->first();
         $username = $user_record->name;
-        if(@$request->product_id) {
-            $product = Product::where('id', $request->product_id)->first();
-        }else{
-            $product = Product::create([
-                'name'        => request('name'),
-                'MOQ'        => request('MOQ'),
-                'description' => request('description'),
-                'user_id'     => auth()->id(),
-                'username'     => $username,
-                'price_from'       => request('price_from'),
-                'price_to'       => request('price_to'),
-                'category_id' => request('category_id'),
-                'slug'        => createSlug(request('name')),
-                'status' => "2",    //testing
-                'sign_date'     => date('y-m-d h:i:s'),
-            ]);
-        }
+        $product = Product::create([
+            'name'        => request('name'),
+            'MOQ'        => request('MOQ'),
+            'description' => request('description'),
+            'user_id'     => auth()->id(),
+            'username'     => $username,
+            'price_from'       => request('price_from'),
+            'price_to'       => request('price_to'),
+            'category_id' => request('category_id'),
+            'slug'        => createSlug(request('name')),
+            'status' => "2",    //testing
+            'sign_date'     => date('y-m-d h:i:s'),
+        ]);
         
         $files = Input::file('images');
         if(@$files) {
