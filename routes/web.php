@@ -127,6 +127,8 @@ Route::resource('order', 'Frontend\OrderController');
 Route::resource('product', 'Frontend\ProductController');
 Route::get('/myproduct', 'Frontend\ProductController@myproduct')->name('product.my');
 Route::get('/create', 'Frontend\ProductController@create')->name('product.create');
+Route::post('/product/upload', 'Frontend\ProductController@uploadFile')->name('product.upload');
+Route::post('/product/updateupload', 'Frontend\ProductController@updateupload')->name('product.updateupload');
 
 Route::get('products/deleteproductsbychoosing', 'Frontend\ProductController@deleteproductsbychoosing')->name('products.deleteproductsbychoosing');
 
@@ -134,6 +136,7 @@ Route::resource('shop', 'Frontend\ShopController');
 Route::resource('address', 'Frontend\AddressController');
 Route::put('address/setmain/{address}', 'Frontend\AddressController@set_main_address')->name('address.set_main_address');
 
+Route::post('/image/deleteimage/{image}', 'Frontend\ImageController@deleteimage')->name('image.deleteim');
 Route::delete('/image/destroy/{image}', 'Frontend\ImageController@destroy')->name('image.destroy');
 
 Route::get('/admin', 'Admin\GeneralSettingsController@index')->name('dashboard.index');

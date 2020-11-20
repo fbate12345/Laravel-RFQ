@@ -55,7 +55,10 @@
                   <td style="vertical-align: middle;">{{ $product->name }}</td>
                   <!-- <td style="vertical-align: middle;">{{ $product->sign_date }}</td> -->
                   <td style="vertical-align: middle;">
-                    <img class="img-fluid" width="100" src="{{ asset('uploads/') }}/{{ $product->images->first()->url }}" alt="">
+                    @if(@$product->images->first()->url)
+                      <img class="img-fluid" width="100" src="{{ asset('uploads/') }}/{{ $product->images->first()->url }}" alt="">
+                    @else
+                    @endif
                   </td>
                   <td style="vertical-align: middle;">
                     {{ $product->getstatuesname($product->status) }}

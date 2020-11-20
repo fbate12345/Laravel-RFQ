@@ -25,30 +25,30 @@ class Image extends Model
             return false;
         }
 
-        foreach (request()->file('images') as $key => $image) {
-            Storage::disk('public_local')->put('uploads/', $image);
-
-            self::save_image($product_id, $key, $image);
-        }
+        Storage::disk('public_local')->put('uploads/', request()->file('images'));
+        self::save_image($product_id, request()->file('images'));
     }
 
     /**
     * @param product_id
     * This is a sub-feature to upload a Product image
     */
-    public static function save_image($product_id, $key, $image) {
-        $img = Image::where(['product_id' => $product_id])->skip($key)->take(1)->first();
+    public static function save_image($product_id, $image) {
+        $img = Image::where('product_id', $product_id)->first();
+        print_r($image); exit;
 
         if($img) {
             Storage::disk('public_local')->delete('uploads/', $img->url);
             $img->url = $image->hashName();
             $img->save();
         } else {
-            Image::create([
+            $img = Image::create([
                 'url' => $image->hashName(),
                 'product_id' => $product_id,
             ]);
         }
+
+        return $img;
     }
 
     /**

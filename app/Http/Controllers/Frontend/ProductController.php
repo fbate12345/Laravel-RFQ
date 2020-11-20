@@ -8,7 +8,8 @@ use App\Image;
 use App\Product;
 use App\Category;
 use App\LocalizationSetting;
-
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -248,7 +249,7 @@ class ProductController extends Controller
         $userid = auth()->id();
         $user_record = User::where('id', $userid)->first();
         $username = $user_record->name;
-
+        
         $product = Product::create([
             'name'        => request('name'),
             'MOQ'        => request('MOQ'),
@@ -263,12 +264,96 @@ class ProductController extends Controller
             'sign_date'     => date('y-m-d h:i:s'),
         ]);
 
-        Image::upload_product_images($product->id);
+        $file = Input::file('images');
+        $fl = $file[0];
+        
+        $filename = $fl->getClientOriginalName();
+        
+        $path = hash( 'sha256', time());
+        // print_r(File::get($fl)); exit();
+        if(Storage::disk('public_local')->put($path.'/'.$filename,  File::get($fl))) {
+
+            $input['url'] = $filename;
+            $input['product_id'] = $product->id;
+            $file = Image::create($input);
+
+            $controller = new EmailsController;
+            $array = [];
+            $userid = auth()->id();
+            $user = User::where('id', $userid)->first();
+            $array['username'] = $user->name;
+            $array['receiver_address'] = $user->email;
+            $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.");
+            $array['subject'] = "Successfully added product.";
+            $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
+            $controller->save($array);
+
+            return response()->json([
+                'success' => true,
+                'id' => $file->id
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => false
+        ], 500);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadFile(Request $request)
+    {
+        $this->validate(request(), [
+            'name'        => 'required',
+            'category_id' => 'required',
+            'MOQ'        => 'required',
+            'price_from'       => 'required',
+            'price_to'       => 'required',
+            'description' => 'required',
+            'images'      => 'required',
+        ]);
+
+        $userid = auth()->id();
+        $user_record = User::where('id', $userid)->first();
+        $username = $user_record->name;
+        if(@$request->product_id) {
+            $product = Product::where('id', $request->product_id)->first();
+        }else{
+            $product = Product::create([
+                'name'        => request('name'),
+                'MOQ'        => request('MOQ'),
+                'description' => request('description'),
+                'user_id'     => auth()->id(),
+                'username'     => $username,
+                'price_from'       => request('price_from'),
+                'price_to'       => request('price_to'),
+                'category_id' => request('category_id'),
+                'slug'        => createSlug(request('name')),
+                'status' => "2",    //testing
+                'sign_date'     => date('y-m-d h:i:s'),
+            ]);
+        }
+        
+        $files = Input::file('images');
+        if(@$files) {
+            for($i=0; $i < count($files); $i++) {
+                $filename = $files[$i]->getClientOriginalName();
+                $path = 'uploads';
+                if(Storage::disk('uploads')->put($path.'/'.$filename,  File::get($files[$i]))) {
+
+                    $input['url'] = $filename;
+                    $input['product_id'] = $product->id;
+                    $file = Image::create($input);
+                }
+            }
+        }
         
         $controller = new EmailsController;
-
         $array = [];
-
         $userid = auth()->id();
         $user = User::where('id', $userid)->first();
         $array['username'] = $user->name;
@@ -276,10 +361,12 @@ class ProductController extends Controller
         $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.");
         $array['subject'] = "Successfully added product.";
         $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
-
         $controller->save($array);
 
-        return redirect()->route('product.my');
+        return response()->json([
+            'success' => true,
+            'redirect_urls' => route('product.my')
+        ], 200);
     }
 
     /**
@@ -312,7 +399,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function updateupload(Request $request)
     {
         $this->validate(request(), [
             'name'        => 'required',
@@ -320,22 +407,45 @@ class ProductController extends Controller
             'MOQ'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
-            'description' => 'required',
+            'description' => 'required'
         ]);
 
-        $product->name = request('name');
-        $product->MOQ = request('MOQ');
-        $product->description = request('description');
-        $product->user_id = auth()->id();
-        $product->status = 2;   //testing
-        $product->price_from = request('price_from');
-        $product->price_to = request('price_to');
-        $product->category_id = request('category_id');
-        $product->save();
+        $userid = auth()->id();
+        $user_record = User::where('id', $userid)->first();
+        $username = $user_record->name;
+        if(@$request->product_id) {
+            $product = Product::where('id', $request->product_id)->first();
 
-        Image::upload_product_images($product->id, request('existings'));
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->MOQ = $request->MOQ;
+            $product->description = $request->description;
+            $product->price_from = $request->price_from;
+            $product->price_to = $request->price_to;
+            $product->slug = createSlug(request('name'));
+            $product->save();
+        }else{
+            
+        }
+        
+        $files = Input::file('images');
+        if(@$files) {
+            for($i=0; $i < count($files); $i++) {
+                $filename = $files[$i]->getClientOriginalName();
+                $path = 'uploads';
+                if(Storage::disk('uploads')->put($path.'/'.$filename,  File::get($files[$i]))) {
 
-        return redirect()->route('product.my');
+                    $input['url'] = $filename;
+                    $input['product_id'] = $product->id;
+                    $file = Image::create($input);
+                }
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'redirect_urls' => route('product.my')
+        ], 200);
     }
 
     /**
