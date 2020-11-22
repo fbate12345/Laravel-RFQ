@@ -13,19 +13,22 @@
         <div class="col-md-4">
             <h2 class='pro_name'>{{ $product->name }}</h2>
             <p>
-                <div class="font-weight-bold">{{ __('Seller') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"> {{ $product->getUsername($product->user_id) }}</a></div> 
+                <!-- <div class="font-weight-bold">{{ __('Seller') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"> {{ $product->getUsername($product->user_id) }}</a></div>  -->
 
                 <div class="font-weight-bold">
-                    {{ __('Company') }} : {{ $product->getcompanyName($product->user_id) }}
+                    {{ __('Company') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getcompanyName($product->user_id) }}</a>
                     @if($product->getcompanyLogo($product->user_id))
-                        <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">
+                        <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"><img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo"></a>
                     @endif
                 </div> 
 
                 <div class="font-weight-bold">{{ __('MOQ') }} : {{ $product->MOQ }}</div>
-
-                <div class="font-weight-bold mt-4">{{ __('Price') }} :</div>
-                <h3 class="mt-2">{{ number_format(round($product->price_from, 3, PHP_ROUND_HALF_UP), 2) }} ~ {{ number_format(round($product->price_to, 3, PHP_ROUND_HALF_UP), 2) }} {{ $localization_setting->currency }}</h3>
+                
+                @if($product->price_from == 0 && $product->price_to == 0) 
+                @else
+                    <div class="font-weight-bold mt-4">{{ __('Price') }} :</div>
+                    <h3 class="mt-2">{{ number_format(round($product->price_from, 3, PHP_ROUND_HALF_UP), 2) }} ~ {{ number_format(round($product->price_to, 3, PHP_ROUND_HALF_UP), 2) }} {{ $localization_setting->currency }}</h3>
+                @endif
             </p>
             
             @guest

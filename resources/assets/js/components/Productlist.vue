@@ -10,7 +10,8 @@
             <hr>
             <div class="ps-product__content">
                 Company: <a class="ps-product__vendor" :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">{{ prod.company_name }}</a>
-                <p class="ps-product__price">{{ prod.price_from }} ~ {{ prod.price_to }} {{ localization_setting.currency }}</p>
+
+                <p class="ps-product__price" v-show="!(prod.price_from == 0 && prod.price_to == 0)">{{ prod.price_from }} ~ {{ prod.price_to }} {{ localization_setting.currency }}</p>
                 <p class="ps-product__price">{{ prod.MOQ }} piece (Min order)</p>
             </div>
 

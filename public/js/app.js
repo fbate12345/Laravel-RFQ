@@ -53869,7 +53869,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53886,6 +53886,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
 //
 //
 //
@@ -54028,15 +54029,29 @@ var render = function() {
             [_vm._v(_vm._s(_vm.prod.company_name))]
           ),
           _vm._v(" "),
-          _c("p", { staticClass: "ps-product__price" }, [
-            _vm._v(
-              _vm._s(_vm.prod.price_from) +
-                " ~ " +
-                _vm._s(_vm.prod.price_to) +
-                " " +
-                _vm._s(_vm.localization_setting.currency)
-            )
-          ]),
+          _c(
+            "p",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: !(_vm.prod.price_from == 0 && _vm.prod.price_to == 0),
+                  expression: "!(prod.price_from == 0 && prod.price_to == 0)"
+                }
+              ],
+              staticClass: "ps-product__price"
+            },
+            [
+              _vm._v(
+                _vm._s(_vm.prod.price_from) +
+                  " ~ " +
+                  _vm._s(_vm.prod.price_to) +
+                  " " +
+                  _vm._s(_vm.localization_setting.currency)
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("p", { staticClass: "ps-product__price" }, [
             _vm._v(_vm._s(_vm.prod.MOQ) + " piece (Min order)")
