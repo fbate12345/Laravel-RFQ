@@ -64,10 +64,10 @@
 
         computed: {
             products(){
-                this.isLoading = true;
-                setTimeout(() => {
-                    this.isLoading = false;
-                }, 1000);
+                // this.isLoading = true;
+                // setTimeout(() => {
+                //     this.isLoading = false;
+                // }, 1000);
 
                 return this.$store.getters.PRODUCTS_BY_CATEGORY;
             }
@@ -113,7 +113,7 @@
             },
 
             onCancel() {
-              console.log('User cancelled the loader.')
+                console.log('User cancelled the loader.')
             } 
         },
 
