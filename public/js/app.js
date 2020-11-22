@@ -52779,12 +52779,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
     computed: {
         products: function products() {
-            var _this = this;
-
-            this.isLoading = true;
-            setTimeout(function () {
-                _this.isLoading = false;
-            }, 1000);
+            // this.isLoading = true;
+            // setTimeout(() => {
+            //     this.isLoading = false;
+            // }, 1000);
 
             return this.$store.getters.PRODUCTS_BY_CATEGORY;
         }
