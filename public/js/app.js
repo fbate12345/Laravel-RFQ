@@ -50188,7 +50188,7 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
     data: function data() {
         return {
             files: [],
-            selected: '',
+            selected: 1,
             images_item: [],
             categories: [],
             product: [],
@@ -50241,13 +50241,13 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             }
         },
         submitFiles: function submitFiles() {
-            var name = $('#name').val();
+            var name = this.product.name;
             var category = $('#category_id').val();
             var MOQ = $('#MOQ').val();
             var description = $('#quillExample1 .ql-editor');
             var value = description[0].innerHTML;
-            var price_from = $('#price_from').val();
-            var price_to = $('#price_to').val();
+            var price_from = this.product.price_from;
+            var price_to = this.product.price_to;
             if (!name) {
                 alert('Name is required!');
                 return;
@@ -50335,6 +50335,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-8" }, [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.name,
+              expression: "product.name"
+            }
+          ],
           staticClass: "form-control",
           attrs: {
             required: "",
@@ -50343,7 +50351,15 @@ var render = function() {
             name: "name",
             placeholder: "Name"
           },
-          domProps: { value: _vm.product.name }
+          domProps: { value: _vm.product.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.product, "name", $event.target.value)
+            }
+          }
         })
       ])
     ]),
@@ -50412,6 +50428,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-8" }, [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.MOQ,
+              expression: "product.MOQ"
+            }
+          ],
           staticClass: "form-control",
           attrs: {
             required: "",
@@ -50420,7 +50444,15 @@ var render = function() {
             name: "MOQ",
             placeholder: "MOQ"
           },
-          domProps: { value: _vm.product.MOQ }
+          domProps: { value: _vm.product.MOQ },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.product, "MOQ", $event.target.value)
+            }
+          }
         })
       ])
     ]),
@@ -50462,6 +50494,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-3" }, [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.price_from,
+              expression: "product.price_from"
+            }
+          ],
           staticClass: "form-control",
           attrs: {
             type: "number",
@@ -50470,7 +50510,15 @@ var render = function() {
             placeholder: "Price From",
             required: ""
           },
-          domProps: { value: _vm.product.price_from }
+          domProps: { value: _vm.product.price_from },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.product, "price_from", $event.target.value)
+            }
+          }
         })
       ]),
       _vm._v(" "),
@@ -50478,6 +50526,14 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-sm-3" }, [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.price_to,
+              expression: "product.price_to"
+            }
+          ],
           staticClass: "form-control",
           attrs: {
             type: "number",
@@ -50486,7 +50542,15 @@ var render = function() {
             placeholder: "Price To",
             required: ""
           },
-          domProps: { value: _vm.product.price_to }
+          domProps: { value: _vm.product.price_to },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.product, "price_to", $event.target.value)
+            }
+          }
         })
       ])
     ]),

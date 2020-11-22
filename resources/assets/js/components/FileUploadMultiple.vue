@@ -3,7 +3,7 @@
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-8">
-                <input required type="text" class="form-control" id="name" name="name" placeholder="Name" :value="product.name">
+                <input required type="text" class="form-control" id="name" name="name" placeholder="Name" v-model="product.name">
             </div>
         </div>
         <div class="form-group row">
@@ -17,7 +17,7 @@
         <div class="form-group row">
             <label for="MOQ" class="col-sm-2 col-form-label">MOQ</label>
             <div class="col-sm-8">
-                <input required type="text" class="form-control" id="MOQ" name="MOQ" placeholder="MOQ" :value="product.MOQ">
+                <input required type="text" class="form-control" id="MOQ" name="MOQ" placeholder="MOQ" v-model="product.MOQ">
             </div>
         </div>
         <div class="form-group row">
@@ -32,11 +32,11 @@
         <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price ( From, To )</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="price_from" name="price_from" placeholder="Price From" required :value="product.price_from">
+                <input type="number" class="form-control" id="price_from" name="price_from" placeholder="Price From" required v-model="product.price_from">
             </div>
             <div class="col-sm-2"></div>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="price_to" name="price_to" placeholder="Price To" required :value="product.price_to">
+                <input type="number" class="form-control" id="price_to" name="price_to" placeholder="Price To" required v-model="product.price_to">
             </div>
         </div>
         <div class="form-group row">
@@ -83,7 +83,7 @@
         data(){
             return {
                 files: [],
-                selected: '',
+                selected: 1,
                 images_item: [],
                 categories: [],
                 product: [],
@@ -132,13 +132,13 @@
                 }
             },
             submitFiles() {
-                const name = $('#name').val();
+                const name = this.product.name;
                 const category = $('#category_id').val();
                 const MOQ = $('#MOQ').val();
                 const description = $('#quillExample1 .ql-editor');
                 var value = description[0].innerHTML;
-                const price_from = $('#price_from').val();
-                const price_to = $('#price_to').val();
+                const price_from = this.product.price_from;
+                const price_to = this.product.price_to;
                 if(!name) {
                     alert('Name is required!');
                     return;
