@@ -112,6 +112,11 @@
                 let uploadedFiles = this.$refs.files.files;
 
                 for(var i = 0; i < uploadedFiles.length; i++) {
+                    if(uploadedFiles[i].size >= 50000) {
+                        alert("Maximum photo upload size is 500 KByte. Please choose another photo.");
+                        return;
+                    }
+                    
                     this.files.push(uploadedFiles[i]);
                 }
                 this.getImagePreviews();
