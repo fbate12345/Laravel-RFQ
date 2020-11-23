@@ -38,6 +38,64 @@
                     <a class="ps-btn rfq_detail_page" href="{{ route('request.sendrequest', $product->id) }}">Request for Quotation</a>
                 @endif
             @endguest
+
+            <div class="about_company" style="padding-top: 10%;">
+                <div>
+                    <h4>{{ __('Company') }}</h4>{{ $product->getcompanyName($product->user_id) }}    
+                </div>
+                <div>
+                    <br>
+                    <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">
+                </div>
+                <div>
+                    <br>
+                    <?php $mark = App\User::getMarks($product->user_id);
+
+                        if (round($mark) == 0) { ?>
+                            <?php echo number_format($mark, 1); ?>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span> 
+                    <?php }elseif (round($mark) == 1) { ?>
+                            <?php echo number_format($mark, 1); ?>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span> 
+                    <?php }elseif (round($mark) == 2) { ?>
+                            <?php echo number_format($mark, 1); ?>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span> 
+                    <?php }elseif (round($mark) == 3) { ?>
+                            <?php echo number_format($mark, 1); ?>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span> 
+                    <?php }elseif (round($mark) == 4) { ?>
+                            <?php echo number_format($mark, 1); ?>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span> 
+                    <?php }elseif (round($mark) == 5) { ?>
+                            <?php echo number_format($mark, 1); ?>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span> 
+                    <?php } ?>
+                </div>
+            </div>
             
             <!-- <a href="{{ route('cart.create', $product->slug) }}" class="btn btn-lg btn-success btn-block btn-flat mt-5">{{ __('Buy Now') }}</a>
             <a href="{{ route('cart.create', $product->slug) }}" class="btn btn-lg btn-primary btn-flat btn-block">{{ __('Add to Cart') }}</a> -->
