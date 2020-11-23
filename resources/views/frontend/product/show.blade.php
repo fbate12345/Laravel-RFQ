@@ -45,7 +45,9 @@
                 </div>
                 <div>
                     <br>
-                    <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">
+                    @if($product->getcompanyLogo($product->user_id))
+                        <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">
+                    @endif
                 </div>
                 <div>
                     <br>
