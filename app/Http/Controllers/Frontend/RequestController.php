@@ -169,15 +169,32 @@ class RequestController extends Controller
             $files = Files::upload_file_rfq($rfq['id']);
         }
 
+        if (@$rfq['product_id']) {
+            $product = Product::where('id', $rfq['product_id'])->first();
+            $user = User::where('id', $product->user_id)->first();
+            $company_name = $user->company_name;
+            $product_link = route('product.show', $product->slug);
+        }else{
+            $product = [];
+            $company_name = "";
+            $product_link = route('product.index');
+        }
+
+        if (@$files) {
+            $file_link = "https://rfq.mambodubai.com/uploads/" . $files->name;
+        }else{
+            $file_link = "";
+        }
+
         $controller = new EmailsController;
         $array = [];
         $array['username'] = $username;
         $array['receiver_address'] = $useremail;
-        $array['data'] = array('name' => $array['username'], "body" => "Thanks for your RFQ has been recieved. It will be reviewed and approved.");
+        $array['data'] = array('name' => $array['username'], "body" => "Thanks for your RFQ has been recieved. It will be reviewed and approved.", "company_name" => $company_name, "product_link" => $product_link, "file_link" => $file_link, "rfq" => $rfq);
         $array['subject'] = "Successfully received your RFQ.";
-        $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
+        $array['sender_address'] = "tdguae@gmail.com";
 
-        $controller->save($array);
+        $controller->sendRequest($array);
 
         return redirect()->route('request.index')->with('flash', 'Request has been successfully added.');
     }

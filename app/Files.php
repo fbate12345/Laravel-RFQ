@@ -41,12 +41,14 @@ class Files extends Model
     		$extenders = explode(".", $file->hashName());
     		$extension = $extenders[1];
 
-	        Files::create([
+	        $fl = Files::create([
 	            'name' => $file->hashName(),
 	            'request_id' => $request_id,
 	            'type' => $extension,
 	            'sign_date' => date('Y-m-d H:i:s'),
 	        ]);
     	}
+
+        return $fl;
     }
 }
