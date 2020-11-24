@@ -10,7 +10,7 @@
             <img src="https://rfq.mambodubai.com/images/logo2_1.png" alt="" style="width: 130px;">
         </a>
         <hr/>
-        <h1 style="color: #476B91;">Welcome {{ $name }}</h1><br>
+        <h1 style="color: #476B91;">Welcome {!! $name !!}</h1><br>
         <h4>Your request for the <a href="{{ $product_link }}">product</a> has been submitted successfully and it is pending for approval. You will be notified by email again once approved.<br> The details are as follows - </h4><br>
 
         <h4>Company Name - {{ $company_name }}</h4><br>
