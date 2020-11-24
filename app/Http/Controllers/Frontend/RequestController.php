@@ -145,6 +145,12 @@ class RequestController extends Controller
             ]);
 
             $files = Files::upload_file_rfq($rfq['id']);
+
+            if (@$files) {
+                $file_link = "https://rfq.mambodubai.com/uploads/" . $files->name;
+            }else{
+                $file_link = "";
+            }
         }else{ //when buyer choose any product and send the rfq.
             $product = Product::where('name', request('product_name'))->get();
             
@@ -167,6 +173,12 @@ class RequestController extends Controller
             ]);
 
             $files = Files::upload_file_rfq($rfq['id']);
+
+            if (@$files) {
+                $file_link = "https://rfq.mambodubai.com/uploads/" . $files->name;
+            }else{
+                $file_link = "";
+            }
         }
 
         if (@$rfq['product_id']) {
@@ -178,12 +190,6 @@ class RequestController extends Controller
             $product = [];
             $company_name = "";
             $product_link = route('product.index');
-        }
-
-        if (@$files) {
-            $file_link = "https://rfq.mambodubai.com/uploads/" . $files->name;
-        }else{
-            $file_link = "";
         }
 
         $controller = new EmailsController;
