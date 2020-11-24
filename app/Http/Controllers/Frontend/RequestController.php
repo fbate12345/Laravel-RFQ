@@ -193,7 +193,7 @@ class RequestController extends Controller
         $array['receiver_address'] = $useremail;
         $array['data'] = array('name' => $array['username'], "body" => "Thanks for your RFQ has been recieved. It will be reviewed and approved.", "company_name" => $company_name, "product_link" => $product_link, "file_link" => $file_link, "rfq" => $rfq);
         $array['subject'] = "Successfully received your RFQ.";
-        $array['sender_address'] = "tdguae@gmail.com";
+        $array['sender_address'] = "solaris.dubai@gmail.com";
 
         $controller->sendRequest($array);
 

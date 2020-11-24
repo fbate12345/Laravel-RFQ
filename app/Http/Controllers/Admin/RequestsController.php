@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Mail;
 use App\User;
+use App\Files;
+use App\Product;
 use App\Requests;
 use App\Adminlogs;
 use Illuminate\Http\Request;
@@ -68,7 +70,7 @@ class RequestsController extends Controller
                 $array['receiver_address'] = $useremail;
                 $array['data'] = array('name' => $array['username'], "body" => "Please check this URL: http://rfq.projexonlineservices.com/request");
                 $array['subject'] = "The following RFQ has been assigned to you by administrator.";
-                $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
+                $array['sender_address'] = "solaris.dubai@gmail.com";
 
                 $controller->save($array);
             }
@@ -131,11 +133,29 @@ class RequestsController extends Controller
                     $record[0]->status = 2;
                     $record[0]->update();
 
-                    $data = [];
-                    $data['title'] = 'Approved';
-                    $data['description'] = 'RFQ Name: '.$record[0]->product_name;
-                    $add_logs = Adminlogs::Addlog($data);
+                    $product_id = $record[0]->product_id;
+                    $files = Files::where('request_id', $record[0]->id)->first();
 
+                    if (@$product_id) {
+                        $product = Product::where('id', $product_id)->first();
+                        $user = User::where('id', $product->user_id)->first();
+                        $customer = User::where('id', $record[0]->sender)->first();
+                        $company_name = $user->company_name;
+                        $customer_name = $customer->name;
+                        $product_link = route('product.show', $product->slug);
+                    }else{
+                        $company_name = "";
+                        $customer_name = "";
+                        $product_link = route('product.index');
+                    }
+
+                    if (@$files) {
+                        $file_link = "https://rfq.mambodubai.com/uploads/" . $files->name;
+                    }else{
+                        $file_link = "";
+                    }
+
+                    //To buyer
                     $userid = $record[0]->sender;
                     $user = User::where('id', $userid)->first();
                     $username = $user->name;
@@ -145,12 +165,13 @@ class RequestsController extends Controller
                     $array = [];
                     $array['username'] = $username;
                     $array['receiver_address'] = $useremail;
-                    $array['data'] = array('name' => $array['username'], "body" => "You will recieve quotes from suppliers shortly.");
-                    $array['subject'] = "Congratulation your rfq has been approved.";
-                    $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
+                    $array['data'] = array('name' => $array['username'], "body" => "Successfully approved your RFQ.", "company_name" => $company_name, "product_link" => $product_link, "file_link" => $file_link, "rfq" => $record[0]);
+                    $array['subject'] = "Successfully approved your RFQ.";
+                    $array['sender_address'] = "solaris.dubai@gmail.com";
+                    $controller->sendRequest($array);
 
-                    $controller->save($array);
 
+                    //To seller
                     $arrs = $record[0]->receiver;
                     if (@$arrs) {
                         $diff = str_replace('[', '', $arrs);
@@ -168,11 +189,11 @@ class RequestsController extends Controller
                             $array = [];
                             $array['username'] = $username;
                             $array['receiver_address'] = $useremail;
-                            $array['data'] = array('name' => $array['username'], "body" => "Please check this URL: http://rfq.projexonlineservices.com/request");
+                            $array['data'] = array('name' => $array['username'], "body" => "Successfully submitted a RFQ for your product.", "customer_name" => $customer_name, "product_link" => $product_link, "file_link" => $file_link, "rfq" => $record[0]);
                             $array['subject'] = "The following RFQ has been assigned to you by administrator.";
-                            $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
+                            $array['sender_address'] = "solaris.dubai@gmail.com";
 
-                            $controller->save($array);
+                            $controller->approveRequest($array);
                         }
                     }
                 }else{
