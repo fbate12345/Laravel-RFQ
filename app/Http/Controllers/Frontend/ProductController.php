@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Mail;
 use App\User;
+use App\Unit;
 use App\Image;
 use App\Product;
 use App\Category;
@@ -37,9 +38,10 @@ class ProductController extends Controller
     {
         $categories = Product::latest()->filter($filters)->where('status', 2)->paginate(15);
         $categorys = Category::all();
+        $units = Unit::all();
         $count = count($categories);
 
-        return view('frontend.product.index', compact('categories', 'categorys', 'count'));
+        return view('frontend.product.index', compact('categories', 'categorys', 'count', 'units'));
     }
 
     /**
@@ -239,6 +241,7 @@ class ProductController extends Controller
         $this->validate(request(), [
             'name'        => 'required',
             'category_id' => 'required',
+            'unit_id' => 'required',
             'MOQ'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
@@ -259,6 +262,7 @@ class ProductController extends Controller
             'price_from'       => request('price_from'),
             'price_to'       => request('price_to'),
             'category_id' => request('category_id'),
+            'unit' => request('unit_id'),
             'slug'        => createSlug(request('name')),
             'status' => "2",    //testing
             'sign_date'     => date('y-m-d h:i:s'),
@@ -310,6 +314,7 @@ class ProductController extends Controller
         $this->validate(request(), [
             'name'        => 'required',
             'category_id' => 'required',
+            'unit_id' => 'required',
             'MOQ'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
@@ -329,6 +334,7 @@ class ProductController extends Controller
             'price_from'       => request('price_from'),
             'price_to'       => request('price_to'),
             'category_id' => request('category_id'),
+            'unit' => request('unit_id'),
             'slug'        => createSlug(request('name')),
             'status' => "2",    //testing
             'sign_date'     => date('y-m-d h:i:s'),
@@ -385,7 +391,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('frontend.product.edit', compact('product', 'categories'));
+        $units = Unit::all();
+        return view('frontend.product.edit', compact('product', 'categories', 'units'));
     }
 
     /**
@@ -400,6 +407,7 @@ class ProductController extends Controller
         $this->validate(request(), [
             'name'        => 'required',
             'category_id' => 'required',
+            'unit_id' => 'required',
             'MOQ'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
@@ -414,6 +422,7 @@ class ProductController extends Controller
 
             $product->name = $request->name;
             $product->category_id = $request->category_id;
+            $product->unit = $request->unit_id;
             $product->MOQ = $request->MOQ;
             $product->description = $request->description;
             $product->price_from = $request->price_from;

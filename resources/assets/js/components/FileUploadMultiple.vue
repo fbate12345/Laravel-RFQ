@@ -15,6 +15,14 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="price" class="col-sm-2 col-form-label">Unit</label>
+            <div class="col-sm-8">
+                <select required name="unit_id" id="unit_id" class="form-control js-example-basic-single" placeholder="Unit" style="width: 100%;" v-model="selectedunit">
+                    <option v-for="unit in units" :value="unit.id" :key="unit.id">{{ unit.name }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="MOQ" class="col-sm-2 col-form-label">MOQ</label>
             <div class="col-sm-8">
                 <input required type="text" class="form-control" id="MOQ" name="MOQ" placeholder="MOQ" v-model="product.MOQ">
@@ -78,14 +86,16 @@
     let $ = JQuery;
 
     export default{
-        props: ['images', 'urls', 'categoriesjson', 'actions_urls', 'productinfo'],
+        props: ['images', 'urls', 'categoriesjson', 'unitsjson', 'actions_urls', 'productinfo'],
 
         data(){
             return {
                 files: [],
                 selected: 1,
+                selectedunit: 1,
                 images_item: [],
                 categories: [],
+                units: [],
                 product: [],
                 is_addpage: true
             }
@@ -139,6 +149,7 @@
             submitFiles() {
                 const name = this.product.name;
                 const category = $('#category_id').val();
+                const unit_id = $('#unit_id').val();
                 const MOQ = $('#MOQ').val();
                 const description = $('#quillExample1 .ql-editor');
                 var value = description[0].innerHTML;
@@ -150,6 +161,10 @@
                 }
                 if(!category) {
                     alert('Category is required!');
+                    return;
+                }
+                if(!unit_id) {
+                    alert('Unit is required!');
                     return;
                 }
                 if(!MOQ) {
@@ -178,6 +193,7 @@
                 formData.append('product_id', this.product.id);
                 formData.append('name', name);
                 formData.append('category_id', category);
+                formData.append('unit_id', unit_id);
                 formData.append('MOQ', MOQ);
                 formData.append('description', value);
                 formData.append('price_from', price_from);
@@ -200,6 +216,9 @@
             if(this.categoriesjson) {
                 this.categories = JSON.parse(this.categoriesjson);
             }
+            if(this.unitsjson) {
+                this.units = JSON.parse(this.unitsjson);
+            }
             if(this.images) {
                 this.images_item = JSON.parse(this.images);
             }else{
@@ -207,6 +226,7 @@
             if(this.productinfo){
                 this.product = JSON.parse(this.productinfo);
                 this.selected = this.product.category_id;
+                this.selectedunit = this.product.unit;
             }
 
             $(document).ready(function() {

@@ -23,7 +23,7 @@
           <?php 
             $path = asset('uploads/') . "/";
           ?>
-          <file-upload-multiple productinfo="{{ $product }}" categoriesjson="{{ $categories }}" actions_urls="{{ route('product.updateupload') }}" urls="{{ $path }}" images="{{ $product->images }}"></file-upload-multiple>
+          <file-upload-multiple productinfo="{{ $product }}" unitsjson="{{ $units }}" categoriesjson="{{ $categories }}" actions_urls="{{ route('product.updateupload') }}" urls="{{ $path }}" images="{{ $product->images }}"></file-upload-multiple>
         </div>
       </div> <!-- [End] .card -->
 @endsection

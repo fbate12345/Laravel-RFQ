@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Unit;
 use App\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ class Product extends Model
 {
     use SoftDeletes;
 
-	public $fillable = ['name', 'MOQ', 'description', 'user_id', 'price_from', 'price_to', 'category_id', 'image_url', 'slug', 'sign_date', 'username', 'status'];
+	public $fillable = ['name', 'MOQ', 'description', 'user_id', 'price_from', 'price_to', 'category_id', 'unit', 'image_url', 'slug', 'sign_date', 'username', 'status'];
 
 	/**
 	 * Get the route key for the model.
@@ -29,6 +30,21 @@ class Product extends Model
 
     public function images() {
     	return $this->hasMany('App\Image');
+    }
+
+    public function getunit($unit_id) {
+        if(@$unit_id) {
+            $results = Unit::where('id', $unit_id)->get();
+            if(@$results) {
+                $result = $results[0]->name;
+            }else{
+                $result = "None";    
+            }
+        }else {
+            $result = "None";
+        }
+
+        return $result;
     }
 
     public function getUsername($userid) {

@@ -60,12 +60,13 @@
             <input type="number" class="form-control" id="volume" name="volume" style="display: inline-block;">
           </div>
           <div class="col-md-3">
-            <select class="form-control select2 unit" id="unit" name="unit" style='width:100%; display: inline-block;'>
+            <select class="form-control select2 unit" id="unit" style='width:100%; display: inline-block;' disabled>
               <option selected value="">Unit*</option>
               @foreach($units as $unit)
-                <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                <option value="{{ $unit->id }}" <?php if($unit['id'] == $product[0]['unit']){echo 'selected';} ?>>{{ $unit->name }}</option>
               @endforeach
             </select>
+            <input type="hidden" name="unit" value="{{ $product[0]['unit'] }}">
           </div>
         </div>
         <br>

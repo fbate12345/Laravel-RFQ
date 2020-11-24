@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->float('price_to');
             $table->integer('status')->nullable();
             $table->integer('category_id');
+            $table->integer('unit')->nullable();
             $table->string('image_url')->nullable();
             $table->string('slug')->unique();
             $table->datetime('sign_date');

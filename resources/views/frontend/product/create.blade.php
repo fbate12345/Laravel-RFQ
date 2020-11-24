@@ -20,7 +20,7 @@
 
     <h3>{{ __('Add Product') }}</h3>
     <br>
-    <file-upload-multiple categoriesjson="{{ $categories }}" actions_urls="{{ route('product.upload') }}"></file-upload-multiple>
+    <file-upload-multiple categoriesjson="{{ $categories }}" unitsjson="{{ $units }}" actions_urls="{{ route('product.upload') }}"></file-upload-multiple>
   </div>
 </div> <!-- [End] .card -->
 

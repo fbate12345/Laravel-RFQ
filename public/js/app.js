@@ -50178,19 +50178,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['images', 'urls', 'categoriesjson', 'actions_urls', 'productinfo'],
+    props: ['images', 'urls', 'categoriesjson', 'unitsjson', 'actions_urls', 'productinfo'],
 
     data: function data() {
         return {
             files: [],
             selected: 1,
+            selectedunit: 1,
             images_item: [],
             categories: [],
+            units: [],
             product: [],
             is_addpage: true
         };
@@ -50248,6 +50258,7 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
         submitFiles: function submitFiles() {
             var name = this.product.name;
             var category = $('#category_id').val();
+            var unit_id = $('#unit_id').val();
             var MOQ = $('#MOQ').val();
             var description = $('#quillExample1 .ql-editor');
             var value = description[0].innerHTML;
@@ -50259,6 +50270,10 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             }
             if (!category) {
                 alert('Category is required!');
+                return;
+            }
+            if (!unit_id) {
+                alert('Unit is required!');
                 return;
             }
             if (!MOQ) {
@@ -50286,6 +50301,7 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             }formData.append('product_id', this.product.id);
             formData.append('name', name);
             formData.append('category_id', category);
+            formData.append('unit_id', unit_id);
             formData.append('MOQ', MOQ);
             formData.append('description', value);
             formData.append('price_from', price_from);
@@ -50305,12 +50321,16 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
         if (this.categoriesjson) {
             this.categories = JSON.parse(this.categoriesjson);
         }
+        if (this.unitsjson) {
+            this.units = JSON.parse(this.unitsjson);
+        }
         if (this.images) {
             this.images_item = JSON.parse(this.images);
         } else {}
         if (this.productinfo) {
             this.product = JSON.parse(this.productinfo);
             this.selected = this.product.category_id;
+            this.selectedunit = this.product.unit;
         }
 
         $(document).ready(function () {
@@ -50417,6 +50437,61 @@ var render = function() {
               "option",
               { key: category.id, domProps: { value: category.id } },
               [_vm._v(_vm._s(category.name))]
+            )
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        { staticClass: "col-sm-2 col-form-label", attrs: { for: "price" } },
+        [_vm._v("Unit")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-8" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.selectedunit,
+                expression: "selectedunit"
+              }
+            ],
+            staticClass: "form-control js-example-basic-single",
+            staticStyle: { width: "100%" },
+            attrs: {
+              required: "",
+              name: "unit_id",
+              id: "unit_id",
+              placeholder: "Unit"
+            },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.selectedunit = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          _vm._l(_vm.units, function(unit) {
+            return _c(
+              "option",
+              { key: unit.id, domProps: { value: unit.id } },
+              [_vm._v(_vm._s(unit.name))]
             )
           }),
           0
