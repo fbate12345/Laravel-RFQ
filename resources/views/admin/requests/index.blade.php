@@ -21,9 +21,6 @@
 									<th>Product Name</th>
 									<th>Volume</th>
 									<th>Unit</th>
-									<!-- <th>Destination</th> -->
-									<!-- <th>Additional Information</th> -->
-									<!-- <th width="20%">Attached file</th> -->
 									<th>Status</th>
 									<th width="150px">Action</th>
 								</tr>
@@ -37,13 +34,6 @@
 									<td>{{ $request->product_name }}</td>
 									<td>{{ $request->volume }}</td>
 									<td>{{ $request->getunit($request->unit) }}</td>
-									<!-- <td>{{ $request->port_of_destination }}</td>						 -->
-									<!-- <td>{{ $request->additional_information }}</td> -->
-									<!-- <td style="vertical-align: middle;">
-				                      @if($request->getfiles($request->id))
-				                        <a href="{{ $request->getfiles($request->id) }}" class="" target="_blank">view</a>
-				                      @endif
-				                    </td> -->
 									<td>{{ $request->getstatuesname($request->status) }}</td>
 									<td>
 										@if($request->status == 1 || $request->status == NULL)
