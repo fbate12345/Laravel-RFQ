@@ -17,11 +17,10 @@ class Files extends Model
             return false;
         }
 
-        // foreach (request()->file('files') as $key => $file) {
-            Storage::disk('public_local')->put('uploads/', request()->file('files'));
+        Storage::disk('public_local')->put('uploads/', request()->file('files'));
 
-            self::save_file($request_id, request()->file('files'));
-        // }
+        $file = self::save_file($request_id, request()->file('files'));
+        return $file;
     }
 
     public static function save_file($request_id, $file) {
