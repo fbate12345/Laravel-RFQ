@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Mail;
 use App\User;
+use App\Unit;
+use App\Category;
 use App\Product;
 use App\Adminlogs;
 use Illuminate\Http\Request;
