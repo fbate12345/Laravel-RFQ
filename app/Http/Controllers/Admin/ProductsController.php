@@ -72,15 +72,23 @@ class ProductsController extends Controller
                     $username = $user->name;
                     $useremail = $user->email;
 
+                    $product_link = route('product.show', $record[0]->slug);
+                    $company_name = $user->company_name;
+                    $category = Category::where('id', $record[0]->category_id)->first();
+                    $unit = Unit::where('id', $record[0]->unit)->first();
+                    $categoryname = $category->name;
+                    $unitname = $unit->name;
+
+
                     $controller = new EmailsController;
                     $array = [];
-                    $array['username'] = $username;
-                    $array['receiver_address'] = $useremail;
-                    $array['data'] = array('name' => $array['username'], "body" => "Your product was approved by system administrator. Please check the product: http://rfq.projexonlineservices.com/myproduct");
-                    $array['subject'] = "Successfully approved product.";
-                    $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
-
-                    $controller->save($array);
+                    $user = User::where('id', $userid)->first();
+                    $array['username'] = $user->name;
+                    $array['receiver_address'] = $user->email;
+                    $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been approved.", "company_name" => $company_name, "product_link" => $product_link, "product" => $record[0], 'category' => $categoryname, 'unitname' => $unitname);
+                    $array['subject'] = "Successfully approved your product.";
+                    $array['sender_address'] = "solaris.dubai@gmail.com";
+                    $controller->approveProductadmin($array);
                 }else{
                     $record[0]->status = 1;
                     $record[0]->update();

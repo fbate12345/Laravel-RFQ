@@ -11,7 +11,7 @@
         </a>
         <hr/>
         <h1 style="color: #476B91;">Welcome <?= $name ?></h1><br>
-        <h4>Your product(<a href="<?= $product_link ?>"><?= $product->name ?></a>) has been submitted successfully and it is pending for approval. You will be notified by email again once approved. <br> You product details are as follows -  </h4> <br>
+        <h4>Your product(<a href="<?= $product_link ?>"><?= $product->name ?></a>) has been approved and now it is open to visitors. You will be notified by email on customer’s request for the product. <br> You product details are as follows -  </h4> <br>
 
         <h4>Company Name - <?= $company_name ?></h4>
         <h4>Product Name - <?= $product->name ?></h4>
@@ -21,7 +21,7 @@
 		<h4>Description - <?= $product->description ?></h4>
         <h4>Price - <?= $product->price_from ?> <?= $localization_setting->currency ?> ~ <?= $product->price_to ?> <?= $localization_setting->currency ?></h4>
         
-        <h4>Date of upload - <?= $product->sign_date ?></h4><br>
+        <h4>Approved on - <?= $product->updated_at ?></h4><br>
     </div>
 </body>
 
