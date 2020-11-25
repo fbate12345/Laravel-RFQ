@@ -1,5 +1,10 @@
 <template>
     <div class="">
+        <loading :active.sync="isLoading" 
+            :can-cancel="true" 
+            :on-cancel="onCancel"
+            :is-full-page="fullPage"></loading>
+
         <div class="form-group row">
             <label for="name" class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-8">
@@ -78,12 +83,14 @@
             </div>
         </div>
         <br>
-        <a style="color: #fff;" class="ps-btn float-right btn-flat hidden_btn" v-on:click="submitFiles()">Save Product</a>
+        <a style="color: #fff;" class="ps-btn float-right btn-flat hidden_btn" v-on:click="submitFiles()" :disabled="isSuspend">Save Product</a>
     </div>
 </template>
 <script>
     import JQuery from "jquery";
     let $ = JQuery;
+    import Loading from 'vue-loading-overlay';
+    import 'vue-loading-overlay/dist/vue-loading.css';
 
     export default{
         props: ['images', 'urls', 'categoriesjson', 'unitsjson', 'actions_urls', 'productinfo'],
@@ -97,11 +104,22 @@
                 categories: [],
                 units: [],
                 product: [],
-                is_addpage: true
+                is_addpage: true,
+                isLoading: false,
+                fullPage: true,
+                key: '',
+                isSuspend: false,
             }
         },
 
+        components: {
+            Loading
+        },
+
         methods: {
+            onCancel() {
+                console.log('User cancelled the loader.')
+            },
             removeFile( key ){
                 this.files.splice( key, 1 );
                 this.getImagePreviews();
@@ -186,6 +204,16 @@
                     return;
                 }
 
+                const images_arr = $('.file-listing');
+
+                if(!images_arr.length) {
+                    alert('Please choose product image!');
+                    return;
+                }
+
+                this.isLoading = true;
+                this.isSuspend = true;
+
                 let formData = new FormData();
                 for (var x = 0; x < this.files.length; x++)
                     formData.append('images[]', this.files[x]);
@@ -206,6 +234,7 @@
                         }
                     }
                 ).then(function(data) {
+                    this.isSuspend = false;
                     window.location.href = data.data.redirect_urls;
                 }.bind(this)).catch(function(data) {
                     console.log('error');
@@ -228,6 +257,9 @@
                 this.selected = this.product.category_id;
                 this.selectedunit = this.product.unit;
             }
+
+            this.isLoading = false;
+            this.isSuspend = false;
 
             $(document).ready(function() {
                 $('#quillExample1 .ql-editor').empty();
