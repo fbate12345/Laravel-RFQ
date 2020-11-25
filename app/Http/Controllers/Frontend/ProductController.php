@@ -366,7 +366,7 @@ class ProductController extends Controller
         $user = User::where('id', $userid)->first();
         $array['username'] = $user->name;
         $array['receiver_address'] = $user->email;
-        $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.", "company_name" => $company_name, "product_link" => $product_link, "product" => $product, 'category' => $categoryname, 'unit' => $unitname);
+        $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.", "company_name" => $company_name, "product_link" => $product_link, "product" => $product, 'category' => $categoryname, 'unitname' => $unitname);
         $array['subject'] = "Successfully added product.";
         $array['sender_address'] = "solaris.dubai@gmail.com";
         $controller->addProductseller($array);
