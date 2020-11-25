@@ -289,7 +289,7 @@ class ProductController extends Controller
             $array['receiver_address'] = $user->email;
             $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.");
             $array['subject'] = "Successfully added product.";
-            $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
+            $array['sender_address'] = "solaris.dubai@gmail.com";
             $controller->save($array);
 
             return response()->json([
@@ -324,6 +324,7 @@ class ProductController extends Controller
 
         $userid = auth()->id();
         $user_record = User::where('id', $userid)->first();
+        $company_name = $user_record->company_name;
         $username = $user_record->name;
         $product = Product::create([
             'name'        => request('name'),
@@ -339,7 +340,13 @@ class ProductController extends Controller
             'status' => "2",    //testing
             'sign_date'     => date('y-m-d h:i:s'),
         ]);
-        
+
+        $product_link = route('product.show', $product->slug);
+        $category = Category::where('id', $request->category_id)->first();
+        $unit = Unit::where('id', $request->unit_id)->first();
+        $categoryname = $category->name;
+        $unitname = $unit->name;
+
         $files = Input::file('images');
         if(@$files) {
             for($i=0; $i < count($files); $i++) {
@@ -356,14 +363,13 @@ class ProductController extends Controller
         
         $controller = new EmailsController;
         $array = [];
-        $userid = auth()->id();
         $user = User::where('id', $userid)->first();
         $array['username'] = $user->name;
         $array['receiver_address'] = $user->email;
-        $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.");
+        $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.", "company_name" => $company_name, "product_link" => $product_link, "product" => $product, 'category' => $categoryname, 'unit' => $unitname);
         $array['subject'] = "Successfully added product.";
-        $array['sender_address'] = "jovanovic.nemanja.1029@gmail.com";
-        $controller->save($array);
+        $array['sender_address'] = "solaris.dubai@gmail.com";
+        $controller->addProductseller($array);
 
         return response()->json([
             'success' => true,
