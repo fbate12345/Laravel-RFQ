@@ -6,7 +6,7 @@
   @section('description', $category->meta_description)
   @section('keywords', $category->meta_keywords)
 @else
-  @section('main_title', "All Category | " . $general_setting->site_name)
+  @section('main_title', "All Categories | " . $general_setting->site_name)
   @section('title', "all")
   @section('description', "all")
   @section('keywords', $arrs)
