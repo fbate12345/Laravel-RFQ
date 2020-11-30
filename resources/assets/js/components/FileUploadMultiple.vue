@@ -43,6 +43,24 @@
         </div>
         <br><br>
         <div class="form-group row">
+            <label for="meta_title" class="col-sm-2 col-form-label">Meta Title</label>
+            <div class="col-sm-8">
+                <input required type="text" class="form-control" id="meta_title" name="meta_title" placeholder="Meta Title" v-model="product.meta_title">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="meta_description" class="col-sm-2 col-form-label">Meta Description</label>
+            <div class="col-sm-8">
+                <input required type="text" class="form-control" id="meta_description" name="meta_description" placeholder="Meta Description" v-model="product.meta_description">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="meta_keywords" class="col-sm-2 col-form-label">Meta Keywords</label>
+            <div class="col-sm-8">
+                <input required type="text" class="form-control" id="meta_keywords" name="meta_keywords" placeholder="Meta Keywords" v-model="product.meta_keywords">
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="price" class="col-sm-2 col-form-label">Price ( From, To )</label>
             <div class="col-sm-3">
                 <input type="number" class="form-control" id="price_from" name="price_from" placeholder="Price From" required v-model="product.price_from">
@@ -166,6 +184,9 @@
             },
             submitFiles() {
                 const name = this.product.name;
+                const meta_title = this.product.meta_title;
+                const meta_description = this.product.meta_description;
+                const meta_keywords = this.product.meta_keywords;
                 const category = $('#category_id').val();
                 const unit_id = $('#unit_id').val();
                 const MOQ = $('#MOQ').val();
@@ -195,6 +216,20 @@
                 }
                 $('.description').val('');
                 $('.description').val(value);
+
+                if(!meta_title) {
+                    alert('Meta title is required!');
+                    return;
+                }
+                if(!meta_description) {
+                    alert('Meta description is required!');
+                    return;
+                }
+                if(!meta_keywords) {
+                    alert('Meta keywords is required!');
+                    return;
+                }
+
                 if(!price_from) {
                     alert('Price from is required!');
                     return;
@@ -224,6 +259,9 @@
                 formData.append('unit_id', unit_id);
                 formData.append('MOQ', MOQ);
                 formData.append('description', value);
+                formData.append('meta_title', meta_title);
+                formData.append('meta_description', meta_description);
+                formData.append('meta_keywords', meta_keywords);
                 formData.append('price_from', price_from);
                 formData.append('price_to', price_to);
                 axios.post(this.actions_urls,

@@ -50232,6 +50232,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
@@ -50316,6 +50334,9 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
         },
         submitFiles: function submitFiles() {
             var name = this.product.name;
+            var meta_title = this.product.meta_title;
+            var meta_description = this.product.meta_description;
+            var meta_keywords = this.product.meta_keywords;
             var category = $('#category_id').val();
             var unit_id = $('#unit_id').val();
             var MOQ = $('#MOQ').val();
@@ -50345,6 +50366,20 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             }
             $('.description').val('');
             $('.description').val(value);
+
+            if (!meta_title) {
+                alert('Meta title is required!');
+                return;
+            }
+            if (!meta_description) {
+                alert('Meta description is required!');
+                return;
+            }
+            if (!meta_keywords) {
+                alert('Meta keywords is required!');
+                return;
+            }
+
             if (!price_from) {
                 alert('Price from is required!');
                 return;
@@ -50373,6 +50408,9 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             formData.append('unit_id', unit_id);
             formData.append('MOQ', MOQ);
             formData.append('description', value);
+            formData.append('meta_title', meta_title);
+            formData.append('meta_description', meta_description);
+            formData.append('meta_keywords', meta_keywords);
             formData.append('price_from', price_from);
             formData.append('price_to', price_to);
             axios.post(this.actions_urls, formData, {
@@ -51122,6 +51160,129 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "meta_title" }
+          },
+          [_vm._v("Meta Title")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.product.meta_title,
+                expression: "product.meta_title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              required: "",
+              type: "text",
+              id: "meta_title",
+              name: "meta_title",
+              placeholder: "Meta Title"
+            },
+            domProps: { value: _vm.product.meta_title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.product, "meta_title", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "meta_description" }
+          },
+          [_vm._v("Meta Description")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.product.meta_description,
+                expression: "product.meta_description"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              required: "",
+              type: "text",
+              id: "meta_description",
+              name: "meta_description",
+              placeholder: "Meta Description"
+            },
+            domProps: { value: _vm.product.meta_description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.product, "meta_description", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "meta_keywords" }
+          },
+          [_vm._v("Meta Keywords")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.product.meta_keywords,
+                expression: "product.meta_keywords"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              required: "",
+              type: "text",
+              id: "meta_keywords",
+              name: "meta_keywords",
+              placeholder: "Meta Keywords"
+            },
+            domProps: { value: _vm.product.meta_keywords },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.product, "meta_keywords", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group row" }, [
         _c(

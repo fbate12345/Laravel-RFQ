@@ -243,9 +243,12 @@ class ProductController extends Controller
             'category_id' => 'required',
             'unit_id' => 'required',
             'MOQ'        => 'required',
+            'description' => 'required',
+            'meta_title'        => 'required',
+            'meta_description'        => 'required',
+            'meta_keywords'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
-            'description' => 'required',
             'images'      => 'required',
         ]);
 
@@ -255,6 +258,9 @@ class ProductController extends Controller
         
         $product = Product::create([
             'name'        => request('name'),
+            'meta_title'        => request('meta_title'),
+            'meta_description'        => request('meta_description'),
+            'meta_keywords'        => request('meta_keywords'),
             'MOQ'        => request('MOQ'),
             'description' => request('description'),
             'user_id'     => auth()->id(),
@@ -319,6 +325,9 @@ class ProductController extends Controller
             'price_from'       => 'required',
             'price_to'       => 'required',
             'description' => 'required',
+            'meta_title'        => 'required',
+            'meta_description'        => 'required',
+            'meta_keywords'        => 'required',
             'images'      => 'required',
         ]);
 
@@ -335,6 +344,9 @@ class ProductController extends Controller
             'price_from'       => request('price_from'),
             'price_to'       => request('price_to'),
             'category_id' => request('category_id'),
+            'meta_title'        => request('meta_title'),
+            'meta_description'        => request('meta_description'),
+            'meta_keywords'        => request('meta_keywords'),
             'unit' => request('unit_id'),
             'slug'        => createSlug(request('name')),
             'status' => "2",    //testing
@@ -417,7 +429,10 @@ class ProductController extends Controller
             'MOQ'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+            'meta_keywords' => 'required'
         ]);
 
         $userid = auth()->id();
@@ -433,6 +448,9 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->price_from = $request->price_from;
             $product->price_to = $request->price_to;
+            $product->meta_title = $request->meta_title;
+            $product->meta_description = $request->meta_description;
+            $product->meta_keywords = $request->meta_keywords;
             $product->slug = createSlug(request('name'));
             $product->save();
         }else{

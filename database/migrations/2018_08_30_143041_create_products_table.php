@@ -16,6 +16,11 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+
+            $table->text('meta_title');
+            $table->text('meta_keywords');
+            $table->text('meta_description');
+            
             $table->integer('MOQ')->defaultValue(1);
             $table->text('description');
             $table->integer('user_id');

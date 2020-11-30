@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title', $product->meta_title . " | " . $general_setting->site_name)
+@section('description', $product->meta_description)
+@section('keywords', $product->meta_keywords)
+
 @section('content')
 
 <div class="container mt-5">
