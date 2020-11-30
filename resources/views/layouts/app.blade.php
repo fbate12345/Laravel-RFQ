@@ -13,10 +13,10 @@
     <?php }else{ ?>
         <title>{{ $general_setting->site_name }}</title>
     <?php } ?>
-
-    <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
+    
     <meta name="title" content="@yield('title')">
+    <meta name="keywords" content="@yield('keywords')">
+    <meta name="description" content="@yield('description')">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
