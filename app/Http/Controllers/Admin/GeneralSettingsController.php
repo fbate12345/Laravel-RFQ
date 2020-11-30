@@ -21,10 +21,16 @@ class GeneralSettingsController extends Controller
 
 	        $this->validate(request(), [
 	            'site_name' => 'required',
+                'meta_title' => 'required',
+                'meta_keywords' => 'required',
+                'meta_description' => 'required',
 	        ]);
 
 	    	$generalsetting->site_name = request('site_name');
 	    	$generalsetting->site_title = request('site_title');
+            $generalsetting->meta_title = request('meta_title');
+            $generalsetting->meta_keywords = request('meta_keywords');
+            $generalsetting->meta_description = request('meta_description');
 	    	$generalsetting->site_subtitle = request('site_subtitle');
             $generalsetting->site_desc = request('site_desc');
 	    	$generalsetting->site_footer = request('site_footer');

@@ -10,13 +10,17 @@
 
     <?php if ($__env->yieldContent('main_title')) { ?>
         <title>@yield('main_title')</title>
+
+        <meta name="title" content="@yield('title')">
+        <meta name="keywords" content="@yield('keywords')">
+        <meta name="description" content="@yield('description')">
     <?php }else{ ?>
         <title>{{ $general_setting->site_name }}</title>
+
+        <meta name="title" content="{{ $general_setting->meta_title }}">
+        <meta name="keywords" content="{{ $general_setting->meta_keywords }}">
+        <meta name="description" content="{{ $general_setting->meta_description }}">
     <?php } ?>
-    
-    <meta name="title" content="@yield('title')">
-    <meta name="keywords" content="@yield('keywords')">
-    <meta name="description" content="@yield('description')">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

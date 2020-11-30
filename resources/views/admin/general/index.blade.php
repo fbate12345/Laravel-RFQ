@@ -15,12 +15,27 @@
 					  <div class="box-body">
 						<div class="form-group">
 							<label>Site Name</label>
-							<input type="text" name="site_name" class="form-control" placeholder="Site Name" value="{{ $general_setting->site_name }}" />
+							<input required type="text" name="site_name" class="form-control" placeholder="Site Name" value="{{ $general_setting->site_name }}" />
 						</div>
 
 						<div class="form-group">
 							<label>Site Title</label>
 							<input type="text" name="site_title" class="form-control" placeholder="Site Title" value="{{ $general_setting->site_title }}" />
+						</div>
+
+						<div class="form-group">
+							<label>Meta Title</label>
+							<input required type="text" name="meta_title" class="form-control" placeholder="Meta Title" value="{{ $general_setting->meta_title }}" />
+						</div>
+
+						<div class="form-group">
+							<label>Meta Keywords</label>
+							<input required type="text" name="meta_keywords" class="form-control" placeholder="Meta Keywords" value="{{ $general_setting->meta_keywords }}" />
+						</div>
+
+						<div class="form-group">
+							<label>Meta Description</label>
+							<input required type="text" name="meta_description" class="form-control" placeholder="Meta Description" value="{{ $general_setting->meta_description }}" />
 						</div>
 
 						<div class="form-group">

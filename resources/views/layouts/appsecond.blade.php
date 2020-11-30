@@ -7,15 +7,25 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+
+    <?php if ($__env->yieldContent('main_title')) { ?>
+        <title>@yield('main_title')</title>
+
+        <meta name="title" content="@yield('title')">
+        <meta name="keywords" content="@yield('keywords')">
+        <meta name="description" content="@yield('description')">
+    <?php }else{ ?>
+        <title>{{ $general_setting->site_name }}</title>
+
+        <meta name="title" content="{{ $general_setting->meta_title }}">
+        <meta name="keywords" content="{{ $general_setting->meta_keywords }}">
+        <meta name="description" content="{{ $general_setting->meta_description }}">
+    <?php } ?>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon" />
-
-    <title>{{ $general_setting->site_name }}</title>
 
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('design/plugins/font-awesome/css/font-awesome.min.css') }}">
