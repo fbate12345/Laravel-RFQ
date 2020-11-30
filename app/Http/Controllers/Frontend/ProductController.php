@@ -34,14 +34,19 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ProductFilters $filters)
+    public function index(ProductFilters $filters, Request $request)
     {
         $categories = Product::latest()->filter($filters)->where('status', 2)->paginate(15);
         $categorys = Category::all();
+        $category = Category::where('slug', $request['category'])->first();
         $units = Unit::all();
         $count = count($categories);
+        $arrs = 'all';
+        foreach ($categorys as $cate) {
+            $arrs = $arrs . $cate->meta_keywords;
+        }
 
-        return view('frontend.product.index', compact('categories', 'categorys', 'count', 'units'));
+        return view('frontend.product.index', compact('categories', 'categorys', 'category', 'count', 'units', 'arrs'));
     }
 
     /**

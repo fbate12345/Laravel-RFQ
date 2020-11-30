@@ -45,6 +45,9 @@ class CategoryController extends Controller
     {
         $category = Category::create([
             'name' => $request->name,
+            'meta_title' => $request->meta_title,
+            'meta_keywords' => $request->meta_keywords,
+            'meta_description' => $request->meta_description,
             'slug' => $request->slug,
             'sign_date' => date('y-m-d h:i:s'),
         ]);
@@ -78,6 +81,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $category->name = $request->name;
+        $category->meta_title = $request->meta_title;
+        $category->meta_keywords = $request->meta_keywords;
+        $category->meta_description = $request->meta_description;
         $category->slug = $request->slug;
         $category->save();
 

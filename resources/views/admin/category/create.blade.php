@@ -17,6 +17,21 @@
 							</div>
 
 							<div class="form-group">
+								<label>Meta Title</label>
+								<input required type="text" name="meta_title" class="form-control" placeholder="Meta Title" />
+							</div>
+
+							<div class="form-group">
+								<label>Meta Description</label>
+								<input required type="text" name="meta_description" class="form-control" placeholder="Meta Description" />
+							</div>
+
+							<div class="form-group">
+								<label>Meta Keywords</label>
+								<input required="" type="text" name="meta_keywords" class="form-control" placeholder="Meta Keywords" />
+							</div>
+
+							<div class="form-group">
 								<label>Slug</label>
 								<input required="" type="text" name="slug" class="form-control" placeholder="Slug" />
 							</div>

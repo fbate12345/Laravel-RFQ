@@ -13,7 +13,7 @@ class Category extends Model
     
     ///////////////////////////// sub category part ///////////////////////////////////
     
-    public $fillable = ['name', 'slug', 'sign_date'];
+    public $fillable = ['name', 'meta_title', 'meta_keywords', 'meta_description', 'slug', 'sign_date'];
 
     public function products(){
         return $this->hasMany('App\Product');
