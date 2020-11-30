@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('main_title', $product->name . " | " . $general_setting->site_name)
 @section('title', $product->name . " | " . $general_setting->site_name)
 @section('description', $product->meta_description)
 @section('keywords', $product->meta_keywords)

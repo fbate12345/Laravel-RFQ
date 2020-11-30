@@ -8,9 +8,15 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="">
 
-    <title>@yield('title')</title>
+    <?php if ($__env->yieldContent('main_title')) { ?>
+        <title>@yield('main_title')</title>
+    <?php }else{ ?>
+        <title>{{ $general_setting->site_name }}</title>
+    <?php } ?>
+
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
+    <meta name="title" content="@yield('title')">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
