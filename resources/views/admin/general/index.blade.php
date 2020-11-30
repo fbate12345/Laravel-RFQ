@@ -35,7 +35,7 @@
 
 						<div class="form-group">
 							<label>Meta Description</label>
-							<input required type="text" name="meta_description" class="form-control" placeholder="Meta Description" value="{{ $general_setting->meta_description }}" />
+							<textarea required name="meta_description" rows="8" class="form-control" placeholder="Meta Description">{{ $general_setting->meta_description }}</textarea>
 						</div>
 
 						<div class="form-group">
