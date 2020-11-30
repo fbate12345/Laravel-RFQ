@@ -43,7 +43,9 @@ class ProductController extends Controller
         $count = count($categories);
         $arrs = 'all';
         foreach ($categorys as $cate) {
-            $arrs = $arrs . "," . $cate->meta_keywords;
+            if (@$cate['meta_keywords']) {
+                $arrs = $arrs . ", " . $cate->meta_keywords;
+            }
         }
 
         return view('frontend.product.index', compact('categories', 'categorys', 'category', 'count', 'units', 'arrs'));
