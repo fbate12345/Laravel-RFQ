@@ -16,6 +16,7 @@
                     <div class="ps-block__right">
                         <h4>Fast Delivery</h4>
                         <p>For all orders within UAE</p>
+                        have you skype? please send your id via doc file
                     </div>
                 </div>
                 <div class="ps-block__item">
