@@ -24,6 +24,8 @@
                     {{ __('Company') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getcompanyName($product->user_id) }}</a>
                     @if($product->getcompanyLogo($product->user_id))
                         <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"><img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo"></a>
+                    @else
+                        <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"><img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('images/author-1.png') }}" alt="Logo"></a>
                     @endif
                 </div> 
 
@@ -52,6 +54,8 @@
                     <br>
                     @if($product->getcompanyLogo($product->user_id))
                         <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">
+                    @else
+                        <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('images/author-1.png') }}" alt="Logo">
                     @endif
                 </div>
                 <div>
