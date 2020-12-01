@@ -17180,7 +17180,6 @@ html .bg--parallax {
   position: absolute;
   left: 500px;
   top: 0px;
-  z-index: 10000;
   width: 300px;
   height: 300px;
 }
