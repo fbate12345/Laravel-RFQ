@@ -9,12 +9,12 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-5">
             <div class="card mb-3">
                 @include('component.productcarousel', ['images' => $product->images])
             </div>    
         </div>
-
+        <div class="col-md-3"></div>
         <div class="col-md-4">
             <h2 class='pro_name'>{{ $product->name }}</h2>
             <p>
@@ -23,7 +23,9 @@
                 <div class="font-weight-bold">
                     {{ __('Company') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getcompanyName($product->user_id) }}</a>
                     @if($product->getcompanyLogo($product->user_id))
-                        <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"><img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo"></a>
+                        <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">
+                            <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">
+                        </a>
                     @else
                         <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"><img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('images/author-1.png') }}" alt="Logo"></a>
                     @endif
@@ -135,4 +137,26 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    // Initiate zoom effect:
+    imageZoom("myimage", "myresult");
+    $('.img-zoom-result').css('opacity', 0);
+
+    $('.img-zoom-lens').hover(
+        function() {
+            $('.img-zoom-result').css('opacity', 1);
+        }, function() {
+            $('.img-zoom-result').css('opacity', 0);
+        }
+    );
+
+    $('.other_images').click(function() {
+        var src = $(this).attr('id');
+        $('#myimage').attr('src', src);
+        $('.img-zoom-result').css('background-image', 'url("' + src + '")');
+    })
+</script>
 @endsection

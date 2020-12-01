@@ -1,30 +1,14 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="img-zoom-container" data-ride="carousel">
 
-  @if(count($images) > 1)
-    <ol class="carousel-indicators">
-      @foreach($images as $image)
-        <li data-target="#carouselExampleIndicators" data-slide-to="{{ asset('uploads/') }}/{{ $image->id }}" class="{{ $image->id == $images->first()->id ? 'active' : '' }}"></li>
-      @endforeach
-    </ol>
-  @endif
+  <img id="myimage" src="{{ asset('uploads/') }}/{{ $images[0]->url }}" style="width: 100%;">
+  <div id="myresult" class="img-zoom-result" style="opacity: 0;"></div>
 
-  <div class="carousel-inner">
+  <div class="xzoom-thumbs" style="text-align: left;">
+    <br>
     @foreach($images as $image)
-      <div class="carousel-item {{ $image->id == $images->first()->id ? 'active' : '' }}">
-        <img class="d-block w-100" src="{{ asset('uploads/') }}/{{ $image->url }}" alt="First slide" />
-      </div>
+      <a id="{{ asset('uploads/') }}/{{ $image->url }}" class="other_images">
+        <img class="xzoom-gallery" width="80" src="{{ asset('uploads/') }}/{{ $image->url }}" xpreview="{{ asset('uploads/') }}/{{ $image->url }}">
+      </a>
     @endforeach
   </div>
-
-  @if(count($images) > 1)
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: #1c1d1f; width: 50%; height: 10%;"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: #1c1d1f; width: 50%; height: 10%;"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  @endif
-
 </div>
