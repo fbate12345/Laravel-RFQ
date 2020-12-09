@@ -13,42 +13,17 @@ class UnitSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('unit')->insert([
-            'id'   => 1,
-            'name' => 'Acre',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Ampere',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Bag',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Barrel',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Blade',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Box',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Bushel',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Carton',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
-        DB::table('unit')->insert([
-            'name' => 'Case',
-            'sign_date' => date('y-m-d h:m:s'),
-        ]);
+        $datas = [
+            'Kilogram', 'Gram', 'Box', 'Barrel', 'Carton', 'Bushel', 'Case', 'Centimeter', 'Container  40-Foot', 'Container  20-Foot', 'Cubic Foot', 'Cubic Inch', 'Cubic Meter', 'Cubic Yard', 'Degrees Celsius', 'Degrees Fahrenheit', 'Dozen', 'Dram', 'Fluid Ounce', 'Foot', 'Chain', 'Furlong', 'Gallon', 'Gill', 'Grain', 'Ampere', 'Gross', 'Hectare', 'Hertz', 'Inch', 'Kiloampere', 'Bag', 'Kilohertz', 'Kilometer', 'Kiloohm', 'Kilovolt', 'Kilowatt', 'Liter', 'Long Ton', 'Megahertz', 'Meter', 'Metric Ton', 'Mile', 'Milliampere', 'Milligram', 'Millihertz', 'Milliliter', 'Millimeter', 'Milliohm', 'Millivolt', 'Milliwatt', 'Nautical Mile', 'Ohm', 'Ounce', 'Pack', 'Pallet', 'Pair', 'Parcel', 'Perch', 'Piece', 'Pint', 'Plant', 'Pole', 'Pound', 'Quart', 'Quarter', 'Rod', 'Roll', 'Set', 'Sheet', 'Short Ton', 'Square Centimeter', 'Square Foot', 'Square Inch', 'Square Meter', 'Square Mile', 'Square Yard', 'Stone', 'Strand', 'Ton', 'Tonne', 'Tray', 'Cubic Centimeter', 'Volt', 'Watt', 'Wp', 'Yard', 'HD Bag', 'Plastic  Can', 'Tin Cans', 'Pet Bottles', 'Jar', 'Tin', 'Glass'
+        ];
+
+        if (@$datas) {
+            foreach ($datas as $data) {
+                DB::table('unit')->insert([
+                    'name' => $data,
+                    'sign_date' => date('y-m-d h:m:s'),
+                ]);
+            }
+        }
     }
 }
