@@ -386,6 +386,11 @@
                                                             {{ __('Request') }}
                                                         </a>
                                                     </li>
+                                                    <li class="{{ isActiveRoute('requestadmincallback.index') }}">
+                                                        <a href="{{ url('admin/requestadmincallback') }}">
+                                                            {{ __('Request Call Back') }}
+                                                        </a>
+                                                    </li>
                                                     <li class="{{ isActiveRoute('quotes.index') }}">
                                                         <a href="{{ url('admin/quotes') }}">
                                                             {{ __('Quote') }}

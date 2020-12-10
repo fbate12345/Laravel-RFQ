@@ -175,6 +175,13 @@ Route::get('/admin/requests/assign/{id}', 'Admin\RequestsController@assign')->na
 Route::get('/admin/requests/view/{id}', 'Admin\RequestsController@view')->name('requests.view');
 
 
+
+
+Route::resource('admin/requestadmincallback', 'Admin\RequestAdmincallbackController');
+Route::get('/admin/requestadmincallback', 'Admin\RequestAdmincallbackController@index')->name('requestadmincallback.index');
+
+
+
 Route::resource('admin/quotes', 'Admin\QuotesController');
 Route::get('/admin/quotes', 'Admin\QuotesController@index')->name('quotes.index');
 
