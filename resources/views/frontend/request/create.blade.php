@@ -19,7 +19,9 @@
         @if($user_status == 1)
           <h4 class=""> Sorry, You can not send the Quote, Because your account was blocked by Admin. </h4><br>
         @endif
+
         @csrf
+        
         <div class='row'>
           <div class='col-md-2'></div>
           <div class='col-md-2'>
@@ -51,6 +53,32 @@
         <?php } }else{ ?>
         <?php } ?>
 
+        <div class='row'>
+          <div class='col-md-2'></div>
+          <div class='col-md-2'>
+            <label>Quantity*</label>
+          </div>
+          <div class="col-md-2" style="display: inline-block;">
+            <?php if (@$product[0]) { ?>
+              <input type="text" value="{{ $product[0]['quantity'] }}" class="form-control" id="quantity" name="req_quantity">
+            <?php }else{ ?>
+              <input type="text" class="form-control" id="quantity" name="req_quantity">
+            <?php } ?>
+          </div>
+          <div class="col-md-3">
+            <?php if (@$product[0]) { ?>
+              <br>
+              <h5>Product Quantity ({{ $product[0]['quantity'] }})</h5>
+              <input type="hidden" id="hid_product_quantity" value="{{ $product[0]['quantity'] }}">
+            <?php }else{ ?>
+              <br>
+              <h5>Product Quantity ( None )</h5>
+              <input type="hidden" id="hid_product_quantity" value="0">
+            <?php } ?>
+          </div>
+        </div>
+        <br>
+
         <div class="row">
           <div class="col-md-2"></div>
           <div class='col-md-2'>
@@ -60,13 +88,23 @@
             <input type="number" class="form-control" id="volume" name="volume" style="display: inline-block;">
           </div>
           <div class="col-md-3">
-            <select class="form-control select2 unit" id="unit" style='width:100%; display: inline-block;' disabled>
-              <option selected value="">Unit*</option>
-              @foreach($units as $unit)
-                <option value="{{ $unit->id }}" <?php if($unit['id'] == $product[0]['unit']){echo 'selected';} ?>>{{ $unit->name }}</option>
-              @endforeach
-            </select>
-            <input type="hidden" name="unit" value="{{ $product[0]['unit'] }}">
+            <?php if(@$product[0]) { ?>
+              <select class="form-control select2 unit" id="unit" style='width:100%; display: inline-block;' disabled>
+                <option selected value="">Unit*</option>
+                <?php foreach($units as $unit) { ?>
+                  <option value="{{ $unit->id }}" <?php if($unit['id'] == $product[0]['unit']){echo 'selected';} ?>>{{ $unit->name }}</option>
+                <?php } ?>
+              </select>
+
+              <input type="hidden" name="unit" value="{{ $product[0]['unit'] }}">
+            <?php } else { ?>
+              <select class="form-control select2 unit" id="unit" name="unit" style='width:100%; display: inline-block;'>
+                <option selected value="">Unit*</option>
+                <?php foreach($units as $unit) { ?>
+                  <option value="{{ $unit->id }}">{{ $unit->name }}</option>
+                <?php } ?>
+              </select>
+            <?php } ?>
           </div>
         </div>
         <br>

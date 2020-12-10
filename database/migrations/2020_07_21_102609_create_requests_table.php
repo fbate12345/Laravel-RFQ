@@ -16,6 +16,7 @@ class CreateRequestsTable extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product_name');
+            $table->integer('req_quantity');
             $table->integer('volume');
             // $table->string('payment_method');
             $table->integer('unit')->nullable();

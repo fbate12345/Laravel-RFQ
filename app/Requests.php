@@ -15,7 +15,7 @@ class Requests extends Model
 {
     use SoftDeletes;
 
-    public $fillable = ['product_name', 'status', 'volume', 'unit', 'port_of_destination', 'additional_information', 'sender', 'receiver', 'product_id', 'sign_date', 'product_id'];
+    public $fillable = ['product_name', 'req_quantity', 'status', 'volume', 'unit', 'port_of_destination', 'additional_information', 'sender', 'receiver', 'product_id', 'sign_date', 'product_id'];
 
     public $table = "requests";
 

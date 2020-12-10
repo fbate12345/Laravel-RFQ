@@ -250,6 +250,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'unit_id' => 'required',
             'MOQ'        => 'required',
+            'quantity'        => 'required',
             'description' => 'required',
             'meta_title'        => 'required',
             'meta_description'        => 'required',
@@ -269,6 +270,7 @@ class ProductController extends Controller
             'meta_description'        => request('meta_description'),
             'meta_keywords'        => request('meta_keywords'),
             'MOQ'        => request('MOQ'),
+            'quantity'        => request('quantity'),
             'description' => request('description'),
             'user_id'     => auth()->id(),
             'username'     => $username,
@@ -329,6 +331,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'unit_id' => 'required',
             'MOQ'        => 'required',
+            'quantity'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
             'description' => 'required',
@@ -345,6 +348,7 @@ class ProductController extends Controller
         $product = Product::create([
             'name'        => request('name'),
             'MOQ'        => request('MOQ'),
+            'quantity'        => request('quantity'),
             'description' => request('description'),
             'user_id'     => auth()->id(),
             'username'     => $username,
@@ -388,7 +392,7 @@ class ProductController extends Controller
         $array['data'] = array('name' => $array['username'], "body" => "Thanks for your product has been recieved. It will be reviewed and approved.", "company_name" => $company_name, "product_link" => $product_link, "product" => $product, 'category' => $categoryname, 'unitname' => $unitname);
         $array['subject'] = "Successfully added product.";
         $array['sender_address'] = "solaris.dubai@gmail.com";
-        $controller->addProductseller($array);
+        // $controller->addProductseller($array);
 
         return response()->json([
             'success' => true,
@@ -434,6 +438,7 @@ class ProductController extends Controller
             'category_id' => 'required',
             'unit_id' => 'required',
             'MOQ'        => 'required',
+            'quantity'        => 'required',
             'price_from'       => 'required',
             'price_to'       => 'required',
             'description' => 'required',
@@ -452,6 +457,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->unit = $request->unit_id;
             $product->MOQ = $request->MOQ;
+            $product->quantity = $request->quantity;
             $product->description = $request->description;
             $product->price_from = $request->price_from;
             $product->price_to = $request->price_to;

@@ -34,6 +34,12 @@
             </div>
         </div>
         <div class="form-group row">
+            <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-8">
+                <input required type="text" class="form-control" id="quantity" name="quantity" placeholder="Quantity" v-model="product.quantity">
+            </div>
+        </div>
+        <div class="form-group row">
             <label for="description" class="col-sm-2 col-form-label">Description</label>
             <div class="col-sm-8">
                 <input type="hidden" name="description" class="description" :value="product.description" />
@@ -190,6 +196,7 @@
                 const category = $('#category_id').val();
                 const unit_id = $('#unit_id').val();
                 const MOQ = $('#MOQ').val();
+                const quantity = $('#quantity').val();
                 const description = $('#quillExample1 .ql-editor');
                 var value = description[0].innerHTML;
                 const price_from = this.product.price_from;
@@ -208,6 +215,10 @@
                 }
                 if(!MOQ) {
                     alert('MOQ is required!');
+                    return;
+                }
+                if(!quantity) {
+                    alert('Quantity is required!');
                     return;
                 }
                 if ($('#quillExample1 .ql-editor').children().text() == '') {
@@ -258,6 +269,7 @@
                 formData.append('category_id', category);
                 formData.append('unit_id', unit_id);
                 formData.append('MOQ', MOQ);
+                formData.append('quantity', quantity);
                 formData.append('description', value);
                 formData.append('meta_title', meta_title);
                 formData.append('meta_description', meta_description);

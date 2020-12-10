@@ -50250,6 +50250,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
@@ -50340,6 +50346,7 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             var category = $('#category_id').val();
             var unit_id = $('#unit_id').val();
             var MOQ = $('#MOQ').val();
+            var quantity = $('#quantity').val();
             var description = $('#quillExample1 .ql-editor');
             var value = description[0].innerHTML;
             var price_from = this.product.price_from;
@@ -50358,6 +50365,10 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             }
             if (!MOQ) {
                 alert('MOQ is required!');
+                return;
+            }
+            if (!quantity) {
+                alert('Quantity is required!');
                 return;
             }
             if ($('#quillExample1 .ql-editor').children().text() == '') {
@@ -50407,6 +50418,7 @@ var $ = __WEBPACK_IMPORTED_MODULE_0_jquery___default.a;
             formData.append('category_id', category);
             formData.append('unit_id', unit_id);
             formData.append('MOQ', MOQ);
+            formData.append('quantity', quantity);
             formData.append('description', value);
             formData.append('meta_title', meta_title);
             formData.append('meta_description', meta_description);
@@ -51127,6 +51139,47 @@ var render = function() {
                   return
                 }
                 _vm.$set(_vm.product, "MOQ", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 col-form-label",
+            attrs: { for: "quantity" }
+          },
+          [_vm._v("Quantity")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-8" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.product.quantity,
+                expression: "product.quantity"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              required: "",
+              type: "text",
+              id: "quantity",
+              name: "quantity",
+              placeholder: "Quantity"
+            },
+            domProps: { value: _vm.product.quantity },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.product, "quantity", $event.target.value)
               }
             }
           })

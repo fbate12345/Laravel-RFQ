@@ -50,6 +50,32 @@
         <?php } }else{ ?>
         <?php } ?>
 
+        <div class='row'>
+          <div class='col-md-2'></div>
+          <div class='col-md-2'>
+            <label>Quantity*</label>
+          </div>
+          <div class="col-md-2" style="display: inline-block;">
+            <?php if (@$request[0]) { ?>
+              <input type="text" value="{{ $request[0]['req_quantity'] }}" class="form-control" id="quantity" name="req_quantity">
+            <?php }else{ ?>
+              <input type="text" class="form-control" id="quantity" name="req_quantity">
+            <?php } ?>
+          </div>
+          <div class="col-md-3">
+            <?php if (@$product[0]) { ?>
+              <br>
+              <h5>Product Quantity ({{ $product[0]['quantity'] }})</h5>
+              <input type="hidden" id="hid_product_quantity" value="{{ $product[0]['quantity'] }}">
+            <?php }else{ ?>
+              <br>
+              <h5>Product Quantity ( None )</h5>
+              <input type="hidden" id="hid_product_quantity" value="0">
+            <?php } ?>
+          </div>
+        </div>
+        <br>
+
         <div class="row">
           <div class="col-md-2"></div>
           <div class='col-md-2'>

@@ -3,6 +3,8 @@ $(function() {
     
     $('.rfq_btn').click(function() {    //new request function
         var product_name = $('#product_name').val();
+        var quantity = $('#quantity').val();
+        var hid_product_quantity = $('#hid_product_quantity').val();
         var volume = $('#volume').val();
         var unit = $('#unit').val();
         var port_of_destination = $('#port_of_destination').val();
@@ -12,8 +14,19 @@ $(function() {
         if(!product_name) {
             alert("Product Name is required.");
             return;
-        }if(!volume) {
+        }
+        if(!quantity || quantity == 0) {
+            alert("Quantity is required.");
+            return;
+        }if (parseInt(quantity) < parseInt(hid_product_quantity)) {
+            alert("At least Quantity should be same or big than product quantity.");
+            return;
+        }
+        if(!volume) {
             alert("Volume is required.");
+            return;
+        }if(!unit) {
+            alert("Unit is required.");
             return;
         }if(!port_of_destination) {
             alert("Destination is required.");

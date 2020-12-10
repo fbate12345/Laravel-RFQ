@@ -121,6 +121,7 @@ class RequestController extends Controller
     {
         $this->validate(request(), [
             'product_name'        => 'required',
+            'req_quantity'        => 'required',
             'volume'       => 'required',
             'port_of_destination' => 'required',
             'description' => 'required',
@@ -134,6 +135,7 @@ class RequestController extends Controller
         if (request('type') == -1) {   //when buyer didn't choose any product and send the rfq.
             $rfq = Requests::create([
                 'product_name'           => request('product_name'),
+                'req_quantity'           => request('req_quantity'),
                 'additional_information' => request('description'),
                 'sender'                 => auth()->id(),
                 'volume'                 => request('volume'),
@@ -155,6 +157,7 @@ class RequestController extends Controller
 
             $rfq = Requests::create([
                 'product_name'           => request('product_name'),
+                'req_quantity'           => request('req_quantity'),
                 'additional_information' => request('description'),
                 'sender'                 => auth()->id(),
                 'volume'                 => request('volume'),
@@ -195,7 +198,7 @@ class RequestController extends Controller
         $array['subject'] = "Successfully received your RFQ.";
         $array['sender_address'] = "solaris.dubai@gmail.com";
 
-        $controller->sendRequest($array);
+        // $controller->sendRequest($array);
 
         return redirect()->route('request.index')->with('flash', 'Request has been successfully added.');
     }
@@ -233,6 +236,7 @@ class RequestController extends Controller
     {
         $this->validate(request(), [
             'product_name'        => 'required',
+            'req_quantity'        => 'required',
             'volume'       => 'required',
             'port_of_destination' => 'required',
             'description' => 'required',
@@ -243,6 +247,7 @@ class RequestController extends Controller
         }
             
         $records[0]->additional_information = request('description');
+        $records[0]->req_quantity = request('req_quantity');
         $records[0]->volume = request('volume');
         $records[0]->unit = request('unit');
         $records[0]->port_of_destination = request('port_of_destination');
