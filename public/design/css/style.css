@@ -11388,7 +11388,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .ps-popup__content {
   position: relative;
   max-width: 830px;
-  width: 100%;
+  width: 25%;
   transition: tranform 0.4s ease;
 }
 
@@ -11995,7 +11995,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 
 .ps-form--subscribe-popup .ps-form__content {
   max-width: 360px;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .ps-form--vendor-datetimepicker {

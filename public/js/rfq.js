@@ -49,6 +49,21 @@ $(function() {
         $('.rfq_btn_hide').click();
     });
 
+    $('.request_callback').click(function() {
+        $('#product_id_v').val();
+        var val_id = $(this).attr('id');
+        $('#product_id_v').val(val_id);
+        $('#subscribe').click();
+
+        var subscribe = $('#subscribe');
+        subscribe.addClass('active');
+        $('body').css('overflow', 'hidden');
+    });
+
+    $('.request_callback_before_login').click(function() {
+
+    });
+
     $('.rfq_send_btn').click(function() {
         var product_name = $('#new_quote #product_name').val();
         var volume = $('#new_quote #volume').val();

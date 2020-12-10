@@ -49,6 +49,10 @@ Route::get('/request/view/{request_id}', 'Frontend\RequestController@view')->nam
 
 
 
+Route::resource('requestcallback', 'Frontend\RequestcallbackController');
+
+
+
 Route::resource('quote', 'Frontend\QuotesController');
 Route::post('/quote/store', 'Frontend\QuotesController@store')->name('quote.store');
 Route::post('/quote/update', 'Frontend\QuotesController@update')->name('quote.update');

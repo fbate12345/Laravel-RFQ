@@ -374,6 +374,38 @@
 
         @yield('content')
 
+        <div class="ps-popup" id="subscribe" data-time="500">
+            <div class="ps-popup__content bg--cover" style="background-color: #e6dfdf;">
+                <a class="ps-popup__close" href="#">
+                    <i class="icon-cross"></i>
+                </a>
+                <form class="ps-form--subscribe-popup" action="{{ route('requestcallback.store') }}" method="POST">
+                    @csrf
+
+                    <div class="ps-form__content">
+                        <!-- <h4>Get <strong>25%</strong> Discount</h4>
+                        <p>Subscribe to the Martfury mailing list <br> to receive updates on new arrivals, special offers <br> and our promotions.</p> -->
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input required type="text" name="name" class="form-control" placeholder="Name" />
+                        </div>
+                        <input type="hidden" name="product_id" id="product_id_v" />
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input required type="email" name="email_add" class="form-control" placeholder="Email" />
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            <input required type="text" name="mobile" class="form-control" placeholder="Mobile" />
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="ps-btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <div id="back2top" style="display: block;"><i class="fa fa-angle-up"></i></div>
         <div class="ps-site-overlay"></div>
         <div id="loader-wrapper">

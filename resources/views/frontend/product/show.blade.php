@@ -41,10 +41,12 @@
             </p>
             
             @guest
-                <a class="ps-btn rfq_detail_page" href="{{ route('request.sendrequest', $product->id) }}">Request for Quotation</a>
+                <a class="ps-btn rfq_detail_page" href="{{ route('request.sendrequest', $product->id) }}" style="width: 70%;">Request for Quotation</a><hr>
+                <!-- <a class="ps-btn request_callback_before_login" style="width: 70%; cursor: pointer; background-color: #476B91; color: #ffffff;">Request Call Back</a> -->
             @else
                 @if(auth()->user()->hasRole('buyer'))
-                    <a class="ps-btn rfq_detail_page" href="{{ route('request.sendrequest', $product->id) }}">Request for Quotation</a>
+                    <a class="ps-btn rfq_detail_page" href="{{ route('request.sendrequest', $product->id) }}" style="width: 70%;">Request for Quotation</a><hr>
+                    <a class="ps-btn request_callback" id="{{ $product->id }}" style="width: 70%; cursor: pointer; background-color: #476B91; color: #ffffff;">Request Call Back</a>
                 @endif
             @endguest
 
