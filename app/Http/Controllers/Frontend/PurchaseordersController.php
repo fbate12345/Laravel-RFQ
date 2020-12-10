@@ -165,7 +165,7 @@ class PurchaseordersController extends Controller
             $record = Purchaseorders::where('id', $id)->first();
 
             $userid = auth()->id();
-            $username = User::where('id', $id)->first();
+            $username = User::where('id', $userid)->first();
             $company = $username->company_name;
 
             if(auth()->user()->hasRole('seller')) {

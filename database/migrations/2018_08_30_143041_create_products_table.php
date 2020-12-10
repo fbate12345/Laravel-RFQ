@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('meta_description');
             
             $table->integer('MOQ')->defaultValue(1);
+            $table->integer('quantity');
             $table->text('description');
             $table->integer('user_id');
             $table->string('username');
