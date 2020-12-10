@@ -6,6 +6,7 @@ use App\User;
 use App\Product;
 use App\Requestcallback;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class RequestcallbackController extends Controller
@@ -17,7 +18,21 @@ class RequestcallbackController extends Controller
      */
     public function index()
     {
-        //
+        $userid = auth()->id();
+        if(auth()->user()->hasRole('buyer')) {
+            $requestcallback = Requestcallback::where('customer_id', $userid)->get();
+        }
+        if (auth()->user()->hasRole('seller')) {
+            $requestcallback = DB::table('requestcallback')
+                            ->Join('products', 'products.id', '=', 'requestcallback.product_id')
+                            ->Join('users', 'users.id', '=', 'products.user_id')
+                            ->select('requestcallback.*')
+                            ->get();
+        }
+        
+        $products = Product::all();
+
+        return view('frontend.requestcallback.index', compact('products', 'requestcallback'));
     }
 
     /**
@@ -61,7 +76,7 @@ class RequestcallbackController extends Controller
             'sign_date' => date('y-m-d h:i:s'),
         ]);
 
-        return back();
+        return redirect()->route('requestcallback.index');
     }
 
     /**
@@ -106,6 +121,8 @@ class RequestcallbackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $ss = Requestcallback::where('id', $id)->delete();
+
+        return redirect()->route('requestcallback.index')->with('flash', 'Request Call Back has successfully deleted.');
     }
 }
