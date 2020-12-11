@@ -104,9 +104,9 @@ $(function() {
 
                 setTimeout( function() {
                     $('.flash-message-area').empty();
-                    $('#P_name').empty();
-                    $('#P_email').empty();
-                    $('#P_mobile').empty();
+                    $('#P_name').val("");
+                    $('#P_email').val("");
+                    $('#P_mobile').val("");
                 }, 2000);
             }
         });
