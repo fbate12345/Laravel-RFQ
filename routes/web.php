@@ -50,7 +50,7 @@ Route::get('/request/view/{request_id}', 'Frontend\RequestController@view')->nam
 
 
 Route::resource('requestcallback', 'Frontend\RequestcallbackController');
-
+Route::post('requestcallback/storeCallback', 'Frontend\RequestcallbackController@storeCallback')->name('requestcallback.storeCallback');
 
 
 Route::resource('quote', 'Frontend\QuotesController');

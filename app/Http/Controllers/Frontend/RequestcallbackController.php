@@ -8,6 +8,7 @@ use App\Requestcallback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RequestcallbackController extends Controller
 {
@@ -77,6 +78,47 @@ class RequestcallbackController extends Controller
         ]);
 
         return back()->with('flash', 'Request Call Back has been successfully submitted.');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCallback(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'        => 'required',
+            'email_add'        => 'required',
+            'mobile'       => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $messages = $validator->messages();
+
+            //pass validator errors as errors object for ajax response
+            return response()->json(['status' => "failed", 'color' => 'red', 'msg' => $messages->first()]);
+        }
+
+        $userid = auth()->id();
+        $user = User::where('id', $userid)->first();
+        $username = $user->name;
+        $useremail = $user->email;
+        $product = Product::where('id', $request->product_id)->first();
+        $product_name = $product->name;
+
+        $rfq = Requestcallback::create([
+            'name' => request('name'),
+            'email_add' => request('email_add'),
+            'mobile' => request('mobile'),
+            'customer_id' => auth()->id(),
+            'product_id' => request('product_id'),
+            'prod_name' => $product_name,
+            'sign_date' => date('y-m-d h:i:s'),
+        ]);
+
+        return response()->json(['status' => 'success', 'color' => '#476B91', 'msg' => 'Request Call Back has been successfully submitted.']);
     }
 
     /**

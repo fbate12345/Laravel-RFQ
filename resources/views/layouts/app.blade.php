@@ -379,30 +379,29 @@
                 <a class="ps-popup__close" href="#">
                     <i class="icon-cross"></i>
                 </a>
-                <form class="ps-form--subscribe-popup" action="{{ route('requestcallback.store') }}" method="POST">
-                    @csrf
-
+                <div class="ps-form--subscribe-popup">
                     <div class="ps-form__content">
-                        <!-- <h4>Get <strong>25%</strong> Discount</h4>
-                        <p>Subscribe to the Martfury mailing list <br> to receive updates on new arrivals, special offers <br> and our promotions.</p> -->
+                        <div class="flash-message-area">
+                            
+                        </div>
                         <div class="form-group">
                             <label>Name</label>
-                            <input required type="text" name="name" class="form-control" placeholder="Name" />
+                            <input type="text" name="name" id="P_name" class="form-control" placeholder="Name" />
                         </div>
                         <input type="hidden" name="product_id" id="product_id_v" />
                         <div class="form-group">
                             <label>Email</label>
-                            <input required type="email" name="email_add" class="form-control" placeholder="Email" />
+                            <input type="email" name="email_add" id="P_email" class="form-control" placeholder="Email" />
                         </div>
                         <div class="form-group">
                             <label>Mobile</label>
-                            <input required type="text" name="mobile" class="form-control" placeholder="Mobile" />
+                            <input type="text" name="mobile" id="P_mobile" class="form-control" placeholder="Mobile" />
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="ps-btn">Submit</button>
+                            <button class="ps-btn" id="submit_request_call_back">Submit</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 

@@ -60,6 +60,55 @@ $(function() {
         $('body').css('overflow', 'hidden');
     });
 
+    $('#submit_request_call_back').click(function() {
+        var name = $('#P_name').val();
+        var product_id = $('#product_id_v').val();
+        var email_add = $('#P_email').val();
+        var mobile = $('#P_mobile').val();
+
+        if (!name) {
+            alert('Name is required.');
+            return;
+        }
+        if (!email_add) {
+            alert('Email is required.');
+            return;
+        }
+        if (!mobile) {
+            alert('Mobile is required.');
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("name", name);
+        formData.append("product_id", product_id);
+        formData.append("email_add", email_add);
+        formData.append("mobile", mobile);
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: "/requestcallback/storeCallback",
+            type: 'POST',
+            contentType: false,
+            cache: false,
+            processData: false,
+            data: formData,
+            success: function(result, status) {
+                $('.flash-message-area').empty();
+                $('.flash-message-area').append('<h4 style="color: '+result.color+'">' + result.msg + '</h4>');
+                
+                setTimeout( function() {
+                    $('.flash-message-area').empty();
+                }, 2000);
+            }
+        });
+    });
+
     $('.request_callback_before_login').click(function() {
 
     });
