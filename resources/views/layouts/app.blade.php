@@ -387,20 +387,39 @@
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" name="name" id="P_name" class="form-control" placeholder="Name" />
+
+                            <span class="help-block">
+                                <strong class="error_area_name"></strong>
+                            </span>
                         </div>
                         <input type="hidden" name="product_id" id="product_id_v" />
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" name="email_add" id="P_email" class="form-control" placeholder="Email" />
+
+                            <span class="help-block">
+                                <strong class="error_area_mail"></strong>
+                            </span>
                         </div>
                         <div class="form-group">
                             <label>Mobile</label>
                             <input type="text" name="mobile" id="P_mobile" class="form-control" placeholder="Mobile" />
+
+                            <span class="help-block">
+                                <strong class="error_area_mobile"></strong>
+                            </span>
                         </div>
                         <div class="form-group">
                             <button class="ps-btn" id="submit_request_call_back">Submit</button>
                         </div>
                     </div>
+
+                    @guest
+                    @else
+                        <input type="hidden" class="username_hid" value="{{ Auth::user()->name }}" />
+                        <input type="hidden" class="useremail_hid" value="{{ Auth::user()->email }}" />
+                    @endguest 
+
                 </div>
             </div>
         </div>

@@ -58,6 +58,9 @@ $(function() {
         var subscribe = $('#subscribe');
         subscribe.addClass('active');
         $('body').css('overflow', 'hidden');
+
+        $('#P_name').val($('.username_hid').val());
+        $('#P_email').val($('.useremail_hid').val());
     });
 
     $('#submit_request_call_back').click(function() {
@@ -66,16 +69,20 @@ $(function() {
         var email_add = $('#P_email').val();
         var mobile = $('#P_mobile').val();
 
+        $('.error_area_name').text("");
+        $('.error_area_mail').text("");
+        $('.error_area_mobile').text("");
+
         if (!name) {
-            alert('Name is required.');
+            $('.error_area_name').text('Name is required.');
             return;
         }
         if (!email_add) {
-            alert('Email is required.');
+            $('.error_area_mail').text('Email is required.');
             return;
         }
         if (!mobile) {
-            alert('Mobile is required.');
+            $('.error_area_mobile').text('Mobile is required.');
             return;
         }
 
@@ -104,16 +111,10 @@ $(function() {
 
                 setTimeout( function() {
                     $('.flash-message-area').empty();
-                    $('#P_name').val("");
-                    $('#P_email').val("");
                     $('#P_mobile').val("");
-                }, 2000);
+                }, 5000);
             }
         });
-    });
-
-    $('.request_callback_before_login').click(function() {
-
     });
 
     $('.rfq_send_btn').click(function() {
