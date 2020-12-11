@@ -15,15 +15,15 @@
 						<table id="order-listing" class="table table-bordered table-striped">
 							<thead>
 								<tr>
-									<th width="50px">ID</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Phone</th>
-									<th>Product Name</th>
-									<th>Seller Name</th>
-									<th>Company Name</th>
-									<th>Date</th>
-									<th width="150px">Action</th>
+									<th width="5%;">ID</th>
+									<th width="10%;">Name</th>
+									<th width="10%;">Email</th>
+									<th width="10%;">Phone</th>
+									<th width="20%;">Product Name</th>
+									<th width="10%;">Seller Name</th>
+									<th width="20%;">Company Name</th>
+									<th width="10%;">Date</th>
+									<th width="5%;">Action</th>
 								</tr>
 							</thead>
 							<tbody>

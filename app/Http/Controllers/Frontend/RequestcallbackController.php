@@ -76,7 +76,7 @@ class RequestcallbackController extends Controller
             'sign_date' => date('y-m-d h:i:s'),
         ]);
 
-        return redirect()->route('requestcallback.index');
+        return back()->with('flash', 'Request Call Back has been successfully submitted.');
     }
 
     /**
