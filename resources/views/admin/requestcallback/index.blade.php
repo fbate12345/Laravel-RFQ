@@ -20,6 +20,8 @@
 									<th>Email</th>
 									<th>Phone</th>
 									<th>Product Name</th>
+									<th>Seller Name</th>
+									<th>Company Name</th>
 									<th>Date</th>
 									<th width="150px">Action</th>
 								</tr>
@@ -32,6 +34,10 @@
 									<td>{{ $request->email_add }}</td>
 									<td>{{ $request->mobile }}</td>
 									<td>{{ $request->prod_name }}</td>
+									<td>
+										<a style="text-decoration: underline; color: #476b91;" href="{{ route('userprofile.view', App\Product::getsellerIdByProdcut($request->product_id)) }}">{{ App\Product::getsellerNameByProdcut($request->product_id) }}</a>
+									</td>
+									<td>{{ App\Product::getcompanyNameByProdcut($request->product_id) }}</td>
 									<td>{{ $request->sign_date }}</td>
 									<td>
 										<a href="" onclick="event.preventDefault();

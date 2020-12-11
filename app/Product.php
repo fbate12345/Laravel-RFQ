@@ -58,6 +58,81 @@ class Product extends Model
         return $result;
     }
 
+    /**
+    * @param product id
+    * @author Nemanja
+    * @since 2020-12-11
+    * @return seller name
+    */
+    public static function getsellerNameByProdcut($prodid) {
+        if (@$prodid) {
+            $product = Product::where('id', $prodid)->first();
+            if (@$product) {
+                $sellerid = $product->user_id;
+                if (@$sellerid) {
+                    $seller = User::where('id', $sellerid)->first();
+                    if (@$seller) {
+                        $sellerName = $seller->name;
+                    }
+                }
+            }
+        }else{
+            $sellerName = "None";
+        }
+
+        return $sellerName;
+    }
+
+    /**
+    * @param product id
+    * @author Nemanja
+    * @since 2020-12-11
+    * @return seller id
+    */
+    public static function getsellerIdByProdcut($prodid) {
+        if (@$prodid) {
+            $product = Product::where('id', $prodid)->first();
+            if (@$product) {
+                $sellerid = $product->user_id;
+                if (@$sellerid) {
+                    $seller = User::where('id', $sellerid)->first();
+                    if (@$seller) {
+                        $sellerName = $seller->id;
+                    }
+                }
+            }
+        }else{
+            $sellerName = "None";
+        }
+
+        return $sellerName;
+    }
+
+    /**
+    * @param product id
+    * @author Nemanja
+    * @since 2020-12-11
+    * @return seller company name
+    */
+    public static function getcompanyNameByProdcut($prodid) {
+        if (@$prodid) {
+            $product = Product::where('id', $prodid)->first();
+            if (@$product) {
+                $sellerid = $product->user_id;
+                if (@$sellerid) {
+                    $seller = User::where('id', $sellerid)->first();
+                    if (@$seller) {
+                        $sellerName = $seller->company_name;
+                    }
+                }
+            }
+        }else{
+            $sellerName = "None";
+        }
+
+        return $sellerName;
+    }
+
     public function getcompanyName($userid) {
         $record = User::where('id', $userid)->get();
         if(@$record) {
