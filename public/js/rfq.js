@@ -101,9 +101,12 @@ $(function() {
             success: function(result, status) {
                 $('.flash-message-area').empty();
                 $('.flash-message-area').append('<h4 style="color: '+result.color+'">' + result.msg + '</h4>');
-                
+
                 setTimeout( function() {
                     $('.flash-message-area').empty();
+                    $('#P_name').empty();
+                    $('#P_email').empty();
+                    $('#P_mobile').empty();
                 }, 2000);
             }
         });
