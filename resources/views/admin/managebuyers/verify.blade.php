@@ -14,7 +14,7 @@
 						<div class="col-md-6">
 							<div class="form-group {{ $errors->has('document') ? 'has-error' : '' }}">
 								<label>Choose document</label>
-				                <input type="file" class="form-control" id="document" name="document" placeholder="Document" required>
+				                <input type="file" class="form-control" id="document" name="document" placeholder="Document" required accept=".pdf" />
 				                <span class="glyphicon glyphicon-user form-control-feedback"></span>
 				                @if ($errors->has('document'))
 				                    <span class="help-block">
