@@ -84,6 +84,45 @@ class EmailsController extends Controller
     }
 
     /**
+    * Mail send for sending to buyer approved rfq by admin
+    * @param data, username, address....
+    * @since 2020-12-14
+    * @author Nemanja
+    */
+    public function sendapprovedRFQ($request)
+    {
+        DB::beginTransaction();
+
+        $data = $request['data'];
+        $description = $data['body'];
+        $username = $request['username'];
+        $useremail = $request['receiver_address'];
+        $subject = $request['subject'];
+
+        try {
+            Mail::send('frontend.mail.approvedRFQtobuyer', $data, function($message) use ($username, $useremail, $subject) {
+                $message->to($useremail, $username)->subject($subject);
+                $message->from('solaris.dubai@gmail.com', 'Administrator');
+            });
+
+            $email = Emails::create([
+                'sender_address'        => $request['sender_address'],
+                'receiver_address' => $request['receiver_address'],
+                'header'       => $subject,
+                'title' => "Hi, ".$username,
+                'description'        => $description,
+                'sign_date'     => date('y-m-d h:i:s'),
+            ]);
+
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
+        }   
+    }
+
+    /**
     * Mail send for sending rfq as buyer
     * @param data, username, address....
     * @since 2020-11-24

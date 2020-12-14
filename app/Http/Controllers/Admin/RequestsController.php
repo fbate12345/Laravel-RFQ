@@ -168,7 +168,7 @@ class RequestsController extends Controller
                     $array['data'] = array('name' => $array['username'], "body" => "Successfully approved your RFQ.", "company_name" => $company_name, "product_link" => $product_link, "file_link" => $file_link, "rfq" => $record[0]);
                     $array['subject'] = "Successfully approved your RFQ.";
                     $array['sender_address'] = "solaris.dubai@gmail.com";
-                    $controller->sendRequest($array);
+                    $controller->sendapprovedRFQ($array);
 
 
                     //To seller
