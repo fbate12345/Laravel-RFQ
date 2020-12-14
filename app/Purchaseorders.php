@@ -20,7 +20,7 @@ class Purchaseorders extends Model
     			$status = "Payment Pending";
     			break;
     		case '2':
-    			$status = "Payment Received";
+    			$status = "Delivered";
     			break;
     		case '3':
     			$status = "Delivery Fine";

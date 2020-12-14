@@ -135,7 +135,7 @@
                         @if($quote->payment_status == 1)
                           <a class="btn btn-success" style="color: #fff; cursor: not-allowed;">Payment Pending</a>
                         @elseif($quote->payment_status == 2)
-                          <a class="btn btn-success" href="{{ url('/purchaseorders/paymentchange', $quote->p_id) }}" id="{{ $quote->p_id }}" style="color: #fff;">Payment Change</a>
+                          <a class="btn btn-success" href="{{ url('/purchaseorders/paymentchange', $quote->p_id) }}" id="{{ $quote->p_id }}" style="color: #fff;">Delivery Pending</a>
                         @elseif($quote->payment_status == 3)
                           <a class="btn btn-success" href="{{ url('/purchaseorders/addreview', $quote->p_id) }}" id="{{ $quote->p_id }}" style="color: #fff;">Add Review</a>
                         @endif

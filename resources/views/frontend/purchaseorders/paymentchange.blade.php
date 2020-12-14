@@ -20,7 +20,7 @@
               <select class="form-control status" id="status">
                 <option value="">choose</option>
                 @if($record->payment_status == 1)
-                  <option value="1">Payment Received</option>
+                  <option value="1">Delivered</option>
                 @elseif($record->payment_status == 2)
                   <option value="1">Delivery Fine</option>
                 @endif
