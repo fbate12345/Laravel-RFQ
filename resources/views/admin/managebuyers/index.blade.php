@@ -19,6 +19,7 @@
 									<th>Name</th>
 									<th>Email</th>
 									<th>Block Status</th>
+									<th>Verified Status</th>
 									<th>Sign Date</th>
 									<th width="150px">Action</th>
 								</tr>
@@ -31,16 +32,28 @@
 											<td>{{ $buyer->name }}</td>
 											<td>{{ $buyer->email }}</td>
 											<td>{{ $buyer->getBlockstatus($buyer->block) }}</td>
+											<td>{{ $buyer->getVerifiedstatus($buyer->verified) }}</td>
 											<td>{{ $buyer->sign_date }}</td>
 											<td>
 												@if($buyer->block == 0)
 													<a title="Block" href="{{ route('managebuyers.edit', $buyer->id) }}" class="btn btn-danger btn-sm btn-flat">
-														<i class="fa fa-warning"></i>
+														<i class="fa fa-lock"></i>
 													</a>
 												@endif
 												@if($buyer->block == 1)
 													<a title="Approve" href="{{ route('managebuyers.show', $buyer->id) }}" class="btn btn-success btn-sm btn-flat">
+														<i class="fa fa-unlock"></i>
+													</a>
+												@endif
+
+												@if($buyer->verified == 1)
+													<a title="Verify" href="{{ route('managebuyers.verify', $buyer->id) }}" class="btn btn-primary btn-sm btn-flat">
 														<i class="fa fa-check"></i>
+													</a>
+												@endif
+												@if($buyer->verified == 2)
+													<a title="Not Verify" href="{{ route('managebuyers.notverify', $buyer->id) }}" class="btn btn-primary btn-sm btn-flat">
+														<i class="fa fa-times"></i>
 													</a>
 												@endif
 												

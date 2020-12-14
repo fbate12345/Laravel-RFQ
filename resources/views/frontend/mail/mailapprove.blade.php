@@ -18,7 +18,10 @@
         <h4>Volume - <?= $rfq->volume ?></h4>
         <h4>Destination - <?= $rfq->port_of_destination ?></h4>
         <h4>Additional Information - <?= $rfq->additional_information ?></h4>
-		<h4>File - <a href="<?= $file_link ?>">Check the attachment</a></h4>
+        <?php 
+            if (@$file_link) { ?>
+                <h4>File - <a href="<?= $file_link ?>">Check the attachment</a></h4>
+        <?php } ?>
         
         <h4>Date of request - <?= $rfq->sign_date ?></h4><br>
     </div>

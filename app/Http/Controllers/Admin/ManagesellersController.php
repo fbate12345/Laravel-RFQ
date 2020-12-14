@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Verify;
 use App\Adminlogs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,6 +45,69 @@ class ManagesellersController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    /**
+     * Display the verify page resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function verify($id)
+    {
+        return view('admin.managesellers.verify', compact('id'));
+    }
+
+    /**
+     * verify status change : From Not verified to Verified
+     * @param $request
+     * @since 2020-12-14
+     * @author Nemanja
+     * @return \Illuminate\Http\Response
+     */
+    public function submitVerify(Request $request)
+    {
+        $this->validate(request(), [
+            'document' => 'required',
+            'comment' => 'required',
+            'userid' => 'required'
+        ]);
+
+        $user = User::where('id', $request->userid)->first();
+        if (@$user) {
+            $user->verified = 2;
+            if ($user->update()) {
+                $verify = Verify::create([
+                    'document' => $request->document,
+                    'comment' => $request->comment,
+                    'userid' => $request->userid,
+                    'sign_date' => date('Y-m-d h:i:s')
+                ]);
+
+                Verify::upload_document($verify->id);
+            }
+        }
+
+        return redirect()->route('managesellers.index');
+    }
+
+    /**
+     * Remove the verified data and change the status from verified to not verified.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function notverify($id)
+    {
+        $seller = User::where('id', $id)->first();
+        if (@$seller) {
+            $seller->verified = 1;
+            if($seller->update()) {
+                Verify::where('userid', $seller->id)->delete();
+            }
+        }
+
+        return redirect()->route('managesellers.index');
     }
 
     /**

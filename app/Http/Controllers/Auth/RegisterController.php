@@ -98,6 +98,7 @@ class RegisterController extends Controller
                     'company_logo' => @$data['company_logo'],
                     'email' => $data['email'],
                     'block' => 0,
+                    'verified' => 1,
                     'password' => Hash::make($data['password']),
                     'phone_number' => @$data['phone_number'],
                     'sign_date' => date('Y-m-d h:i:s'),

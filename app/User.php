@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'company_name', 'company_logo', 'email', 'github_id', 'google_id', 'password', 'phone_number', 'sign_date', 'block', 'email_verified_at'
+        'name', 'company_name', 'company_logo', 'email', 'github_id', 'google_id', 'password', 'phone_number', 'sign_date', 'block', 'verified', 'email_verified_at'
     ];
 
     /**
@@ -57,7 +57,8 @@ class User extends Authenticatable
         return false;
     }
 
-    public function getBlockstatus($id) {
+    public function getBlockstatus($id) 
+    {
         if (@$id) {
             if ($id == 0) { //normal status
                 $result = "Normal";
@@ -71,7 +72,31 @@ class User extends Authenticatable
         return $result;
     }
 
-    public static function getMarks($id) {
+    /**
+    * get user verified status information
+    * @param user verified value
+    * @since 2020-12-14
+    * @return boolean result 1 or 2
+    * @author Nemanja
+    */
+    public function getVerifiedstatus($verified) 
+    {
+        if (@$verified) {
+            if ($verified == 1) {
+                $result = "Not Verified.";
+            } if ($verified == 2) {
+                $result = "Verified.";
+            }
+        }else{
+            $result = "None";
+        }
+
+        return $result;
+    }
+
+
+    public static function getMarks($id) 
+    {
         if (@$id) {
             $marks = DB::table('reviews')
                         ->where('receiver', $id)
@@ -81,7 +106,8 @@ class User extends Authenticatable
         }
     }
 
-    public function getUsername($id) {
+    public function getUsername($id) 
+    {
         if (@$id) {
             $user = User::where('id', $id)->first();
             $name = $user->name;

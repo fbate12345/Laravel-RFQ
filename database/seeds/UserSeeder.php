@@ -22,6 +22,7 @@ class UserSeeder extends Seeder
             'password' => '$2y$10$43Lgdx7qDxGdj3cDyfcw4uLj5nVQ6vsQ3obexrb/axByYf4B6roZO', // secret
             'phone_number' => '029292162',
             'block' => 0,
+            'verified' => 2,
             'remember_token' => str_random(10),
             'sign_date' => date('y-m-d h:m:s'),
 		]);

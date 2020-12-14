@@ -155,9 +155,20 @@ Route::put('/admin/localization/update/{localizationsetting}', 'Admin\Localizati
 Route::resource('admin/managemanagers', 'Admin\ManagemanagersController');
 Route::resource('admin/managesellers', 'Admin\ManagesellersController');
 Route::get('/admin/managesellers', 'Admin\ManagesellersController@index')->name('managesellers.index');
+Route::get('/admin/managesellers/verify/{id}', 'Admin\ManagesellersController@verify')->name('managesellers.verify');
+Route::get('/admin/managesellers/notverify/{id}', 'Admin\ManagesellersController@notverify')->name('managesellers.notverify');
+Route::post('/admin/managesellers/submitVerify', 'Admin\ManagesellersController@submitVerify')->name('managesellers.submitVerify');
+
+
+
 
 Route::resource('admin/managebuyers', 'Admin\ManagebuyersController');
 Route::get('/admin/managebuyers', 'Admin\ManagebuyersController@index')->name('managebuyers.index');
+Route::get('/admin/managebuyers/verify/{id}', 'Admin\ManagebuyersController@verify')->name('managebuyers.verify');
+Route::get('/admin/managebuyers/notverify/{id}', 'Admin\ManagebuyersController@notverify')->name('managebuyers.notverify');
+Route::post('/admin/managebuyers/submitVerify', 'Admin\ManagebuyersController@submitVerify')->name('managebuyers.submitVerify');
+
+
 
 
 Route::resource('admin/category', 'Admin\CategoryController');
