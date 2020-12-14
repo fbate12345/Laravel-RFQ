@@ -78,7 +78,7 @@ class ProductController extends Controller
 
         if($category == 'null') {
             $products = DB::table('products')
-                            ->select('products.*', 'images.url', 'users.name as username', 'users.id as user_id', 'users.company_name')
+                            ->select('products.*', 'images.url', 'users.name as username', 'users.id as user_id', 'users.company_name', 'users.verified')
                             ->Join('images', 'products.id', '=', 'images.product_id')
                             ->Join('users', 'users.id', '=', 'products.user_id')
                             ->where('products.status', 2)
@@ -114,7 +114,7 @@ class ProductController extends Controller
             //////////////////////////////////// sub-category part ////////////////////////////////////
 
             $products = DB::table('products')
-                            ->select('products.*', 'images.url', 'users.name as username', 'users.id as user_id', 'users.company_name')
+                            ->select('products.*', 'images.url', 'users.name as username', 'users.id as user_id', 'users.company_name', 'users.verified')
                             ->Join('images', 'products.id', '=', 'images.product_id')
                             ->Join('users', 'users.id', '=', 'products.user_id')
                             ->Join('categories', 'categories.id', '=', 'products.category_id')

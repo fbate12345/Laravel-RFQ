@@ -83,6 +83,7 @@ class ReviewsController extends Controller
             $name = $username->name;
             $company = $username->company_name;
             $company_logo = $username->company_logo;
+            $verified = $username->verified;
 
             if(auth()->user()->hasRole('seller') || auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager')) {
                 $reviews = DB::table('reviews')
@@ -114,7 +115,7 @@ class ReviewsController extends Controller
             
             $products = Product::all();
 
-            return view('frontend.purchaseorders.userreview', compact('products', 'reviews', 'name', 'company', 'company_logo'));
+            return view('frontend.purchaseorders.userreview', compact('products', 'reviews', 'name', 'company', 'company_logo', 'verified'));
         }
     }
 

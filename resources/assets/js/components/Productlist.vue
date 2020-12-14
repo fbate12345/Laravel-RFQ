@@ -9,7 +9,11 @@
             <a class="ps-product__title" :href="`product/${prod.slug}`">{{ prod.name.substr(0, 20) }}</a>
             <hr>
             <div class="ps-product__content">
-                Company: <a class="ps-product__vendor" :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">{{ prod.company_name }}</a>
+                Company: <a class="ps-product__vendor" :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">
+                    {{ prod.company_name }}
+                    <i v-if="prod.verified == 2" class="fa fa-check" style="color: green; font-size: large;">Verified</i>
+                    <i v-if="prod.verified == 1" class="fa fa-check" style="color: grey; font-size: large;">Not Verified</i>
+                </a>
 
                 <p class="ps-product__price" v-show="!(prod.price_from == 0 && prod.price_to == 0)">{{ prod.price_from }} ~ {{ prod.price_to }} {{ localization_setting.currency }}</p>
                 <p class="ps-product__price">{{ prod.MOQ }} piece (Min order)</p>

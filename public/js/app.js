@@ -54219,7 +54219,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54236,6 +54236,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
 //
 //
 //
@@ -54376,7 +54380,34 @@ var render = function() {
               staticStyle: { color: "blue" },
               attrs: { href: "purchaseorders/userreview/" + _vm.prod.user_id }
             },
-            [_vm._v(_vm._s(_vm.prod.company_name))]
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.prod.company_name) +
+                  "\n                "
+              ),
+              _vm.prod.verified == 2
+                ? _c(
+                    "i",
+                    {
+                      staticClass: "fa fa-check",
+                      staticStyle: { color: "green", "font-size": "large" }
+                    },
+                    [_vm._v("Verified")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.prod.verified == 1
+                ? _c(
+                    "i",
+                    {
+                      staticClass: "fa fa-check",
+                      staticStyle: { color: "grey", "font-size": "large" }
+                    },
+                    [_vm._v("Not Verified")]
+                  )
+                : _vm._e()
+            ]
           ),
           _vm._v(" "),
           _c(
@@ -54574,7 +54605,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54585,6 +54616,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", 
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -54673,14 +54710,44 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("p", { staticClass: "ps-product__vendor" }, [
-                _vm._v("Company: "),
+                _vm._v("Company: \n                    "),
                 _c(
                   "a",
                   {
                     staticStyle: { color: "blue" },
                     attrs: { href: "purchaseorders/userreview/" + prod.user_id }
                   },
-                  [_vm._v(_vm._s(prod.company_name))]
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(prod.company_name) +
+                        "\n                        "
+                    ),
+                    prod.verified == 2
+                      ? _c(
+                          "i",
+                          {
+                            staticClass: "fa fa-check",
+                            staticStyle: {
+                              color: "green",
+                              "font-size": "large"
+                            }
+                          },
+                          [_vm._v("Verified")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    prod.verified == 1
+                      ? _c(
+                          "i",
+                          {
+                            staticClass: "fa fa-check",
+                            staticStyle: { color: "grey", "font-size": "large" }
+                          },
+                          [_vm._v("Not Verified")]
+                        )
+                      : _vm._e()
+                  ]
                 )
               ])
             ]),

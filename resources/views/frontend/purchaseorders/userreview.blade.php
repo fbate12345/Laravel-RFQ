@@ -10,6 +10,13 @@
                 @if($reviews)
                     <div class="col-md-12" style="display: inline-block;">
                         <h4 style="display: inline-block;">{{ $name }} ( {{ $company }} )</h4>
+
+                        @if($verified == 1)
+                            <i class="fa fa-check" style="color: grey; font-size: large;">Not Verified</i>
+                        @elseif($verified == 2)
+                            <i class="fa fa-check" style="color: green; font-size: large;">Verified</i>
+                        @endif
+
                         @if($company_logo)
                             <div class="pull-right" style="display: inline-block;">
                                 <img class="img-fluid" style="display: inline-block; width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $company_logo }}" alt="Logo">       

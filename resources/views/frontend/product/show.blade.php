@@ -21,7 +21,15 @@
                 <!-- <div class="font-weight-bold">{{ __('Seller') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}"> {{ $product->getUsername($product->user_id) }}</a></div>  -->
 
                 <div class="font-weight-bold">
-                    {{ __('Company') }} : <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">{{ $product->getcompanyName($product->user_id) }}</a>
+                    {{ __('Company') }} : 
+                    <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">
+                        {{ $product->getcompanyName($product->user_id) }}
+                        @if(App\User::getVerifystatusByproduct($product->user_id) == -1 || App\User::getVerifystatusByproduct($product->user_id) == 1)
+                            <i class="fa fa-check" style="color: grey; font-size: large;">Not Verified</i>
+                        @elseif(App\User::getVerifystatusByproduct($product->user_id) == 2)
+                            <i class="fa fa-check" style="color: green; font-size: large;">Verified</i>
+                        @endif
+                    </a>
                     @if($product->getcompanyLogo($product->user_id))
                         <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">
                             <img class="img-fluid" style="width: 50px; height: 50px; border-radius: 100%;" src="{{ asset('uploads/') }}/{{ $product->getcompanyLogo($product->user_id) }}" alt="Logo">

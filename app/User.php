@@ -94,6 +94,28 @@ class User extends Authenticatable
         return $result;
     }
 
+    /**
+    * get user verified status information
+    * @param product userid value
+    * @since 2020-12-14
+    * @return boolean result 1 or 2
+    * @author Nemanja
+    */
+    public static function getVerifystatusByproduct($verified) 
+    {
+        if (@$verified) {
+            $rec = User::where('id', $verified)->first();
+            if(@$rec) {
+                $result = $rec->verified;
+            }else{
+                $result = "-1";    
+            }            
+        }else{
+            $result = "-1";
+        }
+
+        return $result;
+    }
 
     public static function getMarks($id) 
     {
