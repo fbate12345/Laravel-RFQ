@@ -54404,7 +54404,7 @@ var render = function() {
                       staticClass: "fa fa-check",
                       staticStyle: { color: "grey", "font-size": "large" }
                     },
-                    [_vm._v("Not Verified")]
+                    [_vm._v("Unverified")]
                   )
                 : _vm._e()
             ]
@@ -54744,7 +54744,7 @@ var render = function() {
                             staticClass: "fa fa-check",
                             staticStyle: { color: "grey", "font-size": "large" }
                           },
-                          [_vm._v("Not Verified")]
+                          [_vm._v("Unverified")]
                         )
                       : _vm._e()
                   ]
