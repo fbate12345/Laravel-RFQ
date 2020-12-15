@@ -14,7 +14,7 @@
                         <a :href="`purchaseorders/userreview/${prod.user_id}`" style="color: blue;">
                             {{ prod.company_name }}
                             <i v-if="prod.verified == 2" class="fa fa-check" style="color: green; font-size: large;">Verified</i>
-                            <i v-if="prod.verified == 1" class="fa fa-check" style="color: grey; font-size: large;">Not Verified</i>
+                            <i v-if="prod.verified == 1" class="fa fa-check" style="color: grey; font-size: large;">Unverified</i>
                         </a>
                     </p>
                 </div>

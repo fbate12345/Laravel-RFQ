@@ -12,7 +12,7 @@
                         <h4 style="display: inline-block;">{{ $name }} ( {{ $company }} )</h4>
 
                         @if($verified == 1)
-                            <i class="fa fa-check" style="color: grey; font-size: large;">Not Verified</i>
+                            <i class="fa fa-check" style="color: grey; font-size: large;">Unverified</i>
                         @elseif($verified == 2)
                             <i class="fa fa-check" style="color: green; font-size: large;">Verified</i>
                         @endif

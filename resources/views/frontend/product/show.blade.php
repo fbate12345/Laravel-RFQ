@@ -25,7 +25,7 @@
                     <a class="" href="{{ url('/purchaseorders/userreview', $product->user_id) }}">
                         {{ $product->getcompanyName($product->user_id) }}
                         @if(App\User::getVerifystatusByproduct($product->user_id) == -1 || App\User::getVerifystatusByproduct($product->user_id) == 1)
-                            <i class="fa fa-check" style="color: grey; font-size: large;">Not Verified</i>
+                            <i class="fa fa-check" style="color: grey; font-size: large;">Unverified</i>
                         @elseif(App\User::getVerifystatusByproduct($product->user_id) == 2)
                             <i class="fa fa-check" style="color: green; font-size: large;">Verified</i>
                         @endif
