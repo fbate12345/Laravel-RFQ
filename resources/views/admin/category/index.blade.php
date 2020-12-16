@@ -21,10 +21,11 @@
 						<table id="order-listing" class="table">
 							<thead>
 								<tr>
-									<th width="50px">No</th>
+									<th>No</th>
 									<th>Name</th>
-									<th>Slug</th>
-									<th width="150px">Action</th>
+									<th>Parent</th>
+									<th>Meta title</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -32,7 +33,8 @@
 								<tr>
 									<td>{{ $category->id }}</td>
 									<td>{{ $category->name }}</td>
-									<td>{{ $category->slug }}</td>
+									<td>{{ App\Category::getParentcategoryNamebyID($category->parent) }}</td>
+									<td>{{ $category->meta_title }}</td>
 									<td>
 										<a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary btn-sm btn-flat">
 											<i class="fa fa-edit"></i>

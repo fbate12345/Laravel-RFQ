@@ -2,18 +2,12 @@
 
 namespace App;
 
+use App\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
-{
-
-    ///////////////////////////// sub category part ///////////////////////////////////
-
-    // public $fillable = ['name', 'parent', 'slug', 'sign_date'];
-    
-    ///////////////////////////// sub category part ///////////////////////////////////
-    
-    public $fillable = ['name', 'meta_title', 'meta_keywords', 'meta_description', 'slug', 'sign_date'];
+{    
+    public $fillable = ['name', 'meta_title', 'meta_keywords', 'meta_description', 'slug', 'sign_date', 'parent'];
 
     public function products(){
         return $this->hasMany('App\Product');
@@ -25,5 +19,23 @@ class Category extends Model
     					  ->first();
 
     	return $category ? $category->id : false;
+    }
+
+    /** 
+    * get parent category name by parent ID
+    * @param parent ID
+    * @author Nemanja
+    * @since 2020-12-16
+    * @return parent category name as string type
+    */
+    public static function getParentcategoryNamebyID($parentID)
+    {
+        if (@$parentID) {
+            $parentRecord = Category::where('id', $parentID)->first();
+            $name = $parentRecord->name;
+        }else
+            $name = "Root";
+
+        return $name;
     }
 }

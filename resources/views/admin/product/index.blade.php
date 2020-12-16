@@ -70,6 +70,10 @@
 											</a>
 										@endif
 
+										<a href="{{ route('product.edit', $product->slug) }}" class="btn btn-default btn-sm btn-flat" title="Edit">
+											<i class="fa fa-edit"></i>
+										</a>
+
 										<a href="{{ route('product.show', $product->slug) }}" class="btn btn-success btn-sm btn-flat" title="Detail">
 											<i class="fa fa-edit"></i>
 										</a>

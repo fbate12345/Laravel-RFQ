@@ -32,7 +32,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        $parents = Category::whereNull('parent')->get();
+
+        return view('admin.category.create', compact('parents'));
     }
 
     /**
@@ -43,12 +45,27 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'name' => 'required',
+            'meta_title' => 'required',
+            'meta_keywords' => 'required',
+            'meta_description' => 'required'
+        ]);
+
+        if (@$request->parent) {
+            if ($request->parent == -1) {
+                $parent = NULL;
+            }else
+                $parent = $request->parent;
+        }
+
         $category = Category::create([
             'name' => $request->name,
             'meta_title' => $request->meta_title,
+            'slug' => createCategorySlug(request('name')),
+            'parent' => $parent,
             'meta_keywords' => $request->meta_keywords,
             'meta_description' => $request->meta_description,
-            'slug' => $request->slug,
             'sign_date' => date('y-m-d h:i:s'),
         ]);
 
@@ -68,7 +85,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.category.edit', compact('category'));
+        $categories = Category::all();
+
+        return view('admin.category.edit', compact('category', 'categories'));
     }
 
     /**
@@ -80,11 +99,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $this->validate(request(), [
+            'name' => 'required',
+            'meta_title' => 'required',
+            'meta_keywords' => 'required',
+            'meta_description' => 'required'
+        ]);
+
+        if (@$request->parent) {
+            if ($request->parent == -1) {
+                $parent = NULL;
+            }else
+                $parent = $request->parent;
+        }
+
         $category->name = $request->name;
+        // $category->slug = createCategorySlug(request('name'));
+        $category->parent = $parent;
         $category->meta_title = $request->meta_title;
         $category->meta_keywords = $request->meta_keywords;
         $category->meta_description = $request->meta_description;
-        $category->slug = $request->slug;
         $category->save();
 
         $data = [];

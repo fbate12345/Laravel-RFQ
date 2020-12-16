@@ -93,23 +93,23 @@ class ProductController extends Controller
         }else{
             //////////////////////////////////// sub-category part ////////////////////////////////////
 
-            // $CT = Category::where('slug', $category)->first();
-            // $arr = [];
+            $CT = Category::where('slug', $category)->first();
+            $arr = [];
 
-            // if(@$CT->parent) {
-            //     $arr[] = $CT->id;
-            // }else{
-            //     $childs = Category::where('parent', $CT->id)->get();
+            if($CT->parent) {
+                $arr[] = $CT->id;
+            }else{
+                $childs = Category::where('parent', $CT->id)->get();
                 
-            //     if(@$childs) {
-            //         $arr[] = $CT->id;
-            //         foreach($childs as $key => $child) {
-            //             $arr[] = $child->id;
-            //         }
-            //     }
-            // }
+                if(@$childs) {
+                    $arr[] = $CT->id;
+                    foreach($childs as $key => $child) {
+                        $arr[] = $child->id;
+                    }
+                }
+            }
 
-            // $cate = $arr;
+            $cate = $arr;
 
             //////////////////////////////////// sub-category part ////////////////////////////////////
 
@@ -118,8 +118,8 @@ class ProductController extends Controller
                             ->Join('images', 'products.id', '=', 'images.product_id')
                             ->Join('users', 'users.id', '=', 'products.user_id')
                             ->Join('categories', 'categories.id', '=', 'products.category_id')
-                            ->where('categories.slug', $category)
-                            // ->whereIn('categories.id', $cate)
+                            // ->where('categories.slug', $category)
+                            ->whereIn('categories.id', $cate)
                             ->where('products.status', 2)
                             ->whereNull('products.deleted_at')
                             ->where('products.name', 'like', '%'.$word.'%')
@@ -164,19 +164,19 @@ class ProductController extends Controller
 
         //////////////////////////////////// sub-category part ////////////////////////////////////
 
-        // $root_categorys = Category::whereNull('parent')->get();  //Get Root Categories
-        // if(@$root_categorys) {
-        //     foreach($root_categorys as $key => $rC) {
-        //         $childs = Category::where('parent', $rC->id)->get();    //Get Child Categories by parent id
-        //         $root_categorys[$key]['childs'] = $childs;  //Set sub-array in Main array
-        //     }
-        // }
+        $root_categorys = Category::whereNull('parent')->get();  //Get Root Categories
+        if(@$root_categorys) {
+            foreach($root_categorys as $key => $rC) {
+                $childs = Category::where('parent', $rC->id)->get();    //Get Child Categories by parent id
+                $root_categorys[$key]['childs'] = $childs;  //Set sub-array in Main array
+            }
+        }
 
-        // $data['categorys'] = $root_categorys;
+        $data['categorys'] = $root_categorys;
 
         //////////////////////////////////// sub-category part ////////////////////////////////////
 
-        $data['categorys'] = Category::all();
+        // $data['categorys'] = Category::all();
         $data['url'] = Route('product.index') . "?category=";
 
         return response()->json($data);
@@ -450,6 +450,14 @@ class ProductController extends Controller
         $userid = auth()->id();
         $user_record = User::where('id', $userid)->first();
         $username = $user_record->name;
+        if (@$username) {
+            if (auth()->user()->hasRole('admin')) {
+                $redirect_urls = route('products.index');
+            }else{
+                $redirect_urls = route('product.my');
+            }
+        }
+
         if(@$request->product_id) {
             $product = Product::where('id', $request->product_id)->first();
 
@@ -486,7 +494,7 @@ class ProductController extends Controller
 
         return response()->json([
             'success' => true,
-            'redirect_urls' => route('product.my')
+            'redirect_urls' => $redirect_urls
         ], 200);
     }
 

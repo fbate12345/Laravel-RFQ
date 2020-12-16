@@ -1,6 +1,7 @@
 <?php 
 
 use App\Product;
+use App\Category;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,6 +30,36 @@ function createSlug($title, $id = 0)
 function getRelatedSlugs($slug, $id = 0)
 {
     return Product::select('slug')->where('slug', 'like', $slug.'%')
+        ->where('id', '<>', $id)
+        ->get();
+}
+
+// Category Slug Helper ======================================================================
+
+function createCategorySlug($title, $id = 0)
+{
+    // Normalize the title
+    $slug = str_slug($title);
+    // Get any that could possibly be related.
+    // This cuts the queries down by doing it once.
+    $allSlugs = getRelatedCategorySlugs($slug, $id);
+    // If we haven't used it before then we are all good.
+    if (! $allSlugs->contains('slug', $slug)){
+        return $slug;
+    }
+    // Just append numbers like a savage until we find not used.
+    for ($i = 1; $i <= 10; $i++) {
+        $newSlug = $slug.'-'.$i;
+        if (! $allSlugs->contains('slug', $newSlug)) {
+            return $newSlug;
+        }
+    }
+    throw new \Exception('Can not create a unique slug');
+}
+
+function getRelatedCategorySlugs($slug, $id = 0)
+{
+    return Category::select('slug')->where('slug', 'like', $slug.'%')
         ->where('id', '<>', $id)
         ->get();
 }

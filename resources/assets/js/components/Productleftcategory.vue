@@ -4,13 +4,13 @@
             <h4 class="widget-title">Categories</h4>
             <ul class="ps-list--categories">
                 <li class="current-menu-item menu-item-has-children" v-for="cate in categories" :key="cate.id">
-                    <a @click="showListproduct(cate.slug)" style="cursor: pointer;" :class="{'active': cate.slug == category}">{{ cate.name }}</a>
-                    <!-- <span class="sub-toggle" v-if="cate.childs.length"><i class="fa fa-angle-down"></i></span>
+                    <a @click="showListproduct(cate.slug)" style="cursor: pointer;" :class="{'actived': cate.slug == category}">{{ cate.name }}</a>
+                    <span class="sub-toggle" v-if="cate.childs.length"><i class="fa fa-angle-down"></i></span>
                     <ul class="sub-menu" v-for="ct in cate.childs" :key="ct.id">
                         <li class="current-menu-item">
-                            <a @click="showListproduct(ct.slug)" style="cursor: pointer;">{{ ct.name }}</a>
+                            <a @click="showListproduct(ct.slug)" style="cursor: pointer;" :class="{'actived': ct.slug == category}">{{ ct.name }}</a>
                         </li>
-                    </ul> -->
+                    </ul>
                 </li>
             </ul>
         </aside>
@@ -48,7 +48,7 @@
     .fa {
         font-size: 15px;
     }
-    .active {
+    .actived {
         color: red;
         font-weight: bold;
     }

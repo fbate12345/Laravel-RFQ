@@ -52392,7 +52392,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.showpointer[data-v-e87a65e6] {\n    cursor: pointer;\n}\n.fa[data-v-e87a65e6] {\n    font-size: 15px;\n}\n.active[data-v-e87a65e6] {\n    color: red;\n    font-weight: bold;\n}\n", ""]);
+exports.push([module.i, "\n.showpointer[data-v-e87a65e6] {\n    cursor: pointer;\n}\n.fa[data-v-e87a65e6] {\n    font-size: 15px;\n}\n.actived[data-v-e87a65e6] {\n    color: red;\n    font-weight: bold;\n}\n", ""]);
 
 // exports
 
@@ -53389,7 +53389,7 @@ var render = function() {
               _c(
                 "a",
                 {
-                  class: { active: cate.slug == _vm.category },
+                  class: { actived: cate.slug == _vm.category },
                   staticStyle: { cursor: "pointer" },
                   on: {
                     click: function($event) {
@@ -53398,8 +53398,35 @@ var render = function() {
                   }
                 },
                 [_vm._v(_vm._s(cate.name))]
-              )
-            ]
+              ),
+              _vm._v(" "),
+              cate.childs.length
+                ? _c("span", { staticClass: "sub-toggle" }, [
+                    _c("i", { staticClass: "fa fa-angle-down" })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm._l(cate.childs, function(ct) {
+                return _c("ul", { key: ct.id, staticClass: "sub-menu" }, [
+                  _c("li", { staticClass: "current-menu-item" }, [
+                    _c(
+                      "a",
+                      {
+                        class: { actived: ct.slug == _vm.category },
+                        staticStyle: { cursor: "pointer" },
+                        on: {
+                          click: function($event) {
+                            return _vm.showListproduct(ct.slug)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(ct.name))]
+                    )
+                  ])
+                ])
+              })
+            ],
+            2
           )
         }),
         0
