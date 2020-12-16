@@ -6,7 +6,7 @@
   	<div class="card-body" style="padding: 5%;">
         <div class="row">
           	<div class="col-12">
-          		<form action="{{ route('category.update', $category->id) }}" method="POST">
+          		<form action="{{ route('category.update', $category->id) }}" method="POST" enctype="multipart/form-data">
 					@csrf
 
 					<input type="hidden" name="_method" value="put">
@@ -35,6 +35,26 @@
 									@endif
 								</select>
 							</div>
+
+							<div class="form-group">
+                                <label>Photo</label>
+                                <div class="controls">
+                                    <span>
+                                        <input type="file" name="cate_photo" id="file" onchange="loadPreview(this, 'preview_img');" class="inputfile">
+                                        <?php 
+                                            if(@$category->cate_photo) {
+                                                $path = asset('uploads/') . "/" . $category->cate_photo;
+                                            }else{
+                                                $path = asset('images/') . "/" . "author-1.png";
+                                            }
+                                        ?>
+
+                                        <label for="file" @click="onClick" inputId="1" style="background-image: url(<?= $path ?>);" id='preview_img'>
+                                            <i class="fa fa-plus-circle"></i>
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
 
 							<div class="form-group {{ $errors->has('meta_title') ? 'has-error' : '' }}">
 								<label>Meta Title</label>
@@ -80,3 +100,54 @@
   	</div>
 </div>
 @stop
+
+<style type="text/css">
+    .inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .inputfile + label {
+        font-size: 1.25em;
+        font-weight: 700;
+        color: white;
+        /*background-color: #E9ECEF;*/
+        padding: 50px;
+        display: inline-block;
+        cursor: pointer;
+        background-size: contain;
+        width: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .inputfile:focus + label,
+    .inputfile + label:hover {
+        /*background-color: #38C172ed;*/
+    }
+
+    .hidden {
+        display: none !important;
+    }
+</style>
+
+@section('script')
+    <script>
+        function loadPreview(input, id) {
+            id = "#" + id;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var path = "background-image: " + "url('" + e.target.result + "')";
+                    $(id).attr('style', path);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endsection

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Adminlogs;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -64,10 +65,13 @@ class CategoryController extends Controller
             'meta_title' => $request->meta_title,
             'slug' => createCategorySlug(request('name')),
             'parent' => $parent,
+            'cate_photo' => @$request->cate_photo,
             'meta_keywords' => $request->meta_keywords,
             'meta_description' => $request->meta_description,
             'sign_date' => date('y-m-d h:i:s'),
         ]);
+
+        Category::upload_photo($category->id);
 
         $data = [];
         $data['title'] = 'Added';
@@ -114,12 +118,19 @@ class CategoryController extends Controller
         }
 
         $category->name = $request->name;
-        // $category->slug = createCategorySlug(request('name'));
         $category->parent = $parent;
         $category->meta_title = $request->meta_title;
         $category->meta_keywords = $request->meta_keywords;
         $category->meta_description = $request->meta_description;
+        if (@$request->cate_photo) {
+            $category->cate_photo = @$request->cate_photo;
+        }
+
         $category->save();
+
+        if (@$request->cate_photo) {
+            Category::upload_photo($category->id);
+        }
 
         $data = [];
         $data['title'] = 'Updated';

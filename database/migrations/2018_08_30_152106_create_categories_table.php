@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->text('meta_title');
             $table->text('meta_keywords');
             $table->text('meta_description');
+            $table->text('cate_photo')->nullable();
             
             $table->string('parent')->nullable();
             $table->string('slug');

@@ -23,8 +23,9 @@
 								<tr>
 									<th>No</th>
 									<th>Name</th>
+									<th>Type</th>
 									<th>Parent</th>
-									<th>Meta title</th>
+									<th width="50px">Photo</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -33,8 +34,17 @@
 								<tr>
 									<td>{{ $category->id }}</td>
 									<td>{{ $category->name }}</td>
+									<td>{{ App\Category::getTypeofcategory($category->parent) }}</td>
 									<td>{{ App\Category::getParentcategoryNamebyID($category->parent) }}</td>
-									<td>{{ $category->meta_title }}</td>
+									<?php 
+                                        if(@$category->cate_photo) {
+                                            $path = asset('uploads/') . "/" . $category->cate_photo;
+                                        }else{
+                                            $path = asset('images/') . "/" . "author-1.png";
+                                        }
+                                    ?>
+                                    <td><img class="img-responsive" src="<?= $path ?>" style="border-radius: unset; height: unset;" /></td>
+
 									<td>
 										<a href="{{ route('category.edit', $category->id) }}" class="btn btn-primary btn-sm btn-flat">
 											<i class="fa fa-edit"></i>
