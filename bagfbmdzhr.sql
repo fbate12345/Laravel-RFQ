@@ -138,7 +138,12 @@ INSERT INTO `adminlogs` (`id`, `admin_id`, `sign_date`, `title`, `description`, 
 (105,	1,	'2020-11-30 15:22:04',	'Added',	'Category Name: Sports',	'2020-11-30 15:22:04',	'2020-11-30 15:22:04'),
 (106,	1,	'2020-12-14 11:00:12',	'Pending',	'RFQ Name: Car 2019',	'2020-12-14 11:00:12',	'2020-12-14 11:00:12'),
 (107,	1,	'2020-12-15 04:34:03',	'Pending',	'Product Name: HP 2345',	'2020-12-15 04:34:03',	'2020-12-15 04:34:03'),
-(108,	1,	'2020-12-15 04:34:17',	'Approved',	'Product Name: HP 2345',	'2020-12-15 04:34:17',	'2020-12-15 04:34:17');
+(108,	1,	'2020-12-15 04:34:17',	'Approved',	'Product Name: HP 2345',	'2020-12-15 04:34:17',	'2020-12-15 04:34:17'),
+(109,	1,	'2020-12-16 16:08:28',	'Added',	'Category Name: Book',	'2020-12-16 16:08:28',	'2020-12-16 16:08:28'),
+(110,	1,	'2020-12-16 16:09:13',	'Added',	'Category Name: eLearning',	'2020-12-16 16:09:13',	'2020-12-16 16:09:13'),
+(111,	1,	'2020-12-17 03:15:29',	'Deleted',	'Category Name: eLearning',	'2020-12-17 03:15:29',	'2020-12-17 03:15:29'),
+(112,	1,	'2020-12-17 03:15:32',	'Deleted',	'Category Name: Book',	'2020-12-17 03:15:32',	'2020-12-17 03:15:32'),
+(113,	1,	'2020-12-17 06:23:01',	'Added',	'Category Name: Essential',	'2020-12-17 06:23:01',	'2020-12-17 06:23:01');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -147,6 +152,8 @@ CREATE TABLE `categories` (
   `meta_title` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `meta_keywords` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `meta_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cate_photo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sign_date` datetime NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -154,19 +161,20 @@ CREATE TABLE `categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `categories` (`id`, `name`, `meta_title`, `meta_keywords`, `meta_description`, `slug`, `sign_date`, `created_at`, `updated_at`) VALUES
-(1,	'Smartwatch',	'',	'',	'',	'smartwatch',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
-(2,	'Smartphone',	'',	'',	'',	'smartphone',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
-(3,	'Smart TV',	'',	'',	'',	'smart-tv',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
-(4,	'Iphone',	'',	'',	'',	'iphone',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
-(5,	'Laptop',	'',	'',	'',	'laptop',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
-(6,	'Food',	'food',	'food, category',	'food',	'food',	'2020-09-12 09:50:51',	'2020-09-12 13:50:51',	'2020-11-30 15:10:33'),
-(7,	'Hospitality',	'hospitality',	'hospitality, category',	'hospitality',	'hospitality',	'2020-09-12 09:51:00',	'2020-09-12 13:51:00',	'2020-11-30 15:10:50'),
-(8,	'Auto',	'',	'',	'',	'auto',	'2020-09-12 09:51:10',	'2020-09-12 13:51:10',	'2020-09-12 13:51:10'),
-(9,	'Petrochemical',	'',	'',	'',	'petrochemical',	'2020-09-12 09:51:22',	'2020-09-12 13:51:22',	'2020-09-12 13:51:22'),
-(10,	'Medical',	'',	'',	'',	'medical',	'2020-09-12 09:51:39',	'2020-09-12 13:51:39',	'2020-09-12 13:51:39'),
-(11,	'Stationery',	'',	'',	'',	'stationery',	'2020-09-19 05:40:53',	'2020-09-19 05:40:53',	'2020-09-19 05:40:53'),
-(14,	'Sports',	'Top Sports items',	'sports, Cricket, Football',	'Top Sports items are available here',	'sports',	'2020-11-30 03:22:04',	'2020-11-30 15:22:04',	'2020-11-30 15:22:04');
+INSERT INTO `categories` (`id`, `name`, `meta_title`, `meta_keywords`, `meta_description`, `cate_photo`, `parent`, `slug`, `sign_date`, `created_at`, `updated_at`) VALUES
+(1,	'Smartwatch',	'',	'',	'',	NULL,	NULL,	'smartwatch',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
+(2,	'Smartphone',	'',	'',	'',	NULL,	NULL,	'smartphone',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
+(3,	'Smart TV',	'',	'',	'',	NULL,	NULL,	'smart-tv',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
+(4,	'Iphone',	'',	'',	'',	NULL,	NULL,	'iphone',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
+(5,	'Laptop',	'',	'',	'',	NULL,	NULL,	'laptop',	'2020-08-16 03:08:42',	'2020-08-16 19:36:42',	'2020-08-16 19:36:42'),
+(6,	'Food',	'food',	'food, category',	'food',	NULL,	NULL,	'food',	'2020-09-12 09:50:51',	'2020-09-12 13:50:51',	'2020-11-30 15:10:33'),
+(7,	'Hospitality',	'hospitality',	'hospitality, category',	'hospitality',	NULL,	NULL,	'hospitality',	'2020-09-12 09:51:00',	'2020-09-12 13:51:00',	'2020-11-30 15:10:50'),
+(8,	'Auto',	'',	'',	'',	NULL,	NULL,	'auto',	'2020-09-12 09:51:10',	'2020-09-12 13:51:10',	'2020-09-12 13:51:10'),
+(9,	'Petrochemical',	'',	'',	'',	NULL,	NULL,	'petrochemical',	'2020-09-12 09:51:22',	'2020-09-12 13:51:22',	'2020-09-12 13:51:22'),
+(10,	'Medical',	'',	'',	'',	NULL,	NULL,	'medical',	'2020-09-12 09:51:39',	'2020-09-12 13:51:39',	'2020-09-12 13:51:39'),
+(11,	'Stationery',	'',	'',	'',	NULL,	NULL,	'stationery',	'2020-09-19 05:40:53',	'2020-09-19 05:40:53',	'2020-09-19 05:40:53'),
+(14,	'Sports',	'Top Sports items',	'sports, Cricket, Football',	'Top Sports items are available here',	NULL,	NULL,	'sports',	'2020-11-30 03:22:04',	'2020-11-30 15:22:04',	'2020-11-30 15:22:04'),
+(17,	'Essential',	'Essential',	'Essential',	'Essential',	NULL,	NULL,	'essential',	'2020-12-17 06:23:01',	'2020-12-17 06:23:01',	'2020-12-17 06:23:01');
 
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
@@ -469,7 +477,13 @@ INSERT INTO `emails` (`id`, `sender_address`, `receiver_address`, `header`, `tit
 (269,	'solaris.dubai@gmail.com',	'jovanovic.nemanja.102@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, jovanovic-seller',	'Successfully submitted a RFQ for your product.',	'2020-12-14 10:58:55',	'2020-12-14 10:58:55',	'2020-12-14 10:58:55'),
 (270,	'solaris.dubai@gmail.com',	'jovanovic.nemanja.1029@gmail.com',	'Successfully approved your RFQ.',	'Hi, jovanovic-buyer',	'Successfully approved your RFQ.',	'2020-12-14 11:12:17',	'2020-12-14 11:12:17',	'2020-12-14 11:12:17'),
 (271,	'solaris.dubai@gmail.com',	'jovanovic.nemanja.102@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, jovanovic-seller',	'Successfully submitted a RFQ for your product.',	'2020-12-14 11:12:18',	'2020-12-14 11:12:18',	'2020-12-14 11:12:18'),
-(272,	'solaris.dubai@gmail.com',	'jovanovic.nemanja.102@gmail.com',	'Successfully approved your product.',	'Hi, jovanovic-seller',	'Thanks for your product has been approved.',	'2020-12-15 04:34:19',	'2020-12-15 04:34:19',	'2020-12-15 04:34:19');
+(272,	'solaris.dubai@gmail.com',	'jovanovic.nemanja.102@gmail.com',	'Successfully approved your product.',	'Hi, jovanovic-seller',	'Thanks for your product has been approved.',	'2020-12-15 04:34:19',	'2020-12-15 04:34:19',	'2020-12-15 04:34:19'),
+(273,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2020-12-23 01:19:35',	'2020-12-23 13:19:35',	'2020-12-23 13:19:35'),
+(274,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2020-12-23 01:19:36',	'2020-12-23 13:19:36',	'2020-12-23 13:19:36'),
+(275,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2020-12-29 10:27:25',	'2020-12-29 10:27:25',	'2020-12-29 10:27:25'),
+(276,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2020-12-29 10:27:26',	'2020-12-29 10:27:26',	'2020-12-29 10:27:26'),
+(277,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24'),
+(278,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24');
 
 DROP TABLE IF EXISTS `files`;
 CREATE TABLE `files` (
@@ -802,6 +816,8 @@ CREATE TABLE `password_resets` (
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('jovanovic.nemanja.1029@gmail.com',	'$2y$10$aFestRg0evpLi1ezp1k/QeQss.GUO4t6y5lSdSBxP0JbxVv9NwiWK',	'2020-12-17 12:12:26');
 
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
@@ -908,7 +924,7 @@ INSERT INTO `products` (`id`, `name`, `meta_title`, `meta_description`, `meta_ke
 (75,	'ASUS ZenBook 14 UM433DA-DH75 90NB0PD6-M00680 Silver Laptop/Ryzen 7 3700U/8GB/512GB PCIe SSD/14.0\" Flat Full HD (1920x1080)/AMD Radeon RX Vega 10/Windows 10 Home',	'',	'',	'',	5,	0,	'<ul><li>AMD Ryzen 7 3700U 2.3GHz Processor (upto 4 GHz, 4MB Cache, 4-Cores) ; AMD Radeon RX Vega 10 Integrated Graphics</li><li>8GB DDR4 SODIMM RAM; 45W Power Supply, 3-Cell 50WHr Battery, ; Silver Color</li><li>14.0\" Full HD (1920x1080) Display; 802.11ac Wifi, Bluetooth 4.2, 720p HD Webcam, Backlit Keyboard</li><li>512GB PCIe NVMe SSD; 1 USB 3.1 Gen2, 1 USB 2.0, 1 HDMI, USB 3.1 Type-C Gen2, Micro SD Reader, Headphone/Microphone Combo Jack.</li><li>Windows 10 Home</li></ul><p><br></p>',	4,	'Nebiyu',	3388.00,	3765.00,	2,	5,	NULL,	'asus-zenbook-14-um433da-dh75-90nb0pd6-m00680-silver-laptopryzen-7-3700u8gb512gb-pcie-ssd140-flat-full-hd-1920x1080amd-radeon-rx-vega-10windows-10-home',	'2020-09-22 06:12:05',	'2020-09-22 18:12:05',	'2020-09-22 18:12:05',	NULL,	1),
 (76,	'Asus Laptop – Core i5 1GHz 8GB 1TB 2GB Win10 14inch FHD, Slate Gray - | X409JB-EK031T',	'',	'',	'',	5,	0,	'<p><strong>Dual Storage</strong></p><p><strong>Store more, do more</strong></p><p>ASUS X409 has a dual-storage design to give you the benefits of superfast data performance and a large storage capacity.</p><p><br></p><p><strong>NanoEdge Display</strong></p><p><strong>Get a wider view of the world</strong></p><p>The NanoEdge display gives ASUS X409 a vast screen area for an immersive viewing experience for work and play.</p><p><br></p><p><strong>Stylish &amp; Portable</strong></p><p><strong>Empower your dynamic lifestyle!</strong></p><p>With an overall weight of just 1.65kg, the extremely portable ASUS X409 is the lightweight laptop that keeps up with your fast-paced lifestyle.</p><p><br></p><p><strong>Immersive Audio</strong></p><p><strong>Rich, crystal-clear audio</strong></p><p>ASUS SonicMaster is a combination of hardware, software and audio tuning designed with the goal of giving you the very best audio experience.</p><p><strong>Free</strong></p><p>We offer express delivery to Dubai, Abu Dhabi, Al Ain, Sharjah, Ajman, Ras Al Khaimah, Fujairah, Umm Al Quwain, UAE for Asus Laptop – Core i5 1GHz 8GB 1TB 2GB Win10 14inch FHD, Slate Gray - | X409JB-EK031T.</p><p><br></p><p><strong>Best Price Guarantee</strong></p><p>We offer the best price for Asus Laptop – Core i5 1GHz 8GB 1TB 2GB Win10 14inch FHD, Slate Gray - | X409JB-EK031T in Dubai, UAE. Buy now with the best price!</p><p><br></p>',	4,	'Nebiyu',	2700.00,	3000.00,	2,	5,	NULL,	'asus-laptop-core-i5-1ghz-8gb-1tb-2gb-win10-14inch-fhd-slate-gray-x409jb-ek031t',	'2020-09-22 06:14:25',	'2020-09-22 18:14:25',	'2020-09-22 18:14:25',	NULL,	1),
 (77,	'15.6\" WLED ASUS MB16AMT',	'',	'',	'',	5,	0,	'<p>ASUS ZenScreen Touch Portable USB Monitor</p><ul><li>10-point touch, built-in battery</li><li>with an ultra-thin profile of 9 mm and a weight of just 0.9 kg</li><li>The powerful 7800 mAh built-in battery provides up to four hours of operation</li><li>The foldable smart casecan be rotated into a stand to move the monitor in portrait or landscape mode</li><li>Built-in speakers</li><li>no flicker</li><li>HDCP support</li></ul><p><strong>Screen type:</strong>&nbsp;IPS, Capacitive 10-point, multi-touch</p><p><strong>Diagonal [inch]:</strong>&nbsp;15.6 \"widescreen display</p><p><strong>Resolution:</strong>&nbsp;Full HD 1920x1080</p><p><strong>Pitch [mm]:</strong>&nbsp;0.179 mm</p><p><strong>Aspect ratio:</strong>&nbsp;16: 9</p><p><strong>Display surface:</strong>&nbsp;glare-free</p><p><strong>Brightness [cd/m2]:</strong>&nbsp;250</p><p><strong>Contrast:</strong>&nbsp;700: 1</p><p><strong>Speakers:</strong>&nbsp;1 W x 2 Stereo RMS</p><p><strong>Connectors:</strong>&nbsp;USB Type-C, Micro HDMI</p><p><strong>Power Consumption [W]:</strong>&nbsp;&lt;12 W</p><p><strong>Stand By mode [W]:</strong>&nbsp;0 W</p><p><strong>Monitor tilt:</strong>&nbsp;Auto-rotate</p><p><strong>Color:</strong>&nbsp;Dark gray</p><p><strong>Dimensions (WxHxD mm):</strong>&nbsp;359.7 x 227.4 x 9.0 mm</p><p><strong>Weight [kg]:</strong>&nbsp;0.9 kg</p><p><strong>Package contents:</strong></p><ul><li>ASUS Smart Case</li><li>Power adapter</li><li>DisplayPort ™ via USB-C ™ cable (USB-C to USB-C)</li><li>USB Type C to A Adapter</li><li>ZenScreen pen</li><li>Quick Start Guide</li><li>Warranty Card</li></ul><p><strong>Guarantee:</strong>&nbsp;36 months</p><p><strong>Compatibility:</strong>&nbsp;OS compatibility features for touch: Microsoft Windows7/8/10, Android 6.0 or higher (* 1), Mac OS (* 2), Chrome OS, Linux</p>',	4,	'Nebiyu',	1890.00,	2100.00,	2,	5,	NULL,	'156-wled-asus-mb16amt',	'2020-09-22 06:16:25',	'2020-09-22 18:16:25',	'2020-09-22 18:16:25',	NULL,	1),
-(78,	'Test Product1',	'',	'',	'',	1,	0,	'<p>This is for testing purpose. <span style=\"color: rgb(102, 102, 102);\">This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. </span></p>',	25,	'Sumanta',	10.00,	1000.00,	2,	5,	NULL,	'test-product1',	'2020-11-13 11:56:33',	'2020-11-13 11:56:33',	'2020-11-13 11:56:33',	NULL,	1),
+(78,	'Test Product1',	'd',	'dfg',	'dfg',	1,	0,	'<p>This is for testing purpose. <span style=\"color: rgb(102, 102, 102);\">This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. This is for testing purpose. </span></p>',	25,	'Sumanta',	10.00,	1000.00,	2,	5,	NULL,	'test-product1-1',	'2020-11-13 11:56:33',	'2020-11-13 11:56:33',	'2020-12-25 07:47:43',	NULL,	1),
 (79,	'1',	'',	'',	'',	1,	0,	'<p>1</p>',	3,	'jovanovic-seller',	1.00,	2.00,	2,	4,	NULL,	'1',	'2020-11-20 08:02:01',	'2020-11-20 20:02:01',	'2020-11-21 08:22:29',	'2020-11-21 08:22:29',	1),
 (80,	'car2',	'',	'',	'',	1,	0,	'<p>11carcarcar</p>',	3,	'jovanovic-seller',	3.00,	4.00,	2,	4,	NULL,	'car2',	'2020-11-21 06:30:19',	'2020-11-21 06:30:19',	'2020-11-22 07:46:16',	'2020-11-22 07:46:16',	1),
 (81,	'iphone11',	'',	'',	'',	20,	0,	'<h1>iPhone 11 Pro With FaceTime Midnight Green 64GB 4G LTE - International Specs</h1><p><br></p>',	4,	'Nebiyu',	3000.00,	4000.00,	2,	2,	NULL,	'iphone11',	'2020-11-21 06:41:28',	'2020-11-21 06:41:28',	'2020-11-21 08:22:19',	'2020-11-21 08:22:19',	1),
@@ -961,10 +977,10 @@ INSERT INTO `products` (`id`, `name`, `meta_title`, `meta_description`, `meta_ke
 (128,	'Tukas - Green Peas 830g',	'',	'',	'',	1,	0,	'<p>Tukas green peas 830g</p><p>1. Stock Guarantee</p><p>2. Free Delivery in Dubai</p>',	4,	'Nebiyu',	0.00,	0.00,	2,	6,	NULL,	'tukas-green-peas-830g',	'2020-11-22 11:40:58',	'2020-11-22 11:40:58',	'2020-11-22 11:40:58',	NULL,	1),
 (129,	'Tukas - Boiled Chickpeas 800g',	'',	'',	'',	1,	0,	'<p>Tukas boiled chickpeas 800g</p><p>1. Stock Guarantee</p><p>2. Free Delivery in Dubai</p><p><br></p>',	4,	'Nebiyu',	0.00,	0.00,	2,	6,	NULL,	'tukas-boiled-chickpeas-800g',	'2020-11-22 11:41:52',	'2020-11-22 11:41:52',	'2020-11-22 11:41:52',	NULL,	1),
 (130,	'Tukas - Grated Tomato 705gms ( Tomato Pure )',	'',	'',	'',	1,	0,	'<p>Grated Tomato 705gms ( Tomato Pure )</p><p>1. Stock Guarantee</p><p>2. Free Delivery in Dubai</p>',	4,	'Nebiyu',	0.00,	0.00,	2,	6,	NULL,	'tukas-grated-tomato-705gms-tomato-pure',	'2020-11-22 11:42:37',	'2020-11-22 11:42:37',	'2020-11-22 11:42:37',	NULL,	1),
-(131,	'Tukas - Garniture 560gms ( Mix Vegetables )',	'',	'',	'',	1,	0,	'<p>Garniture 560gms ( Mix Vegetables )</p><p>1. Stock Guarantee</p><p>2. Free Delivery in Dubai</p>',	4,	'Nebiyu',	0.00,	0.00,	2,	6,	NULL,	'tukas-garniture-560gms-mix-vegetables',	'2020-11-22 11:43:22',	'2020-11-22 11:43:22',	'2020-11-22 11:43:22',	NULL,	1),
+(131,	'Tukas - Garniture 560gms ( Mix Vegetables )',	'Tukas - Garniture 560gms ( Mix Vegetables )',	'Tukas - Garniture 560gms ( Mix Vegetables )',	'Tukas - Garniture 560gms ( Mix Vegetables )',	1,	1000,	'<p>Garniture 560gms ( Mix Vegetables )</p><p>1. Stock Guarantee</p><p>2. Free Delivery in Dubai</p>',	4,	'Nebiyu',	0.00,	0.00,	2,	6,	NULL,	'tukas-garniture-560gms-mix-vegetables',	'2020-11-22 11:43:22',	'2020-11-22 11:43:22',	'2020-12-18 07:22:14',	NULL,	1),
 (137,	'sadf',	'',	'',	'',	2,	0,	'<p>234</p>',	3,	'jovanovic-seller',	3.00,	4.00,	2,	5,	NULL,	'sadf',	'2020-11-25 05:58:29',	'2020-11-25 17:58:29',	'2020-11-25 18:02:42',	'2020-11-25 18:02:42',	2),
 (132,	'HOODIES',	'HOODIES',	'HOODIES',	'HOODIES',	5,	0,	'<h2><strong>Save Extra with 3 offers</strong></h2><ul><li><strong style=\"color: rgb(177, 39, 4);\">Bank Offer (2):&nbsp;</strong>10% Instant discount with AU Bank Debit Cards&nbsp;<span style=\"color: rgb(0, 113, 133);\">Here\'s how&nbsp;</span></li><li>Get 5% up to Rs. 1500 Instant Discount on HSBC Credit Card EMI transactions&nbsp;<span style=\"color: rgb(0, 113, 133);\">Here\'s how&nbsp;</span></li><li><strong style=\"color: rgb(177, 39, 4);\">Cashback (3):&nbsp;</strong>Get 25% back up to ₹250 with&nbsp;<a href=\"https://www.amazon.in/gp/b/ref=emir_sopp?node=15430915031\" target=\"_blank\" style=\"color: rgb(0, 113, 133);\">Amazon Pay Later</a>. Valid on 1st Pay Later transaction.&nbsp;<a href=\"https://www.amazon.in/gp/b/ref=emir_sopp?node=15430915031\" target=\"_blank\" style=\"color: rgb(0, 113, 133);\">Check eligibility here</a>!&nbsp;<span style=\"color: rgb(0, 113, 133);\">Here\'s how&nbsp;</span></li><li>5% back with&nbsp;<a href=\"https://www.amazon.in/gp/b?node=20769463031\" target=\"_blank\" style=\"color: rgb(0, 113, 133);\">Amazon Pay ICICI Bank Credit card</a>&nbsp;for Prime-members. 3% back for everybody else.&nbsp;<span style=\"color: rgb(0, 113, 133);\">Here\'s how&nbsp;</span></li><li>Get 10% up to ₹150 back, pay with Amazon Pay UPI. Valid only for select customers on App.&nbsp;<a href=\"https://www.amazon.in/gp/browse.html?node=21837228031\" target=\"_blank\" style=\"color: rgb(0, 113, 133);\">Click here</a>&nbsp;to check eligibility&nbsp;<span style=\"color: rgb(0, 113, 133);\">Here\'s how&nbsp;</span></li><li><strong style=\"color: rgb(177, 39, 4);\">Partner Offers (1):&nbsp;</strong>Get GST invoice and save up to 28% on business purchases.<a href=\"https://www.amazon.in/gp/b/ref=apay_upi_sopp?node=16179244031\" target=\"_blank\" style=\"color: rgb(0, 113, 133);\">&nbsp;Sign up for free</a>&nbsp;<span style=\"color: rgb(0, 113, 133);\">Here\'s how&nbsp;</span></li></ul><p><br></p>',	25,	'Sumanta',	100.00,	500.00,	2,	11,	NULL,	'hoodies-1',	'2020-11-24 03:53:37',	'2020-11-24 15:53:37',	'2020-12-10 06:40:44',	NULL,	11),
-(133,	'Test Product 2',	'',	'',	'',	1212,	0,	'<p>Test</p>',	25,	'Sumanta',	100.00,	1000.00,	2,	3,	NULL,	'test-product-2',	'2020-11-25 10:39:49',	'2020-11-25 10:39:49',	'2020-11-25 10:39:49',	NULL,	3),
+(133,	'Test Product 2',	'cxv',	'xc',	'xcv',	1212,	0,	'<p>Test</p>',	25,	'Sumanta',	100.00,	1000.00,	2,	3,	NULL,	'test-product-2-2',	'2020-11-25 10:39:49',	'2020-11-25 10:39:49',	'2020-12-25 07:48:11',	NULL,	3),
 (134,	'Test Product 2',	'',	'',	'',	1212,	0,	'<p>Test</p>',	25,	'Sumanta',	100.00,	1000.00,	2,	3,	NULL,	'test-product-2-1',	'2020-11-25 10:39:51',	'2020-11-25 10:39:51',	'2020-11-25 10:39:51',	NULL,	3),
 (135,	'Test Product 3',	'',	'',	'',	20556,	0,	'<p>Test</p>',	25,	'Sumanta',	100.00,	1000.00,	2,	3,	NULL,	'test-product-3',	'2020-11-25 10:40:44',	'2020-11-25 10:40:44',	'2020-11-25 10:40:44',	NULL,	3),
 (140,	'treat',	'',	'',	'',	3,	0,	'<p><strong>treat</strong></p>',	3,	'jovanovic-seller',	6.00,	7.00,	2,	7,	NULL,	'treat',	'2020-11-25 06:06:43',	'2020-11-25 18:06:43',	'2020-11-26 10:18:32',	'2020-11-26 10:18:32',	7),
@@ -1003,7 +1019,8 @@ CREATE TABLE `purchase_orders` (
 
 INSERT INTO `purchase_orders` (`id`, `request_id`, `payment_status`, `payment_information`, `sign_date`, `created_at`, `updated_at`) VALUES
 (10,	13,	'3',	'Fine',	'2020-12-10 07:18:52',	'2020-12-10 07:18:52',	'2020-12-10 07:23:17'),
-(11,	14,	'3',	'sdfsdf',	'2020-12-14 09:44:11',	'2020-12-14 09:44:11',	'2020-12-14 09:54:20');
+(11,	14,	'3',	'sdfsdf',	'2020-12-14 09:44:11',	'2020-12-14 09:44:11',	'2020-12-14 09:54:20'),
+(12,	15,	'1',	'Payment Pending',	'2020-12-29 10:31:24',	'2020-12-29 10:31:24',	'2020-12-29 10:31:24');
 
 DROP TABLE IF EXISTS `quotes`;
 CREATE TABLE `quotes` (
@@ -1034,7 +1051,10 @@ CREATE TABLE `quotes` (
 
 INSERT INTO `quotes` (`id`, `request_id`, `product_name`, `alternative_product`, `available`, `sender`, `unit`, `volume`, `product_price`, `alternative_product_price`, `shipping_price`, `shipping_desc`, `shipping_weight`, `shipping_unit`, `other_price`, `other_price_desc`, `total_price`, `sign_date`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (13,	36,	'HOODIES',	NULL,	0,	25,	11,	2,	500.00,	0.00,	10.00,	'SHIPPING',	10,	1,	0.00,	'0',	1100.00,	'2020-12-10 07:18:01',	2,	'2020-12-10 07:18:01',	'2020-12-10 07:18:01',	NULL),
-(14,	38,	'Car 2019',	NULL,	0,	3,	11,	123,	200.00,	0.00,	345.00,	'qwer',	23,	3,	230.00,	'Additional',	32765.00,	'2020-12-14 09:43:39',	2,	'2020-12-14 09:43:39',	'2020-12-14 09:43:39',	NULL);
+(14,	38,	'Car 2019',	NULL,	0,	3,	11,	123,	200.00,	0.00,	345.00,	'qwer',	23,	3,	230.00,	'Additional',	32765.00,	'2020-12-14 09:43:39',	2,	'2020-12-14 09:43:39',	'2020-12-14 09:43:39',	NULL),
+(15,	42,	'Test Product1',	NULL,	0,	25,	1,	1,	500.00,	0.00,	10.00,	'10',	10,	1,	20.00,	'others',	620.00,	'2020-12-29 10:29:58',	2,	'2020-12-29 10:29:58',	'2020-12-29 10:29:58',	NULL),
+(16,	43,	'Test Product 2',	NULL,	0,	25,	3,	10,	100.00,	0.00,	10.00,	'10',	10,	1,	10.00,	'oth',	1110.00,	'2020-12-29 10:34:14',	2,	'2020-12-29 10:34:14',	'2020-12-29 10:34:14',	NULL),
+(17,	40,	'Test Product 2',	NULL,	0,	25,	3,	1,	122.00,	0.00,	12.00,	'1',	11,	1,	NULL,	NULL,	254.00,	'2020-12-30 11:23:00',	2,	'2020-12-30 11:23:00',	'2020-12-30 11:23:00',	NULL);
 
 DROP TABLE IF EXISTS `requestcallback`;
 CREATE TABLE `requestcallback` (
@@ -1083,7 +1103,11 @@ INSERT INTO `requests` (`id`, `product_name`, `req_quantity`, `volume`, `unit`, 
 (35,	'HOODIES',	0,	1,	11,	132,	'Destination',	'Additional Information',	23,	'[2]',	2,	'2020-11-24 08:46:54',	'2020-11-24 20:46:54',	'2020-11-26 10:18:19',	'2020-11-26 10:18:19'),
 (37,	'Car 2019',	5,	5,	11,	74,	'123123',	'123123',	2,	'[3]',	2,	'2020-12-10 04:37:21',	'2020-12-10 16:37:21',	'2020-12-14 11:12:16',	NULL),
 (38,	'Car 2019',	4,	123,	11,	74,	'fgfgfh',	'adfads',	2,	'[3]',	2,	'2020-12-14 09:35:41',	'2020-12-14 09:35:41',	'2020-12-14 09:40:28',	NULL),
-(39,	'Test Product1',	10,	3,	1,	78,	'This is for testing purpose.',	'This is for testing purpose.',	24,	'[25]',	1,	'2020-12-14 09:52:44',	'2020-12-14 09:52:44',	'2020-12-14 09:52:44',	NULL);
+(39,	'Test Product1',	10,	3,	1,	78,	'This is for testing purpose.',	'This is for testing purpose.',	24,	'[25]',	1,	'2020-12-14 09:52:44',	'2020-12-14 09:52:44',	'2020-12-14 09:52:44',	NULL),
+(40,	'Test Product 2',	1,	1,	3,	133,	'test',	'test',	24,	'[25]',	2,	'2020-12-23 11:49:20',	'2020-12-23 11:49:20',	'2020-12-23 13:19:34',	NULL),
+(41,	'Test Product 3',	10,	3,	3,	135,	'test',	'test',	24,	'[25]',	1,	'2020-12-25 10:50:22',	'2020-12-25 10:50:22',	'2020-12-25 10:50:22',	NULL),
+(42,	'Test Product1',	10,	1,	1,	78,	'DestinationDestinationDestinationDestinationDestination',	'Additional Additional Additional Additional Additional',	24,	'[25]',	2,	'2020-12-29 10:26:35',	'2020-12-29 10:26:35',	'2020-12-29 10:27:23',	NULL),
+(43,	'Test Product 2',	10,	10,	3,	133,	'Destination',	'Additional Information*',	24,	'[25]',	2,	'2020-12-29 10:33:07',	'2020-12-29 10:33:07',	'2020-12-29 10:33:23',	NULL);
 
 DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
@@ -1149,7 +1173,8 @@ INSERT INTO `role_user` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`)
 (22,	22,	3,	'2020-11-04 09:37:28',	'2020-11-04 09:37:28'),
 (23,	23,	3,	'2020-11-04 15:52:00',	'2020-11-04 15:52:00'),
 (24,	24,	3,	'2020-11-05 08:55:09',	'2020-11-05 08:55:09'),
-(25,	25,	2,	'2020-11-13 11:42:33',	'2020-11-13 11:42:33');
+(25,	25,	2,	'2020-11-13 11:42:33',	'2020-11-13 11:42:33'),
+(26,	26,	3,	'2020-12-21 01:26:15',	'2020-12-21 01:26:15');
 
 DROP TABLE IF EXISTS `unit`;
 CREATE TABLE `unit` (
@@ -1280,9 +1305,9 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `users` (`id`, `name`, `company_name`, `company_logo`, `email`, `github_id`, `google_id`, `email_verified_at`, `password`, `block`, `verified`, `phone_number`, `sign_date`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1,	'Admin',	'Sol',	NULL,	'sales@mambodubai.com',	NULL,	NULL,	NULL,	'$2y$10$nG9hBSA9F2lLWiraRl9ObOgUicw2whYabXw42FFW3fdlR8Nzd/jbS',	0,	2,	'029292162',	'2020-08-16 03:08:42',	'xtfuAcULWNJpn0Urb5XZsLGiuwY0CRa1ReAnrBouI6hPAIb1LVWeEuRfwzUQ',	'2020-08-16 19:36:42',	'2020-11-04 08:30:09'),
-(2,	'jovanovic-buyer',	'NJovan LTD',	'lw0vxD6TzVJdfWtSbgsuqqt63LOFpR4gIooF7Awz.jpeg',	'jovanovic.nemanja.1029@gmail.com',	'69627607',	NULL,	NULL,	'$2y$10$wi54a0feRPr34nQCl3HcS.7ekxnEqNxcUEa0KA3qxv8oczTdX7P3m',	0,	1,	'098766554',	'2020-08-16 03:42:10',	'uBVCPsdCcrJYXBuHx9nNkwyIZWllPyl81j7HlD1KXRZF4xKHwJtkvESxGfHF',	'2020-08-16 19:42:10',	'2020-12-14 13:10:24'),
-(3,	'jovanovic-seller',	'JNemanja LTD',	'aAW3H3KS91pzzujcDEI1WxDGYAWAfvgqLnD08HL5.jpeg',	'jovanovic.nemanja.102@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$24pI7wu.AifBhwT./SmuPe8aCvdqWe71r.YZ4.si4Hcb3vkvQq45i',	0,	2,	'123456',	'2020-08-16 03:48:17',	'RRuCpgafPd1FDiNCA0iopVf3xJQmSwVXEVRM0x7dIF24d9rlrF1TO0NCe51y',	'2020-08-16 19:48:17',	'2020-12-15 04:35:23'),
+(1,	'Admin',	'Sol',	NULL,	'sales@mambodubai.com',	NULL,	NULL,	NULL,	'$2y$10$nG9hBSA9F2lLWiraRl9ObOgUicw2whYabXw42FFW3fdlR8Nzd/jbS',	0,	2,	'029292162',	'2020-08-16 03:08:42',	'Z1YMOmUM1qFhyqZNOEm6NCn0USAFaw29Jvg2fu5kJY5a1kN7yw4cVgxDDeDP',	'2020-08-16 19:36:42',	'2020-11-04 08:30:09'),
+(2,	'jovanovic-buyer',	'NJovan LTD',	'lw0vxD6TzVJdfWtSbgsuqqt63LOFpR4gIooF7Awz.jpeg',	'jovanovic.nemanja.1029@gmail.com',	'69627607',	NULL,	NULL,	'$2y$10$guqkDvTjF0lL0iKT/sY.9.cQuUmWwx9x.0TMUpAzbpVKPf4s1z5Xa',	0,	1,	'098766554',	'2020-08-16 03:42:10',	'Oj3clm9GGKWkmlbayqZ4exAX36dvcGKEbgkwe6HWlHfJdBc8o4LFWAyozPWX',	'2020-08-16 19:42:10',	'2020-12-16 05:23:52'),
+(3,	'jovanovic-seller',	'JNemanja LTD',	'aAW3H3KS91pzzujcDEI1WxDGYAWAfvgqLnD08HL5.jpeg',	'jovanovic.nemanja.102@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$24pI7wu.AifBhwT./SmuPe8aCvdqWe71r.YZ4.si4Hcb3vkvQq45i',	0,	2,	'123456',	'2020-08-16 03:48:17',	'OKovmi3dmWD1ZglMC1LcYSnMpbyqKJMQivSta1DD5OADXG2sLTy1u3afSfYy',	'2020-08-16 19:48:17',	'2020-12-15 04:35:23'),
 (4,	'Nebiyu',	'Solaris DWC LLC',	NULL,	'nebiyu@solarisdubai.com',	NULL,	NULL,	NULL,	'$2y$10$wKNUMvjfROPnQS18MaTD9.DjtXWheYsAY9RUAyTtiGsCgrDl8/z6y',	0,	2,	'0558827281',	'2020-08-17 05:13:27',	'4gbcbiXnU3Xaj91jnEUxG27MlzddhOzwOIEQWCPDNhkm3lk9xPNs6Uk3Rwxd',	'2020-08-17 09:13:27',	'2020-12-14 16:33:57'),
 (5,	'Ahmed',	NULL,	NULL,	'nebiyu@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$9jGX3fAFFEG1.wnFoJcL4e/eg2NKE2blpSCtXxDc/Wp5KZznGtOEG',	0,	1,	'0558825898',	'2020-08-17 05:32:48',	'HWx9RRyxT7BSrxcRw9yGySGQ2PPXKiahR0gRA5Emb1z5sXvjTA4Ri0kT2V4v',	'2020-08-17 09:32:48',	'2020-12-06 05:08:33'),
 (6,	'Paulos',	'Solaris DWC LLC',	'yCOm0qfqUyYlT2qqURrIrxEHhupwRFpReoEGzzkJ.png',	'paulos.desta@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$eu35y/FuLdv3UqGbj879gex.igvJACh/RjHBGD4LOZJYYyo4ElDZW',	0,	1,	'0557878789',	'2020-08-18 06:15:38',	'2I6WxL9IvEw6LfdtCtuM8wrn8ZlyAADR9gQcdYZ6fQMboqioaYp2IrsWofYk',	'2020-08-18 10:15:38',	'2020-12-11 06:02:45'),
@@ -1296,8 +1321,9 @@ INSERT INTO `users` (`id`, `name`, `company_name`, `company_logo`, `email`, `git
 (16,	'AMAN',	'AFROPORTAL',	NULL,	'amanestif@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$aWZ4KJe4QH9BEkMCGOBb8.saZiuNFCXRcqZEQTViaQYdky2Kc.oQe',	0,	1,	'0562783826',	'2020-08-30 12:43:42',	'I3PbybyuYcjdAdbf5ZCzSbOOqRB0k3RdoJ0CtSTKHGFFFL9McjThqQbfFFAA',	'2020-08-30 16:43:42',	'2020-08-30 16:43:42'),
 (17,	'Fasil',	'Mambo',	NULL,	'fasildubai1969@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$M8d41JRdus4q9uQa35V68OS//JexuFGeNCu6JScCyUvEOB9BpKIxq',	0,	1,	'090909090',	'2020-09-02 08:47:31',	'iRr3FrUwShS5USedt2Bhk4bmaSSOlon93BgAFwXjju7l9khd9TX8DSrXgxYT',	'2020-09-02 12:47:31',	'2020-09-02 12:47:31'),
 (21,	'Amanuel',	'AFROPORTAL FZ LLC',	NULL,	'aevip@yahoo.com',	NULL,	NULL,	NULL,	'$2y$10$g.zu0B/oI8SrJiXWnc8VmuHfPQCsSrZvB25wwyGUagMLG8u02b7Sa',	0,	1,	'0562783826',	'2020-09-23 10:19:26',	NULL,	'2020-09-23 10:19:26',	'2020-09-23 10:19:26'),
-(24,	'Sumanta Dey',	'Codeulas',	NULL,	'sumanta@codeulas.com',	NULL,	NULL,	NULL,	'$2y$10$JBqKm7WC4TYGO.PSr3t7iujKR2mXrHSKfdNOFzU6H6STCssgRU8HG',	0,	1,	'8101731846',	'2020-11-05 08:55:09',	'WXU4RNZvIlg0m8Na0A2jkgr7wmqw86uyJqgVNrymr8j90z3TAFrY6dXNgxtb',	'2020-11-05 08:55:09',	'2020-11-05 08:55:09'),
-(25,	'Sumanta',	'Codeulas',	NULL,	'deysumanta1988@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$4/UmTsQfoQA4keueVwDYC.xpP5B2ERujPQf6mbCJWvbXYDkf1re3W',	0,	1,	'8101731846',	'2020-11-13 11:42:33',	'SQH4ZzGCjOzaqy6Rd5y4NpjBuLejMs7eidGXnGiO4A2M4Vq0VjQUpwfn2KDa',	'2020-11-13 11:42:33',	'2020-11-13 11:42:33');
+(24,	'Sumanta Dey',	'Codeulas',	NULL,	'sumanta@codeulas.com',	NULL,	NULL,	NULL,	'$2y$10$JBqKm7WC4TYGO.PSr3t7iujKR2mXrHSKfdNOFzU6H6STCssgRU8HG',	0,	1,	'8101731846',	'2020-11-05 08:55:09',	'9Mh8HNTTiHXhfuHManXgUOoIpNgFU78Qk5lo4yERyb222w4BSS83Z9rvqHPq',	'2020-11-05 08:55:09',	'2020-11-05 08:55:09'),
+(25,	'Sumanta',	'Codeulas',	NULL,	'deysumanta1988@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$4/UmTsQfoQA4keueVwDYC.xpP5B2ERujPQf6mbCJWvbXYDkf1re3W',	0,	1,	'8101731846',	'2020-11-13 11:42:33',	'dB0mQZlvAllz44aGOypCeYecrkQ7c7ceIIG4NUvc0axay0TPPs5jyZZLH2Vl',	'2020-11-13 11:42:33',	'2020-11-13 11:42:33'),
+(26,	'Jhony C',	NULL,	NULL,	'cjhonyc@gmail.com',	NULL,	'118210040133898910462',	NULL,	NULL,	NULL,	1,	NULL,	'2020-12-21 00:00:00',	'IP2gnMmxAe0lqBTyIBSblZxuOZpID4z3BhXSisnABukQVBdIEXgly3uVxKrX',	'2020-12-21 01:26:15',	'2020-12-21 01:26:15');
 
 DROP TABLE IF EXISTS `verify`;
 CREATE TABLE `verify` (
@@ -1356,4 +1382,4 @@ INSERT INTO `verify_emailcodes` (`id`, `email`, `verify_code`, `password`, `crea
 (27,	'kingfullstack@yandex.com',	976656,	'111111',	'2020-11-19 15:42:47',	'2020-11-19 15:42:47'),
 (28,	'jovanovic.nemasdfsdfanja@gmail.com',	706012,	'aaaa1234!!!!',	'2020-11-20 21:58:32',	'2020-11-20 21:58:32');
 
--- 2020-12-15 20:35:56
+-- 2021-01-03 01:48:35
