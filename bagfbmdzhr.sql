@@ -483,7 +483,11 @@ INSERT INTO `emails` (`id`, `sender_address`, `receiver_address`, `header`, `tit
 (275,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2020-12-29 10:27:25',	'2020-12-29 10:27:25',	'2020-12-29 10:27:25'),
 (276,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2020-12-29 10:27:26',	'2020-12-29 10:27:26',	'2020-12-29 10:27:26'),
 (277,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24'),
-(278,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24');
+(278,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24',	'2020-12-29 10:33:24'),
+(279,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2021-01-10 12:00:39',	'2021-01-10 12:00:39',	'2021-01-10 12:00:39'),
+(280,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2021-01-10 12:00:40',	'2021-01-10 12:00:40',	'2021-01-10 12:00:40'),
+(281,	'solaris.dubai@gmail.com',	'sumanta@codeulas.com',	'Successfully approved your RFQ.',	'Hi, Sumanta Dey',	'Successfully approved your RFQ.',	'2021-01-10 02:56:02',	'2021-01-10 14:56:02',	'2021-01-10 14:56:02'),
+(282,	'solaris.dubai@gmail.com',	'deysumanta1988@gmail.com',	'The following RFQ has been assigned to you by administrator.',	'Hi, Sumanta',	'Successfully submitted a RFQ for your product.',	'2021-01-10 02:56:03',	'2021-01-10 14:56:03',	'2021-01-10 14:56:03');
 
 DROP TABLE IF EXISTS `files`;
 CREATE TABLE `files` (
@@ -503,8 +507,10 @@ INSERT INTO `files` (`id`, `request_id`, `name`, `type`, `sign_date`, `created_a
 (3,	6,	'XwNrbtWe7DXfVnkcXUHk71hhniKzMKmdOiznLaIh.png',	'png',	'2020-08-19 04:35:19',	'2020-08-19 08:35:19',	'2020-08-19 08:35:19'),
 (4,	13,	'uhEXP2HdYSULFqMJAw4nrMgu7hchZyRwHgr6MkKo.pdf',	'pdf',	'2020-08-30 12:46:17',	'2020-08-30 16:46:17',	'2020-08-30 16:46:17'),
 (5,	16,	'xLHL2i22morVEfocqRtgZ5pJ0KXZTk3PtXm6hqtm.jpeg',	'jpeg',	'2020-09-16 16:16:39',	'2020-09-16 20:16:39',	'2020-09-16 20:16:39'),
+(12,	44,	'66Y8B4yUzTE4HRsOkwzl8FnTq5qe50umInsENU8c.png',	'png',	'2021-01-10 11:31:38',	'2021-01-10 11:31:38',	'2021-01-10 11:31:38'),
 (11,	34,	'GHuwZ2wO48x0NGDpLAAqVoSeIYXAsgd4s3cX6NFN.txt',	'txt',	'2020-11-24 19:32:57',	'2020-11-24 19:32:57',	'2020-11-24 19:32:57'),
-(10,	33,	'x9UbqK7BrslkPvfOTtCHcRwZzBqQR4iye5b3ZtSq.txt',	'txt',	'2020-11-24 19:31:12',	'2020-11-24 19:31:12',	'2020-11-24 19:31:12');
+(10,	33,	'x9UbqK7BrslkPvfOTtCHcRwZzBqQR4iye5b3ZtSq.txt',	'txt',	'2020-11-24 19:31:12',	'2020-11-24 19:31:12',	'2020-11-24 19:31:12'),
+(13,	45,	'dfERzhm0XttSZYJwjfT3m1q608HPW5AljF5ubGKX.png',	'png',	'2021-01-10 14:54:46',	'2021-01-10 14:54:46',	'2021-01-10 14:54:46');
 
 DROP TABLE IF EXISTS `general_settings`;
 CREATE TABLE `general_settings` (
@@ -1054,7 +1060,9 @@ INSERT INTO `quotes` (`id`, `request_id`, `product_name`, `alternative_product`,
 (14,	38,	'Car 2019',	NULL,	0,	3,	11,	123,	200.00,	0.00,	345.00,	'qwer',	23,	3,	230.00,	'Additional',	32765.00,	'2020-12-14 09:43:39',	2,	'2020-12-14 09:43:39',	'2020-12-14 09:43:39',	NULL),
 (15,	42,	'Test Product1',	NULL,	0,	25,	1,	1,	500.00,	0.00,	10.00,	'10',	10,	1,	20.00,	'others',	620.00,	'2020-12-29 10:29:58',	2,	'2020-12-29 10:29:58',	'2020-12-29 10:29:58',	NULL),
 (16,	43,	'Test Product 2',	NULL,	0,	25,	3,	10,	100.00,	0.00,	10.00,	'10',	10,	1,	10.00,	'oth',	1110.00,	'2020-12-29 10:34:14',	2,	'2020-12-29 10:34:14',	'2020-12-29 10:34:14',	NULL),
-(17,	40,	'Test Product 2',	NULL,	0,	25,	3,	1,	122.00,	0.00,	12.00,	'1',	11,	1,	NULL,	NULL,	254.00,	'2020-12-30 11:23:00',	2,	'2020-12-30 11:23:00',	'2020-12-30 11:23:00',	NULL);
+(17,	40,	'Test Product 2',	NULL,	0,	25,	3,	1,	122.00,	0.00,	12.00,	'1',	11,	1,	NULL,	NULL,	254.00,	'2020-12-30 11:23:00',	2,	'2020-12-30 11:23:00',	'2020-12-30 11:23:00',	NULL),
+(18,	44,	'Test Product1',	NULL,	0,	25,	1,	10,	10.00,	0.00,	10.00,	'10',	10,	1,	20.00,	'gift',	220.00,	'2021-01-10 12:01:37',	2,	'2021-01-10 12:01:37',	'2021-01-10 12:01:37',	NULL),
+(19,	45,	'Test Product1',	NULL,	0,	25,	1,	10,	10.00,	0.00,	10.00,	'10',	10,	1,	10.00,	't',	210.00,	'2021-01-10 02:56:42',	2,	'2021-01-10 14:56:42',	'2021-01-10 14:56:42',	NULL);
 
 DROP TABLE IF EXISTS `requestcallback`;
 CREATE TABLE `requestcallback` (
@@ -1107,7 +1115,9 @@ INSERT INTO `requests` (`id`, `product_name`, `req_quantity`, `volume`, `unit`, 
 (40,	'Test Product 2',	1,	1,	3,	133,	'test',	'test',	24,	'[25]',	2,	'2020-12-23 11:49:20',	'2020-12-23 11:49:20',	'2020-12-23 13:19:34',	NULL),
 (41,	'Test Product 3',	10,	3,	3,	135,	'test',	'test',	24,	'[25]',	1,	'2020-12-25 10:50:22',	'2020-12-25 10:50:22',	'2020-12-25 10:50:22',	NULL),
 (42,	'Test Product1',	10,	1,	1,	78,	'DestinationDestinationDestinationDestinationDestination',	'Additional Additional Additional Additional Additional',	24,	'[25]',	2,	'2020-12-29 10:26:35',	'2020-12-29 10:26:35',	'2020-12-29 10:27:23',	NULL),
-(43,	'Test Product 2',	10,	10,	3,	133,	'Destination',	'Additional Information*',	24,	'[25]',	2,	'2020-12-29 10:33:07',	'2020-12-29 10:33:07',	'2020-12-29 10:33:23',	NULL);
+(43,	'Test Product 2',	10,	10,	3,	133,	'Destination',	'Additional Information*',	24,	'[25]',	2,	'2020-12-29 10:33:07',	'2020-12-29 10:33:07',	'2020-12-29 10:33:23',	NULL),
+(44,	'Test Product1',	10,	10,	1,	78,	'test',	'test',	24,	'[25]',	2,	'2021-01-10 11:31:38',	'2021-01-10 11:31:38',	'2021-01-10 12:00:38',	NULL),
+(45,	'Test Product1',	10,	10,	1,	78,	'fffffffffffffffffffffff',	'ffffffffffffffffffffffff',	24,	'[25]',	2,	'2021-01-10 02:54:46',	'2021-01-10 14:54:46',	'2021-01-10 14:56:01',	NULL);
 
 DROP TABLE IF EXISTS `reviews`;
 CREATE TABLE `reviews` (
@@ -1305,8 +1315,8 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `users` (`id`, `name`, `company_name`, `company_logo`, `email`, `github_id`, `google_id`, `email_verified_at`, `password`, `block`, `verified`, `phone_number`, `sign_date`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1,	'Admin',	'Sol',	NULL,	'sales@mambodubai.com',	NULL,	NULL,	NULL,	'$2y$10$nG9hBSA9F2lLWiraRl9ObOgUicw2whYabXw42FFW3fdlR8Nzd/jbS',	0,	2,	'029292162',	'2020-08-16 03:08:42',	'Z1YMOmUM1qFhyqZNOEm6NCn0USAFaw29Jvg2fu5kJY5a1kN7yw4cVgxDDeDP',	'2020-08-16 19:36:42',	'2020-11-04 08:30:09'),
-(2,	'jovanovic-buyer',	'NJovan LTD',	'lw0vxD6TzVJdfWtSbgsuqqt63LOFpR4gIooF7Awz.jpeg',	'jovanovic.nemanja.1029@gmail.com',	'69627607',	NULL,	NULL,	'$2y$10$guqkDvTjF0lL0iKT/sY.9.cQuUmWwx9x.0TMUpAzbpVKPf4s1z5Xa',	0,	1,	'098766554',	'2020-08-16 03:42:10',	'Oj3clm9GGKWkmlbayqZ4exAX36dvcGKEbgkwe6HWlHfJdBc8o4LFWAyozPWX',	'2020-08-16 19:42:10',	'2020-12-16 05:23:52'),
+(1,	'Admin',	'Sol',	NULL,	'sales@mambodubai.com',	NULL,	NULL,	NULL,	'$2y$10$nG9hBSA9F2lLWiraRl9ObOgUicw2whYabXw42FFW3fdlR8Nzd/jbS',	0,	2,	'029292162',	'2020-08-16 03:08:42',	'7xi0tJrcsCISPD4m8ZeeuQZkogrtPOEvubzso65Wul82L7V0O1SOaUFLZvJu',	'2020-08-16 19:36:42',	'2020-11-04 08:30:09'),
+(2,	'jovanovic-buyer',	'NJovan LTD',	'lw0vxD6TzVJdfWtSbgsuqqt63LOFpR4gIooF7Awz.jpeg',	'jovanovic.nemanja.1029@gmail.com',	'69627607',	NULL,	NULL,	'$2y$10$guqkDvTjF0lL0iKT/sY.9.cQuUmWwx9x.0TMUpAzbpVKPf4s1z5Xa',	0,	1,	'098766554',	'2020-08-16 03:42:10',	'yqElDoTkLlnuWhqZ6YgcCP0yd3D350LXOybdvrSTKekVFWElJ0sg6KFlHQOy',	'2020-08-16 19:42:10',	'2020-12-16 05:23:52'),
 (3,	'jovanovic-seller',	'JNemanja LTD',	'aAW3H3KS91pzzujcDEI1WxDGYAWAfvgqLnD08HL5.jpeg',	'jovanovic.nemanja.102@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$24pI7wu.AifBhwT./SmuPe8aCvdqWe71r.YZ4.si4Hcb3vkvQq45i',	0,	2,	'123456',	'2020-08-16 03:48:17',	'OKovmi3dmWD1ZglMC1LcYSnMpbyqKJMQivSta1DD5OADXG2sLTy1u3afSfYy',	'2020-08-16 19:48:17',	'2020-12-15 04:35:23'),
 (4,	'Nebiyu',	'Solaris DWC LLC',	NULL,	'nebiyu@solarisdubai.com',	NULL,	NULL,	NULL,	'$2y$10$wKNUMvjfROPnQS18MaTD9.DjtXWheYsAY9RUAyTtiGsCgrDl8/z6y',	0,	2,	'0558827281',	'2020-08-17 05:13:27',	'4gbcbiXnU3Xaj91jnEUxG27MlzddhOzwOIEQWCPDNhkm3lk9xPNs6Uk3Rwxd',	'2020-08-17 09:13:27',	'2020-12-14 16:33:57'),
 (5,	'Ahmed',	NULL,	NULL,	'nebiyu@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$9jGX3fAFFEG1.wnFoJcL4e/eg2NKE2blpSCtXxDc/Wp5KZznGtOEG',	0,	1,	'0558825898',	'2020-08-17 05:32:48',	'HWx9RRyxT7BSrxcRw9yGySGQ2PPXKiahR0gRA5Emb1z5sXvjTA4Ri0kT2V4v',	'2020-08-17 09:32:48',	'2020-12-06 05:08:33'),
@@ -1322,7 +1332,7 @@ INSERT INTO `users` (`id`, `name`, `company_name`, `company_logo`, `email`, `git
 (17,	'Fasil',	'Mambo',	NULL,	'fasildubai1969@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$M8d41JRdus4q9uQa35V68OS//JexuFGeNCu6JScCyUvEOB9BpKIxq',	0,	1,	'090909090',	'2020-09-02 08:47:31',	'iRr3FrUwShS5USedt2Bhk4bmaSSOlon93BgAFwXjju7l9khd9TX8DSrXgxYT',	'2020-09-02 12:47:31',	'2020-09-02 12:47:31'),
 (21,	'Amanuel',	'AFROPORTAL FZ LLC',	NULL,	'aevip@yahoo.com',	NULL,	NULL,	NULL,	'$2y$10$g.zu0B/oI8SrJiXWnc8VmuHfPQCsSrZvB25wwyGUagMLG8u02b7Sa',	0,	1,	'0562783826',	'2020-09-23 10:19:26',	NULL,	'2020-09-23 10:19:26',	'2020-09-23 10:19:26'),
 (24,	'Sumanta Dey',	'Codeulas',	NULL,	'sumanta@codeulas.com',	NULL,	NULL,	NULL,	'$2y$10$JBqKm7WC4TYGO.PSr3t7iujKR2mXrHSKfdNOFzU6H6STCssgRU8HG',	0,	1,	'8101731846',	'2020-11-05 08:55:09',	'9Mh8HNTTiHXhfuHManXgUOoIpNgFU78Qk5lo4yERyb222w4BSS83Z9rvqHPq',	'2020-11-05 08:55:09',	'2020-11-05 08:55:09'),
-(25,	'Sumanta',	'Codeulas',	NULL,	'deysumanta1988@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$4/UmTsQfoQA4keueVwDYC.xpP5B2ERujPQf6mbCJWvbXYDkf1re3W',	0,	1,	'8101731846',	'2020-11-13 11:42:33',	'dB0mQZlvAllz44aGOypCeYecrkQ7c7ceIIG4NUvc0axay0TPPs5jyZZLH2Vl',	'2020-11-13 11:42:33',	'2020-11-13 11:42:33'),
+(25,	'Sumanta',	'Codeulas',	NULL,	'deysumanta1988@gmail.com',	NULL,	NULL,	NULL,	'$2y$10$4/UmTsQfoQA4keueVwDYC.xpP5B2ERujPQf6mbCJWvbXYDkf1re3W',	0,	1,	'8101731846',	'2020-11-13 11:42:33',	'cP9ZNh00UuJCJOLO9p8KYF9ZkM2xsOeChf4ILoCcSaHjj23EWP0XpdfERTjP',	'2020-11-13 11:42:33',	'2020-11-13 11:42:33'),
 (26,	'Jhony C',	NULL,	NULL,	'cjhonyc@gmail.com',	NULL,	'118210040133898910462',	NULL,	NULL,	NULL,	1,	NULL,	'2020-12-21 00:00:00',	'IP2gnMmxAe0lqBTyIBSblZxuOZpID4z3BhXSisnABukQVBdIEXgly3uVxKrX',	'2020-12-21 01:26:15',	'2020-12-21 01:26:15');
 
 DROP TABLE IF EXISTS `verify`;
@@ -1379,7 +1389,8 @@ INSERT INTO `verify_emailcodes` (`id`, `email`, `verify_code`, `password`, `crea
 (24,	'king.fullstack.727@yandex.com',	846086,	'aaaa1234!!!!',	'2020-11-04 15:48:53',	'2020-11-04 15:48:53'),
 (25,	'sumanta@codeulas.com',	183829,	'Admin1q2w--',	'2020-11-05 08:54:32',	'2020-11-05 08:54:32'),
 (26,	'deysumanta1988@gmail.com',	263071,	'123456',	'2020-11-13 11:41:39',	'2020-11-13 11:41:39'),
-(27,	'kingfullstack@yandex.com',	976656,	'111111',	'2020-11-19 15:42:47',	'2020-11-19 15:42:47'),
-(28,	'jovanovic.nemasdfsdfanja@gmail.com',	706012,	'aaaa1234!!!!',	'2020-11-20 21:58:32',	'2020-11-20 21:58:32');
+(27,	'kingfullstack@yandex.com',	759311,	'123456',	'2020-11-19 15:42:47',	'2021-01-17 16:48:04'),
+(28,	'jovanovic.nemasdfsdfanja@gmail.com',	706012,	'aaaa1234!!!!',	'2020-11-20 21:58:32',	'2020-11-20 21:58:32'),
+(29,	'randyali80@gmail.com',	900897,	'Ami201168!',	'2021-01-22 16:03:45',	'2021-01-22 16:03:45');
 
--- 2021-01-03 01:48:35
+-- 2021-01-23 09:31:24
